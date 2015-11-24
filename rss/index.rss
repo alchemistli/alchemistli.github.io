@@ -1,4 +1,28 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Mon, 23 Nov 2015 10:45:56 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Welcome to Ghost</title><description>&lt;p&gt;You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &lt;code&gt;&amp;lt;your blog URL&amp;gt;/ghost/&lt;/code&gt;. When you arrive, you can select this post from a list&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">534a3bba-a8a0-4213-958e-df57fdbfd929</guid><category>Getting Started</category><dc:creator>Alchemist Li</dc:creator><pubDate>Mon, 23 Nov 2015 09:06:59 GMT</pubDate><content:encoded>&lt;p&gt;You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &lt;code&gt;&amp;lt;your blog URL&amp;gt;/ghost/&lt;/code&gt;. When you arrive, you can select this post from a list on the left and see a preview of it on the right. Click the little pencil icon at the top of the preview to edit this post and read the next section!&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 24 Nov 2015 03:35:40 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ReactiveCocoa和MVVM简介</title><description>&lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt;
+
+&lt;h3 id="mvvm"&gt;MVVM的三个结论&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以增加应用的可测试新&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="mvvm"&gt;什么是MVVM&lt;/h3&gt;
+
+&lt;script src="https://gist.github.com/IamAlchemist/8193de9995d7f9bd88cd.js"&gt;&lt;/script&gt;</description><link>http://localhost:2368/reactivecocoa_and_mvvm/</link><guid isPermaLink="false">19da1c82-f0fd-4b15-b7a2-529f0e222e22</guid><category>ReactiveCocoa</category><category>MVVM</category><category>iOS</category><dc:creator>Alchemist Li</dc:creator><pubDate>Tue, 24 Nov 2015 00:41:25 GMT</pubDate><content:encoded>&lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt;
+
+&lt;h3 id="mvvm"&gt;MVVM的三个结论&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以增加应用的可测试新&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="mvvm"&gt;什么是MVVM&lt;/h3&gt;
+
+&lt;script src="https://gist.github.com/IamAlchemist/8193de9995d7f9bd88cd.js"&gt;&lt;/script&gt;</content:encoded></item><item><title>Welcome to Ghost</title><description>&lt;p&gt;You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &lt;code&gt;&amp;lt;your blog URL&amp;gt;/ghost/&lt;/code&gt;. When you arrive, you can select this post from a list&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">534a3bba-a8a0-4213-958e-df57fdbfd929</guid><category>Getting Started</category><dc:creator>Alchemist Li</dc:creator><pubDate>Mon, 23 Nov 2015 09:06:59 GMT</pubDate><content:encoded>&lt;p&gt;You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &lt;code&gt;&amp;lt;your blog URL&amp;gt;/ghost/&lt;/code&gt;. When you arrive, you can select this post from a list on the left and see a preview of it on the right. Click the little pencil icon at the top of the preview to edit this post and read the next section!&lt;/p&gt;
 
 &lt;h2 id="gettingstarted"&gt;Getting Started&lt;/h2&gt;
 
