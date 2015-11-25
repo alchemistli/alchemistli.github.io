@@ -1,76 +1,76 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Wed, 25 Nov 2015 08:21:28 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ReactiveCocoa的架构设计</title><description>&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Wed, 25 Nov 2015 08:30:40 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ReactiveCocoa的架构设计</title><description>&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;
 
 &lt;!--more--&gt;
 
 &lt;h2 id="event"&gt;Event&lt;/h2&gt;
 
-&lt;p&gt;一个 &lt;code&gt;event&lt;/code&gt; 代表着某个事情发生了，比如说按了一个 button ，收到了一个网络请求，某个错误发生了等等。&lt;code&gt;event&lt;/code&gt; 可以通过 &lt;code&gt;signal&lt;/code&gt; 来发送给每一个 &lt;code&gt;observer&lt;/code&gt;. 我们用 &lt;code&gt;Event&lt;/code&gt; 类型来描述一个 &lt;code&gt;event&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;一个 event 代表着某个事情发生了，比如说按了一个 button ，收到了一个网络请求，某个错误发生了等等。event 可以通过 signal 来发送给每一个 observer. 我们用 &lt;code&gt;Event&lt;/code&gt; 类型来描述一个 event 。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Event&lt;/code&gt; 是一个 Enum 类型，它或者代表一个值，或者代表后面事件之一&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Next event&lt;/code&gt; 表示有新值到来&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Failed event&lt;/code&gt; 表示在 &lt;code&gt;signal&lt;/code&gt; 结束之前有错误发生。具体是什么类型的错误，可以通过 &lt;code&gt;Event&lt;/code&gt; 里面的 &lt;code&gt;ErrorType&lt;/code&gt; 来获知。 但是如果根本不允许出现错误， 可以制定错误类型为 &lt;code&gt;NoError&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Completed event&lt;/code&gt; 表示 &lt;code&gt;signal&lt;/code&gt; 已经结束，不会有新值来了&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Next&lt;/code&gt; event 表示有新值到来&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Failed&lt;/code&gt; event 表示在 signal 结束之前有错误发生。具体是什么类型的错误，可以通过 &lt;code&gt;Event&lt;/code&gt; 里面的 &lt;code&gt;ErrorType&lt;/code&gt; 来获知。 但是如果根本不允许出现错误， 可以制定错误类型为 &lt;code&gt;NoError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Completed&lt;/code&gt; event 表示 signal 已经结束，不会有新值来了&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Interrupted&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</description><link>http://localhost:2368/reactivecocoade-jia-gou-she-ji/</link><guid isPermaLink="false">012007db-c51a-4af3-9bdc-7bb6ecd48b85</guid><category>ReactiveCocoa</category><category>Architecture</category><category>Skill</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 08:20:59 GMT</pubDate><content:encoded>&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;
 
 &lt;!--more--&gt;
 
 &lt;h2 id="event"&gt;Event&lt;/h2&gt;
 
-&lt;p&gt;一个 &lt;code&gt;event&lt;/code&gt; 代表着某个事情发生了，比如说按了一个 button ，收到了一个网络请求，某个错误发生了等等。&lt;code&gt;event&lt;/code&gt; 可以通过 &lt;code&gt;signal&lt;/code&gt; 来发送给每一个 &lt;code&gt;observer&lt;/code&gt;. 我们用 &lt;code&gt;Event&lt;/code&gt; 类型来描述一个 &lt;code&gt;event&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;一个 event 代表着某个事情发生了，比如说按了一个 button ，收到了一个网络请求，某个错误发生了等等。event 可以通过 signal 来发送给每一个 observer. 我们用 &lt;code&gt;Event&lt;/code&gt; 类型来描述一个 event 。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Event&lt;/code&gt; 是一个 Enum 类型，它或者代表一个值，或者代表后面事件之一&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Next event&lt;/code&gt; 表示有新值到来&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Failed event&lt;/code&gt; 表示在 &lt;code&gt;signal&lt;/code&gt; 结束之前有错误发生。具体是什么类型的错误，可以通过 &lt;code&gt;Event&lt;/code&gt; 里面的 &lt;code&gt;ErrorType&lt;/code&gt; 来获知。 但是如果根本不允许出现错误， 可以制定错误类型为 &lt;code&gt;NoError&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Completed event&lt;/code&gt; 表示 &lt;code&gt;signal&lt;/code&gt; 已经结束，不会有新值来了&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Interrupted event&lt;/code&gt; 表示 &lt;code&gt;signal&lt;/code&gt; 表示操作被 cancel 了，结果既不是成功也不是失败&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Next&lt;/code&gt; event 表示有新值到来&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Failed&lt;/code&gt; event 表示在 signal 结束之前有错误发生。具体是什么类型的错误，可以通过 &lt;code&gt;Event&lt;/code&gt; 里面的 &lt;code&gt;ErrorType&lt;/code&gt; 来获知。 但是如果根本不允许出现错误， 可以制定错误类型为 &lt;code&gt;NoError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Completed&lt;/code&gt; event 表示 signal 已经结束，不会有新值来了&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Interrupted&lt;/code&gt; event` 表示 signal 表示操作被 cancel 了，结果既不是成功也不是失败&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id="signals"&gt;Signals&lt;/h2&gt;
 
-&lt;p&gt;一系列的 &lt;code&gt;event&lt;/code&gt; 就组成了 &lt;code&gt;signal&lt;/code&gt;, &lt;code&gt;signal&lt;/code&gt; 是可以被观察的&lt;/p&gt;
+&lt;p&gt;一系列的 event 就组成了 signal, signal 是可以被观察的&lt;/p&gt;
 
-&lt;p&gt;信号通常代表着 &lt;code&gt;in progress&lt;/code&gt; 的事件流，比如说 notifications, user input 等。当收到新数据，或者任务完成的时候，&lt;code&gt;event&lt;/code&gt; 会通过 &lt;code&gt;signal&lt;/code&gt; 
+&lt;p&gt;信号通常代表着 in progress 的事件流，比如说 notifications, user input 等。当收到新数据，或者任务完成的时候，event 会通过 signal 
 里同时推送到每一个观察者那里。&lt;/p&gt;
 
-&lt;p&gt;如果想要接收到某个 &lt;code&gt;signal&lt;/code&gt; 的 &lt;code&gt;event&lt;/code&gt; , 就必须观察这个 &lt;code&gt;signal&lt;/code&gt;。 观察一个 &lt;code&gt;signal&lt;/code&gt; 并不会有任何副作用。 也就是说，&lt;code&gt;signal&lt;/code&gt; 是完全的基于生产者驱动以及推送的，消费者（observers）对自己的生命周期没有任何控制权。当观察一个 &lt;code&gt;signal&lt;/code&gt; 时，用户仅仅能对发送过来的 &lt;code&gt;event&lt;/code&gt; 按照发送的顺序进行处理。不存在随机访问这些值的办法。&lt;/p&gt;
+&lt;p&gt;如果想要接收到某个 signal 的 event , 就必须观察这个 signal。 观察一个 signal 并不会有任何副作用。 也就是说，signal 是完全的基于生产者驱动以及推送的，消费者（observers）对自己的生命周期没有任何控制权。当观察一个 signal 时，用户仅仅能对发送过来的 event 按照发送的顺序进行处理。不存在随机访问这些值的办法。&lt;/p&gt;
 
-&lt;p&gt;可以通过使用基础操作符来操作 &lt;code&gt;signal&lt;/code&gt;。包括 &lt;code&gt;filter&lt;/code&gt;，&lt;code&gt;map&lt;/code&gt;，&lt;code&gt;reduce&lt;/code&gt;，还有一次性处理多个 &lt;code&gt;signal&lt;/code&gt; 的 &lt;code&gt;zip&lt;/code&gt;。这些基础操作仅仅作用于对 &lt;code&gt;next&lt;/code&gt; 事件&lt;/p&gt;
+&lt;p&gt;可以通过使用基础操作符来操作 signal。包括 &lt;code&gt;filter&lt;/code&gt;，&lt;code&gt;map&lt;/code&gt;，&lt;code&gt;reduce&lt;/code&gt;，还有一次性处理多个 signal 的 &lt;code&gt;zip&lt;/code&gt;。这些基础操作仅仅作用于对 &lt;code&gt;Next&lt;/code&gt; 事件&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;signal&lt;/code&gt; 的生命周期由任意数量的 &lt;code&gt;Next&lt;/code&gt; 事件和一个结束 &lt;code&gt;event&lt;/code&gt; 组成。结束事件可以是 &lt;code&gt;Failed&lt;/code&gt;，或&lt;code&gt;Completed&lt;/code&gt;，或&lt;code&gt;Interrupted&lt;/code&gt;。&lt;code&gt;signal&lt;/code&gt; 发送的值不包括结束 &lt;code&gt;event&lt;/code&gt;，他们必须被单独处理。&lt;/p&gt;
+&lt;p&gt;signal 的生命周期由任意数量的 &lt;code&gt;Next&lt;/code&gt; 事件和一个结束 event 组成。结束事件可以是 &lt;code&gt;Failed&lt;/code&gt;，或&lt;code&gt;Completed&lt;/code&gt;，或&lt;code&gt;Interrupted&lt;/code&gt;。signal 发送的值不包括结束 event，他们必须被单独处理。&lt;/p&gt;
 
 &lt;h2 id="pipes"&gt;Pipes&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;pipe&lt;/code&gt; 是一个可以人工控制的 &lt;code&gt;signal&lt;/code&gt;，它由 &lt;code&gt;Signal.pipe()&lt;/code&gt; 方法创建的。&lt;/p&gt;
+&lt;p&gt;pipe 是一个可以人工控制的 signal，它由 &lt;code&gt;Signal.pipe()&lt;/code&gt; 方法创建的。&lt;/p&gt;
 
-&lt;p&gt;这个方法返回一个 &lt;code&gt;signal&lt;/code&gt; 和一个 &lt;code&gt;observer&lt;/code&gt;. 发送给观察者的事件是受控制的。这个在把 non-RAC 的代码转换成 &lt;code&gt;signal&lt;/code&gt; 是非常有用的。&lt;/p&gt;
+&lt;p&gt;这个方法返回一个 signal 和一个 observer. 发送给观察者的事件是受控制的。这个在把 non-RAC 的代码转换成 signal 的世界时是非常有用的。&lt;/p&gt;
 
-&lt;p&gt;举个例子，我们可以简单的通过 &lt;code&gt;signal&lt;/code&gt; 给观察者发送 &lt;code&gt;event&lt;/code&gt;，来替代以前使用的 &lt;code&gt;callback&lt;/code&gt;。 同时 &lt;code&gt;signal&lt;/code&gt; 可以返回，这样就隐藏了 &lt;code&gt;callback&lt;/code&gt; 的细节。&lt;/p&gt;
+&lt;p&gt;举个例子，我们可以简单的通过 signal 给观察者发送 event，来替代以前使用的 callback。 同时 signal 可以返回，这样就隐藏了 callback 的细节。&lt;/p&gt;
 
 &lt;h2 id="signalproducers"&gt;Signal Producers&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;signal producer&lt;/code&gt;, 可以创建 &lt;code&gt;signal&lt;/code&gt; 并且引起一些副作用， 我们用 &lt;code&gt;SignalProducer&lt;/code&gt; 来表示。&lt;/p&gt;
+&lt;p&gt;signal producer, 可以创建 signal 并且引起一些副作用， 我们用 &lt;code&gt;SignalProducer&lt;/code&gt; 来表示。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;signal producer&lt;/code&gt; 可以用来代表一系列操作或者任务，比如网络请求。每次调用 &lt;code&gt;start()&lt;/code&gt; 都会引起一个相关的操作，并且使得调用者观察结果。&lt;code&gt;startWithSignal()&lt;/code&gt; 返回出产生的信号，使得多次观察比较方便。&lt;/p&gt;
+&lt;p&gt;signal producer 可以用来代表一系列操作或者任务，比如网络请求。每次调用 &lt;code&gt;start()&lt;/code&gt; 都会引起一个相关的操作，并且使得调用者观察结果。&lt;code&gt;startWithSignal()&lt;/code&gt; 返回出产生的信号，使得多次观察比较方便。&lt;/p&gt;
 
-&lt;p&gt;由于 &lt;code&gt;start()&lt;/code&gt; 的不同行为，每个从同一个 &lt;code&gt;signal producer&lt;/code&gt; 产生的 &lt;code&gt;signal&lt;/code&gt; 都可能产生不同顺序不同版本的 &lt;code&gt;event&lt;/code&gt;。这是和普通的 &lt;code&gt;signal&lt;/code&gt; 不同的地方。&lt;/p&gt;
+&lt;p&gt;由于 &lt;code&gt;start()&lt;/code&gt; 的不同行为，每个从同一个 signal producer 产生的 signal 都可能产生不同顺序不同版本的 event。这是和普通的 signal 不同的地方。&lt;/p&gt;
 
-&lt;p&gt;启动一个 &lt;code&gt;signal producer&lt;/code&gt; 会得到一个 &lt;code&gt;disposable&lt;/code&gt;，它可以用来 &lt;code&gt;interrupt／cancel&lt;/code&gt; 相关的 &lt;code&gt;signal&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;启动一个 signal producer 会得到一个 disposable，它可以用来 &lt;code&gt;interrupt/cancel&lt;/code&gt; 相关的 signal&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;signal producers&lt;/code&gt; 也可以被基础操作符操作，比如 &lt;code&gt;map&lt;/code&gt;，&lt;code&gt;filter&lt;/code&gt;。除此之外，它还可以被 &lt;code&gt;lift&lt;/code&gt;。或者是用 &lt;code&gt;time&lt;/code&gt; 来控制何时 &lt;code&gt;start&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;signal producers 也可以被基础操作符操作，比如 &lt;code&gt;map&lt;/code&gt;，&lt;code&gt;filter&lt;/code&gt;。除此之外，它还可以被 &lt;code&gt;lift&lt;/code&gt;。或者是用 &lt;code&gt;time&lt;/code&gt; 来控制何时 &lt;code&gt;start&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h2 id="buffers"&gt;Buffers&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;buffer&lt;/code&gt; 保存了一系列 &lt;code&gt;events&lt;/code&gt;，当有新的 &lt;code&gt;signal&lt;/code&gt; 从 &lt;code&gt;signal producer&lt;/code&gt; 里创建的时候，它可以重现这些 &lt;code&gt;event&lt;/code&gt;。RAC 用 &lt;code&gt;SignalProducer.buffer()&lt;/code&gt; 来创建 &lt;code&gt;buffer&lt;/code&gt;。 &lt;code&gt;buffer&lt;/code&gt;是有大小的，满了以后，会自动顶出最先进入的 &lt;code&gt;event&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;buffer 保存了一系列 events，当有新的 signal 从 signal producer 里创建的时候，它可以重现这些 event。RAC 用 &lt;code&gt;SignalProducer.buffer()&lt;/code&gt; 来创建 buffer。 buffer 是有大小的，满了以后，会自动顶出最先进入的 event。&lt;/p&gt;
 
 &lt;h2 id="observers"&gt;Observers&lt;/h2&gt;
 
-&lt;p&gt;RAC 使用 &lt;code&gt;Observer&lt;/code&gt; 来表示 &lt;code&gt;observer&lt;/code&gt;，显然它可以接收 &lt;code&gt;event&lt;/code&gt; 的值&lt;/p&gt;
+&lt;p&gt;RAC 使用 &lt;code&gt;Observer&lt;/code&gt; 来表示 observer，显然它可以接收 event 的值&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;observers&lt;/code&gt; 可以隐含的被创建，比如说被基于 callback 的 &lt;code&gt;Signal.observe&lt;/code&gt; 或者 &lt;code&gt;SignalProducer.start&lt;/code&gt; 方法&lt;/p&gt;
+&lt;p&gt;observer 可以隐含的被创建，比如说被基于 callback 的 &lt;code&gt;Signal.observe&lt;/code&gt; 或者 &lt;code&gt;SignalProducer.start&lt;/code&gt; 方法&lt;/p&gt;
 
 &lt;h2 id="actions"&gt;Actions&lt;/h2&gt;
 
@@ -82,7 +82,7 @@
 
 &lt;h2 id="properties"&gt;Properties&lt;/h2&gt;
 
-&lt;p&gt;用 &lt;code&gt;PropertyType&lt;/code&gt; 协议表示的 &lt;code&gt;property&lt;/code&gt;, 它保存着一个值，并且可以在值变化的时候通知 &lt;code&gt;observer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;用 &lt;code&gt;PropertyType&lt;/code&gt; 协议表示的 property, 它保存着一个值，并且可以在值变化的时候通知 observer&lt;/p&gt;
 
 &lt;p&gt;property 的当前值可以使用 &lt;code&gt;value&lt;/code&gt; 这个 getter 来获得. 另外的一个叫做 &lt;code&gt;producter&lt;/code&gt; 的 getter 会返回一个 signal producer ，它会发送这个属性的当前值，并且以后任何变化也都会被推送&lt;/p&gt;
 
