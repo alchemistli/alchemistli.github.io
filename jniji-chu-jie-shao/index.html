@@ -1,0 +1,615 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>JNI基础介绍</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="JNI基础介绍">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JNI基础介绍">
+    <meta property="og:description" content="">
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link href="../assets/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=5055c8b222">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=5055c8b222">
+    
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Alchemist's Crafts">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JNI基础介绍">
+    <meta property="og:description" content="这里简单介绍一下JNI的语法...">
+    <meta property="og:url" content="http://localhost:2368/jniji-chu-jie-shao/">
+    <meta property="article:published_time" content="2015-11-25T03:45:56.661Z">
+    <meta property="article:modified_time" content="2015-11-25T03:46:53.268Z">
+    <meta property="article:tag" content="Android">
+    <meta property="article:tag" content="JNI">
+    <meta property="article:tag" content="knowledge">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="JNI基础介绍">
+    <meta name="twitter:description" content="这里简单介绍一下JNI的语法...">
+    <meta name="twitter:url" content="http://localhost:2368/jniji-chu-jie-shao/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Alchemist's Crafts",
+    "author": {
+        "@type": "Person",
+        "name": "Alchemist Li",
+        "url": "http://localhost:2368/author/alchemist",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "JNI基础介绍",
+    "url": "http://localhost:2368/jniji-chu-jie-shao/",
+    "datePublished": "2015-11-25T03:45:56.661Z",
+    "dateModified": "2015-11-25T03:46:53.268Z",
+    "keywords": "Android, JNI, knowledge",
+    "description": "这里简单介绍一下JNI的语法..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Alchemist's Crafts" href="../rss/index.rss">
+
+</head>
+<body class="post-template tag-android tag-jni tag-knowledge no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="../" title="前往 Alchemist's Crafts 的主页"><img src="../content/images/2015/11/logo.jpeg" width="80" alt="Alchemist's Crafts logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="../" title="前往 Alchemist's Crafts 的主页">Alchemist's Crafts</a></h1>
+        <span class="panel-cover__subtitle panel-subtitle">茗香淡水</span>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Thoughts, stories and ideas.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="../index.html#blog" title="访问博客" class="blog-button">博客</a></li>
+<!--              <li class="navigation__item"><a href="http://project.onevcat.com" target="_blank" title="我的项目">项目</a></li> -->
+<!--              <li class="navigation__item"><a href="http://about.onevcat.com/" title="了解更多">关于</a></li> -->
+<!--              <li class="navigation__item"><a href="http://eepurl.com/" title="邮件订阅本站">订阅</a></li> -->
+              <li class="navigation__item"><a href="http://alchemistli.github.io/rss/index.rss" title="邮件订阅本站">订阅</a></li>
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Weibo -->
+<!-- 
+  <li class="navigation__item">
+    <a href="http://weibo.com/onevcat" title="@onevcat 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+-->
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/IamAlchemist" title="@IamAlchemist 的 Github" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="https://twitter.com/wizardle" title="@Alchemist" target="_blank">
+      <i class="social fa fa-twitter"></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="../rss/index.rss" rel="author" title="RSS" target="_blank">
+      <i class="social fa fa-rss"></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:babyfat.candy@gmail.com" title="邮件联系我">
+      <i class="social fa fa-envelope"></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-green"></div>
+  </div>
+</header>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="25 Nov 2015" class="post-meta__date date">25 Nov 2015</time> • <span class="post-meta__tags tags">于 <a href="../tag/android/">Android</a>, <a href="../tag/jni/">JNI</a>, <a href="../tag/knowledge/">knowledge</a></span>
+        <!--<span class="post-meta__author author"><img src="" alt="profile image for Alchemist Li" class="avatar post-meta__avatar" /> by Alchemist Li</span>-->
+      </div>
+      <h1 class="post-title">JNI基础介绍</h1>
+    </header>
+
+    <section class="post tag-android tag-jni tag-knowledge">
+      这里简单介绍一下JNI的语法
+<!--more-->
+
+<h4 id="">初识第一面</h4>
+
+<h5 id="hellojnijava">HelloJNI.java</h5>
+
+<pre><code>public class HelloJNI {  
+   static {
+      System.loadLibrary("hello"); // Load native library at runtime
+                                   // hello.dll (Windows) or libhello.so (Unixes)
+   }
+
+   // Declare a native method sayHello() that receives nothing and returns void
+   private native void sayHello();
+
+   // Test Driver
+   public static void main(String[] args) {
+      new HelloJNI().sayHello();  // invoke the native method
+   }
+}
+</code></pre>
+
+<h5 id="hellojnihc">HelloJNI.h/.c</h5>
+
+<pre><code>JNIEXPORT void JNICALL Java_HelloJNI_sayHello(JNIEnv *env, jobject thisObj) {  
+   printf("Hello World!\n");
+   return;
+}
+</code></pre>
+
+<p>需要注意的有：</p>
+
+<ul>
+<li>函数命名约定 <code>Java_{package_and_classname}_{function_name}(JNI arguments)</code></li>
+<li>JNIEnv*: 对于JNI环境的引用, 通过这个入口可以进行jni函数</li>
+<li>jobject: 对于this对象的引用</li>
+</ul>
+
+<h4 id="jni">JNI基础</h4>
+
+<p>JNI在native系统中定义了下面这些JNI数据类型，来对应Java的类型。</p>
+
+<ul>
+<li>Java基本类型：jint，jbyte，jshort，jlong，jfloat，jdouble，jchar，jboolean对应Java的int，byte，short，long，float，double，char，boolean</li>
+<li>Java应用类型：jobject对应java.lang.Object。同时还有一下子类型
+<ul><li>jclass -&gt; java.lang.Class</li>
+<li>jstring -&gt; java.lang.String</li>
+<li>jthrowable -&gt; java.lang.Throwable</li>
+<li>jarray -&gt; Java Array。也就是jintArray, jbyteArray, jshortArray, jlongArray, jfloatArray, jdoubleArray, jcharArray, jbooleanArray, jobjectArray.</li></ul></li>
+</ul>
+
+<p>由于native的函数都是接受JNI类型参数，返回JNI类型参数，所以一般情况下我们需要这样做：</p>
+
+<ul>
+<li>把JNI的参数转换或者拷贝成C可以操作的类型，如jintArray到int[]</li>
+<li>使用C类型参数完成计算</li>
+<li>把结果转换或者拷贝成JNI类型并返回</li>
+</ul>
+
+<p>JNI环境提供了大量的这些转换工作的工具可以帮助大家完成</p>
+
+<h4 id="javanativie">在Java和Nativie之间传递参数</h4>
+
+<h5 id="">基础类型</h5>
+
+<pre><code>    // In "win\jni_mh.h" - machine header which is machine dependent
+    typedef long            jint;
+    typedef __int64         jlong;
+    typedef signed char     jbyte;
+
+    // In "jni.h"
+    typedef unsigned char   jboolean;
+    typedef unsigned short  jchar;
+    typedef short           jshort;
+    typedef float           jfloat;
+    typedef double          jdouble;
+    typedef jint            jsize;
+</code></pre>
+
+<h5 id="string">String</h5>
+
+<p>JNI环境提供了函数可以进行很方便的转换</p>
+
+<ul>
+<li>jstring -&gt; char* : <code>const char* GetStringUTFChars(JNIEnv*, jstring, jboolean*)</code>.</li>
+<li>char* -&gt; jstring : <code>jstring NewStringUTF(JNIEnv*, char*)</code>.</li>
+</ul>
+
+<p>例如：</p>
+
+<pre><code>JNIEXPORT jstring JNICALL Java_TestJNIString_sayHello(JNIEnv *env, jobject thisObj, jstring inJNIStr) {  
+   // Step 1: Convert the JNI String (jstring) into C-String (char*)
+   const char *inCStr = (*env)-&gt;GetStringUTFChars(env, inJNIStr, NULL);
+   if (NULL == inCSt) return NULL;
+
+   // Step 2: Perform its intended operations
+   printf("In C, the received string is: %s\n", inCStr);
+   (*env)-&gt;ReleaseStringUTFChars(env, inJNIStr, inCStr);  // release resources
+
+   // Prompt user for a C-string
+   char outCStr[128];
+   printf("Enter a String: ");
+   scanf("%s", outCStr);    // not more than 127 characters
+
+   // Step 3: Convert the C-string (char*) into JNI String (jstring) and return
+   return (*env)-&gt;NewStringUTF(env, outCStr);
+}
+</code></pre>
+
+<h5 id="primitive">primitive数组</h5>
+
+<ul>
+<li>jintArray -&gt; jint[], <code>jint* GetIntArrayElements(JNIEnv *env, jintArray a, jboolean *iscopy)</code>.</li>
+<li>jint[] -&gt; jintArray, 首先分配内存<code>jintArray NewIntArray(JNIEnv *env, jsize len)</code>, 然后填充<code>void SetIntArrayRegion(JNIEnv *env, jintArray a, jsize start, jsize len, const jint *buf)</code></li>
+</ul>
+
+<pre><code>JNIEXPORT jdoubleArray JNICALL Java_TestJNIPrimitiveArray_sumAndAverage  
+          (JNIEnv *env, jobject thisObj, jintArray inJNIArray) {
+   // Step 1: Convert the incoming JNI jintarray to C's jint[]
+   jint *inCArray = (*env)-&gt;GetIntArrayElements(env, inJNIArray, NULL);
+   if (NULL == inCArray) return NULL;
+   jsize length = (*env)-&gt;GetArrayLength(env, inJNIArray);
+
+   // Step 2: Perform its intended operations
+   jint sum = 0;
+   int i;
+   for (i = 0; i &lt; length; i++) {
+      sum += inCArray[i];
+   }
+   jdouble average = (jdouble)sum / length;
+   (*env)-&gt;ReleaseIntArrayElements(env, inJNIArray, inCArray, 0); // release resources
+
+   jdouble outCArray[] = {sum, average};
+
+   // Step 3: Convert the C's Native jdouble[] to JNI jdoublearray, and return
+   jdoubleArray outJNIArray = (*env)-&gt;NewDoubleArray(env, 2);  // allocate
+   if (NULL == outJNIArray) return NULL;
+   (*env)-&gt;SetDoubleArrayRegion(env, outJNIArray, 0 , 2, outCArray);  // copy
+   return outJNIArray;
+}
+</code></pre>
+
+<h5 id="java">访问对象变量并且调用Java方法</h5>
+
+<p><em>访问实例对象</em></p>
+
+<ul>
+<li>GetObjectID</li>
+<li>GetFieldID</li>
+<li>GetInt</li>
+<li>SetFieldID</li>
+</ul>
+
+<pre><code>JNIEXPORT void JNICALL Java_TestJNIInstanceVariable_modifyInstanceVariable  
+          (JNIEnv *env, jobject thisObj) {
+   // Get a reference to this object's class
+   jclass thisClass = (*env)-&gt;GetObjectClass(env, thisObj);
+
+   // int
+   // Get the Field ID of the instance variables "number"
+   jfieldID fidNumber = (*env)-&gt;GetFieldID(env, thisClass, "number", "I");
+   if (NULL == fidNumber) return;
+
+   // Get the int given the Field ID
+   jint number = (*env)-&gt;GetIntField(env, thisObj, fidNumber);
+   printf("In C, the int is %d\n", number);
+
+   // Change the variable
+   number = 99;
+   (*env)-&gt;SetIntField(env, thisObj, fidNumber, number);
+
+   // Get the Field ID of the instance variables "message"
+   jfieldID fidMessage = (*env)-&gt;GetFieldID(env, thisClass, "message", "Ljava/lang/String;");
+   if (NULL == fidMessage) return;
+
+   // String
+   // Get the object given the Field ID
+   jstring message = (*env)-&gt;GetObjectField(env, thisObj, fidMessage);
+
+   // Create a C-string with the JNI String
+   const char *cStr = (*env)-&gt;GetStringUTFChars(env, message, NULL);
+   if (NULL == cStr) return;
+
+   printf("In C, the string is %s\n", cStr);
+   (*env)-&gt;ReleaseStringUTFChars(env, message, cStr);
+
+   // Create a new C-string and assign to the JNI string
+   message = (*env)-&gt;NewStringUTF(env, "Hello from C");
+   if (NULL == message) return;
+
+   // modify the instance variables
+   (*env)-&gt;SetObjectField(env, thisObj, fidMessage, message);
+}
+</code></pre>
+
+<p><em>访问静态变量</em></p>
+
+<ul>
+<li>GetStaticFieldID</li>
+<li>GetStatic<type>Field</type></li>
+<li>SetStatic<type>Field</type></li>
+</ul>
+
+<pre><code>JNIEXPORT void JNICALL Java_TestJNIStaticVariable_modifyStaticVariable  
+          (JNIEnv *env, jobject thisObj) {
+   // Get a reference to this object's class
+   jclass cls = (*env)-&gt;GetObjectClass(env, thisObj);
+
+   // Read the int static variable and modify its value
+   jfieldID fidNumber = (*env)-&gt;GetStaticFieldID(env, cls, "number", "D");
+   if (NULL == fidNumber) return;
+   jdouble number = (*env)-&gt;GetStaticDoubleField(env, cls, fidNumber);
+   printf("In C, the double is %f\n", number);
+   number = 77.88;
+   (*env)-&gt;SetStaticDoubleField(env, cls, fidNumber, number);
+}
+</code></pre>
+
+<p><em>访问方法和静态方法</em></p>
+
+<ul>
+<li>GetMethodID</li>
+<li>Call<type>Method</type></li>
+<li>GetStaticMethodID</li>
+<li>CallStatic<type>Method</type></li>
+</ul>
+
+<pre><code>JNIEXPORT void JNICALL Java_TestJNICallBackMethod_nativeMethod  
+          (JNIEnv *env, jobject thisObj) {
+
+   // Get a class reference for this object
+   jclass thisClass = (*env)-&gt;GetObjectClass(env, thisObj);
+
+   // Get the Method ID for method "callback", which takes no arg and return void
+   jmethodID midCallBack = (*env)-&gt;GetMethodID(env, thisClass, "callback", "()V");
+   if (NULL == midCallBack) return;
+   printf("In C, call back Java's callback()\n");
+   // Call back the method (which returns void), baed on the Method ID
+   (*env)-&gt;CallVoidMethod(env, thisObj, midCallBack);
+
+   jmethodID midCallBackStr = (*env)-&gt;GetMethodID(env, thisClass,
+                               "callback", "(Ljava/lang/String;)V");
+   if (NULL == midCallBackStr) return;
+   printf("In C, call back Java's called(String)\n");
+   jstring message = (*env)-&gt;NewStringUTF(env, "Hello from C");
+   (*env)-&gt;CallVoidMethod(env, thisObj, midCallBackStr, message);
+
+   jmethodID midCallBackAverage = (*env)-&gt;GetMethodID(env, thisClass,
+                                  "callbackAverage", "(II)D");
+   if (NULL == midCallBackAverage) return;
+   jdouble average = (*env)-&gt;CallDoubleMethod(env, thisObj, midCallBackAverage, 2, 3);
+   printf("In C, the average is %f\n", average);
+
+   jmethodID midCallBackStatic = (*env)-&gt;GetStaticMethodID(env, thisClass,
+                                 "callbackStatic", "()Ljava/lang/String;");
+   if (NULL == midCallBackStatic) return;
+   jstring resultJNIStr = (*env)-&gt;CallStaticObjectMethod(env, thisClass, midCallBackStatic);
+   const char *resultCStr = (*env)-&gt;GetStringUTFChars(env, resultJNIStr, NULL);
+   if (NULL == resultCStr) return;
+   printf("In C, the returned string is %s\n", resultCStr);
+   (*env)-&gt;ReleaseStringUTFChars(env, resultJNIStr, resultCStr);
+}
+</code></pre>
+
+<h5 id="java">创建java对象和对象数组</h5>
+
+<p><em>创建java对象</em></p>
+
+<ul>
+<li>FindClass</li>
+<li>NewObject</li>
+<li>AllocObject</li>
+</ul>
+
+<pre><code>JNIEXPORT jobject JNICALL Java_TestJNIConstructor_getIntegerObject  
+          (JNIEnv *env, jobject thisObj, jint number) {
+   // Get a class reference for java.lang.Integer
+   jclass cls = (*env)-&gt;FindClass(env, "java/lang/Integer");
+
+   // Get the Method ID of the constructor which takes an int
+   jmethodID midInit = (*env)-&gt;GetMethodID(env, cls, "&lt;init&gt;", "(I)V");
+   if (NULL == midInit) return NULL;
+   // Call back constructor to allocate a new instance, with an int argument
+   jobject newObj = (*env)-&gt;NewObject(env, cls, midInit, number);
+
+   // Try runnning the toString() on this newly create object
+   jmethodID midToString = (*env)-&gt;GetMethodID(env, cls, "toString", "()Ljava/lang/String;");
+   if (NULL == midToString) return NULL;
+   jstring resultStr = (*env)-&gt;CallObjectMethod(env, newObj, midToString);
+   const char *resultCStr = (*env)-&gt;GetStringUTFChars(env, resultStr, NULL);
+   printf("In C: the number is %s\n", resultCStr);
+
+   return newObj;
+}
+</code></pre>
+
+<p><em>创建java数组</em></p>
+
+<ul>
+<li>NewObjectArray</li>
+<li>GetObjectArrayElement</li>
+<li>setObjectArrayElement</li>
+</ul>
+
+<pre><code>JNIEXPORT jobjectArray JNICALL Java_TestJNIObjectArray_sumAndAverage  
+          (JNIEnv *env, jobject thisObj, jobjectArray inJNIArray) {
+   // Get a class reference for java.lang.Integer
+   jclass classInteger = (*env)-&gt;FindClass(env, "java/lang/Integer");
+   // Use Integer.intValue() to retrieve the int
+   jmethodID midIntValue = (*env)-&gt;GetMethodID(env, classInteger, "intValue", "()I");
+   if (NULL == midIntValue) return NULL;
+
+   // Get the value of each Integer object in the array
+   jsize length = (*env)-&gt;GetArrayLength(env, inJNIArray);
+   jint sum = 0;
+   int i;
+   for (i = 0; i &lt; length; i++) {
+      jobject objInteger = (*env)-&gt;GetObjectArrayElement(env, inJNIArray, i);
+      if (NULL == objInteger) return NULL;
+      jint value = (*env)-&gt;CallIntMethod(env, objInteger, midIntValue);
+      sum += value;
+   }
+   double average = (double)sum / length;
+   printf("In C, the sum is %d\n", sum);
+   printf("In C, the average is %f\n", average);
+
+   // Get a class reference for java.lang.Double
+   jclass classDouble = (*env)-&gt;FindClass(env, "java/lang/Double");
+
+   // Allocate a jobjectArray of 2 java.lang.Double
+   jobjectArray outJNIArray = (*env)-&gt;NewObjectArray(env, 2, classDouble, NULL);
+
+   // Construct 2 Double objects by calling the constructor
+   jmethodID midDoubleInit = (*env)-&gt;GetMethodID(env, classDouble, "&lt;init&gt;", "(D)V");
+   if (NULL == midDoubleInit) return NULL;
+   jobject objSum = (*env)-&gt;NewObject(env, classDouble, midDoubleInit, (double)sum);
+   jobject objAve = (*env)-&gt;NewObject(env, classDouble, midDoubleInit, average);
+   // Set to the jobjectArray
+   (*env)-&gt;SetObjectArrayElement(env, outJNIArray, 0, objSum);
+   (*env)-&gt;SetObjectArrayElement(env, outJNIArray, 1, objAve);
+
+   return outJNIArray;
+}
+</code></pre>
+
+<h5 id="">本地和全局变量</h5>
+
+<p>任何类似FindClass(), GetMethodID(), GetFieldID()返回的引用是一个本地引用。</p>
+
+<p>想要使用全局引用的话，需要使用<code>NewGlobalRef()</code>，<code>DeleteGlobalRef()</code></p>
+
+<pre><code>// Global Reference to the Java class "java.lang.Integer"
+static jclass classInteger;  
+static jmethodID midIntegerInit;
+
+jobject getInteger(JNIEnv *env, jobject thisObj, jint number) {
+
+   // Get a class reference for java.lang.Integer if missing
+   if (NULL == classInteger) {
+      printf("Find java.lang.Integer\n");
+      jclass classIntegerLocal = (*env)-&gt;FindClass(env, "java/lang/Integer");
+      // Create a global reference from the local reference
+      classInteger = (*env)-&gt;NewGlobalRef(env, classIntegerLocal);
+      // No longer need the local reference, free it!
+      //(*env)-&gt;DeleteLocalRef(env, classIntegerLocal);
+   }
+
+   if (NULL == classInteger) return NULL;
+
+   // Get the Method ID of the Integer's constructor if missing
+   if (NULL == midIntegerInit) {
+      printf("Get Method ID for java.lang.Integer's constructor\n");
+      midIntegerInit = (*env)-&gt;GetMethodID(env, classInteger, "&lt;init&gt;", "(I)V");
+   }
+   if (NULL == midIntegerInit) return NULL;
+
+   // Call back constructor to allocate a new instance, with an int argument
+   jobject newObj = (*env)-&gt;NewObject(env, classInteger, midIntegerInit, number);
+   printf("In C, constructed java.lang.Integer with number %d\n", number);
+   return newObj;
+}
+
+JNIEXPORT jobject JNICALL Java_TestJNIReference_getIntegerObject  
+          (JNIEnv *env, jobject thisObj, jint number) {
+   return getInteger(env, thisObj, number);
+}
+
+JNIEXPORT jobject JNICALL Java_TestJNIReference_anotherGetIntegerObject  
+          (JNIEnv *env, jobject thisObj, jint number) {
+   return getInteger(env, thisObj, number);
+}
+</code></pre>
+    </section>
+
+  </article>
+
+  <section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'alchemistliscraft'; // required: replace example with your forum shortname
+      
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">© 2015  All rights reserved.</span>
+    <span class="footer__copyright"><a href="https://github.com/onevcat/vno">Vno</a> theme by <a href="http://im.onevcat.com">@onevcat</a></span>
+</footer>        </div>
+    </div>
+
+    
+
+    <!-- Compatibility for Ghost 0.7.0: http://dev.ghost.org/no-more-jquery/ -->
+    <script type="text/javascript">  
+      if (typeof jQuery == 'undefined') {
+        document.write('<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></'+'script>');
+      }
+    </script>
+    
+    <script type="text/javascript" src="../assets/js/main.js?v=5055c8b222"></script>
+
+    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=5055c8b222"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>

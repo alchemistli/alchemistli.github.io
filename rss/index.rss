@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 24 Nov 2015 15:04:31 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ReactiveCocoa和MVVM简介</title><description>&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Wed, 25 Nov 2015 05:14:05 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ReactiveCocoa和MVVM简介</title><description>&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt;
 
 &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt;
 
@@ -20,7 +20,7 @@
 
 &lt;p&gt;我们看到的是一个典型的 MVC 设置。Model 呈现数据，View 呈现用户界面，而 View Controller 调节它两者之间的交互。Cool！&lt;/p&gt;
 
-&lt;p&gt;稍微考虑一下，虽然 View 和 View Controller 是技术上不同的组件，&lt;strong&gt;但它们几乎总是手牵手在一起，成对的&lt;/strong&gt;。你什么时候看到一个 View 能够与不同 View Controller&lt;/p&gt;</description><link>http://localhost:2368/reactivecocoa_and_mvvm/</link><guid isPermaLink="false">19da1c82-f0fd-4b15-b7a2-529f0e222e22</guid><category>ReactiveCocoa</category><category>MVVM</category><category>iOS</category><dc:creator>Alchemist Li</dc:creator><pubDate>Tue, 24 Nov 2015 00:41:25 GMT</pubDate><content:encoded>&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt;
+&lt;p&gt;稍微考虑一下，虽然 View 和 View Controller 是技术上不同的组件，&lt;strong&gt;但它们几乎总是手牵手在一起，成对的&lt;/strong&gt;。你什么时候看到一个 View 能够与不同 View Controller&lt;/p&gt;</description><link>http://localhost:2368/reactivecocoahe-mvvmjian-jie/</link><guid isPermaLink="false">26019261-37fa-4594-b491-1994795bbe35</guid><category>iOS</category><category>ReactiveCocoa</category><category>Architecture</category><category>Skill</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:54:30 GMT</pubDate><content:encoded>&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt;
 
 &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt;
 
@@ -370,69 +370,2532 @@ return cell;
 
 &lt;p&gt;&lt;a href="http://objccn.io/issue-13-1/"&gt;MVVM 介绍&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;ReactiveCocoa and MVVM, an Introduction&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title>Welcome to Ghost</title><description>&lt;p&gt;You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &lt;code&gt;&amp;lt;your blog URL&amp;gt;/ghost/&lt;/code&gt;. When you arrive, you can select this post from a list&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">534a3bba-a8a0-4213-958e-df57fdbfd929</guid><category>Getting Started</category><dc:creator>Alchemist Li</dc:creator><pubDate>Mon, 23 Nov 2015 09:06:59 GMT</pubDate><content:encoded>&lt;p&gt;You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &lt;code&gt;&amp;lt;your blog URL&amp;gt;/ghost/&lt;/code&gt;. When you arrive, you can select this post from a list on the left and see a preview of it on the right. Click the little pencil icon at the top of the preview to edit this post and read the next section!&lt;/p&gt;
-
-&lt;h2 id="gettingstarted"&gt;Getting Started&lt;/h2&gt;
-
-&lt;p&gt;Ghost uses something called Markdown for writing. Essentially, it's a shorthand way to manage your post formatting as you write!&lt;/p&gt;
-
-&lt;p&gt;Writing in Markdown is really easy. In the left hand panel of Ghost, you simply write as you normally would. Where appropriate, you can use &lt;em&gt;shortcuts&lt;/em&gt; to &lt;strong&gt;style&lt;/strong&gt; your content. For example, a list:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Item number one&lt;/li&gt;
-&lt;li&gt;Item number two
-&lt;ul&gt;&lt;li&gt;A nested item&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;A final item&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;or with numbers!&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Remember to buy some milk  &lt;/li&gt;
-&lt;li&gt;Drink the milk  &lt;/li&gt;
-&lt;li&gt;Tweet that I remembered to buy the milk, and drank it&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id="links"&gt;Links&lt;/h3&gt;
-
-&lt;p&gt;Want to link to a source? No problem. If you paste in a URL, like &lt;a href="http://ghost.org"&gt;http://ghost.org&lt;/a&gt; - it'll automatically be linked up. But if you want to customise your anchor text, you can do that too! Here's a link to &lt;a href="http://ghost.org"&gt;the Ghost website&lt;/a&gt;. Neat.&lt;/p&gt;
-
-&lt;h3 id="whataboutimages"&gt;What about Images?&lt;/h3&gt;
-
-&lt;p&gt;Images work too! Already know the URL of the image you want to include in your article? Simply paste it in like this to make it show up:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://ghost.org/images/ghost.png" alt="The Ghost Logo"&gt;&lt;/p&gt;
-
-&lt;p&gt;Not sure which image you want to use yet? That's ok too. Leave yourself a descriptive placeholder and keep writing. Come back later and drag and drop the image in to upload:&lt;/p&gt;
-
-&lt;h3 id="quoting"&gt;Quoting&lt;/h3&gt;
-
-&lt;p&gt;Sometimes a link isn't enough, you want to quote someone on what they've said. Perhaps you've started using a new blogging platform and feel the sudden urge to share their slogan? A quote might be just the way to do it!&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;ReactiveCocoa and MVVM, an Introduction&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title>理解 Objective-C Runtime</title><description>Objective-C扩展了C语言，并加入了面向对象特性和Smalltalk式的消息传递机制。而这个扩展的核心是一个用C和汇编写的Runtime库。它负责加载类的信息，分发函数消息。从而使得c可以面向对象，变成了Objective-C。  
+Runtime的核心就是消息传递 (Messaging)  
+&lt;!--more--&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Ghost - Just a blogging platform&lt;/p&gt;
+  &lt;p&gt;I’m sorry that I long ago coined the term “objects” for this topic because it gets many people to focus on the lesser idea. &lt;strong&gt;The big idea is “messaging”&lt;/strong&gt; – that is what the kernal[sic] of Smalltalk is all about.&lt;/p&gt;&lt;/blockquote&gt;</description><link>http://localhost:2368/li-jie-objective-c-runtime/</link><guid isPermaLink="false">86d881c9-f466-4a66-b8f4-39800be51e81</guid><category>Objc</category><category>iOS</category><category>Skill</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:52:13 GMT</pubDate><content:encoded>Objective-C扩展了C语言，并加入了面向对象特性和Smalltalk式的消息传递机制。而这个扩展的核心是一个用C和汇编写的Runtime库。它负责加载类的信息，分发函数消息。从而使得c可以面向对象，变成了Objective-C。  
+Runtime的核心就是消息传递 (Messaging)  
+&lt;!--more--&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I’m sorry that I long ago coined the term “objects” for this topic because it gets many people to focus on the lesser idea. &lt;strong&gt;The big idea is “messaging”&lt;/strong&gt; – that is what the kernal[sic] of Smalltalk is all about... The key in making great and growable systems is much more to design how its modules communicate rather than what their internal properties and behaviors should be.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id="workingwithcode"&gt;Working with Code&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;-- by Alan Kay&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Got a streak of geek? We've got you covered there, too. You can write inline &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; blocks really easily with back ticks. Want to show off something more comprehensive? 4 spaces of indentation gets you there.&lt;/p&gt;
+&lt;p&gt;在C语言调用一个方法其实就是跳到内存中的某一点并开始执行一段代码。没有任何动态的特性，因为这在编译时就决定好了。而在 Objective-C中，&lt;code&gt;[object foo]&lt;/code&gt;语句并不会立即执行&lt;code&gt;foo&lt;/code&gt;这个方法的代码。它是在运行时给&lt;code&gt;object&lt;/code&gt;发送一条叫&lt;code&gt;foo&lt;/code&gt;的消息。这个消息，也许会由&lt;code&gt;object&lt;/code&gt;来处理，也许会被转发给另一个对象，或者不予理睬假装没收到这个消息。多条不同的消息也可以对应同一个方法实现。这些都是在程序运行的时候决定的。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;.awesome-thing {
-    display: block;
-    width: 100%;
+&lt;p&gt;事实上，在编译时Objective-C函数调用的语法都会被翻译成一个C的函数调用 - objc_msgSend(). &lt;br&gt;
+比如，编译器会把&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[target doMethodWith:var1];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;编译成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;objc_msgSend(target,@selector(doMethodWith:),var1);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;显然，发送消息并不是直接的函数调用，到objc_msgSend里面就是Objective-C Runtime来处理了。&lt;/p&gt;
+
+&lt;h3 id="objc_objectobjc_classojbc_method"&gt;objc&lt;em&gt;object, objc&lt;/em&gt;class 以及 Ojbc_method&lt;/h3&gt;
+
+&lt;p&gt;在Objective-C中，本质上，类、对象和方法都是一个C的结构体&lt;/p&gt;
+
+&lt;p&gt;比如我们知道&lt;code&gt;id&lt;/code&gt;就是指向一个Objective-C的对象的指针，也就是&lt;code&gt;objc_object&lt;/code&gt;的实例，其中有一个&lt;code&gt;isa&lt;/code&gt;指针，这个&lt;code&gt;isa&lt;/code&gt;指向它所属的类。来看看它的定义&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;typedef struct objc_object {  
+    Class isa;
+} *id;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;所以当你拿到一个&lt;code&gt;id&lt;/code&gt;指针之后，就可以获取这个对象的类，并且可以检测其是否响应一个&lt;code&gt;selector&lt;/code&gt;。isa指向的&lt;code&gt;objc_class&lt;/code&gt;实例的里面其实保存的就是该对象对应的类的信息。定义如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;typedef struct objc_class *Class;  
+struct objc_class {  
+    Class isa;  
+    Class super_class;  
+    const char *name;  
+    long instance_size;  
+    struct objc_ivar_list *ivars;  
+    struct objc_method_list **methodLists;  
+    struct objc_cache *cache;  
+    struct objc_protocol_list *protocols;  
+};
+
+struct objc_method_list {  
+    struct objc_method_list *obsolete;
+    int method_count;
+    struct objc_method method_list[1];
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们看到这些类的信息包括，继承关系，实现的协议，方法列表，和属性列表，实例大小，ivar的类型和布局等等。其中方法都对应结构体是&lt;code&gt;objc_method&lt;/code&gt;，这个结构体其实就是一个key/value对，定义如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;typedef struct objc_selector  *SEL;  
+typedef id (*IMP)(id self,SEL _cmd,...);  
+struct objc_method {  
+    SEL method_name;  
+    char *method_types;  
+    IMP method_imp;  
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;key是所谓的&lt;code&gt;Selector&lt;/code&gt;(相当于编译器生成的唯一的标识函数的字符串)；而值就是&lt;code&gt;IMP&lt;/code&gt;，一个&lt;code&gt;IMP&lt;/code&gt;就是一个函数指针，由编译器生成的，当你发起一个消息之后，最终它会执行的那个代码，就是由这个函数指针指定的。&lt;/p&gt;
+
+&lt;p&gt;从这些定义中可以看出， 发送一条消息，也就是&lt;code&gt;objc_msgSend&lt;/code&gt;，大概到底做了什么事情。  &lt;/p&gt;
+
+&lt;p&gt;举&lt;code&gt;objc_msgSend(obj, foo)&lt;/code&gt;这个例子来说：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;首先，通过 obj 的 isa 指针找到它的 class &lt;/li&gt;
+&lt;li&gt;在 class 的 method list 找 foo &lt;/li&gt;
+&lt;li&gt;如果 class 中没到 foo，继续往它的 superclass 中找 &lt;/li&gt;
+&lt;li&gt;一旦找到 foo 这个函数，就去执行它的实现IMP &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;block&lt;/code&gt;的设计也类似，它也包含了isa的指针&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct Block_literal_1 {  
+    void *isa; // initialized to &amp;amp;_NSConcreteStackBlock or &amp;amp;_NSConcreteGlobalBlock
+    ...
+}; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;所以block像object一样也是可以响应消息的。&lt;/p&gt;
+
+&lt;h3 id="metaclass"&gt;MetaClass&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;isa&lt;/code&gt;指向对象就是该object对应的类。也就是Objective-C的类本身也是一个对象，暂时我们称之为类对象(class object)。 它包含的信息包括，继承关系，实现的协议，方法列表，和属性列表，实例大小，ivar的类型和布局等等。当你进行类方法(class method)的调用的时候的时候，比方说&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[NSObject alloc];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你事实上是把这个消息发给了这个类对象(class object)。&lt;/p&gt;
+
+&lt;p&gt;既然class object是一个实例，那么它必然是属于某一个类，这个类被称作metaclass。一个metaclass就是class object的描述，就像一个class是它的object的描述一样。&lt;/p&gt;
+
+&lt;p&gt;值得一提的是，metaclass的方法列表就是我们称之为class methods的东西：class本身应该响应的那些selectors。当你发送一个消息给class，也就是metaclass的实例的时候，objc_msgSend()会查找metaclass的方法列表（包括它的父类），来决定是否可以响应。一个class method记录在metaclass里，就像instance method记录在class中。&lt;/p&gt;
+
+&lt;p&gt;metaclass也是一个实例，也有父类，也有&lt;code&gt;isa&lt;/code&gt;和&lt;code&gt;super_class&lt;/code&gt;。最终的源头是一个特殊的root class。不过metaclass的&lt;code&gt;isa&lt;/code&gt;指针其实是无关紧要的，因为现实中，没有人会给metaclass object发送消息的。 &lt;br&gt;
+相对更重要的是metaclass的继承关系，metaclass有着和class一样的平行的继承关系。所以class methods也就相应的有了继承关系。 &lt;br&gt;
+此外，由于root metaclass的父类是root class，所以每一个class object可以响应root class的instance methods &lt;br&gt;
+最后任何一个class object都是root class（或者它的子类的）实例  &lt;/p&gt;
+
+&lt;p&gt;下面这张图能很好的总结上面的结论，始终要记住的是，当一个message发送给一个object的时候，这个object首先根据&lt;code&gt;isa&lt;/code&gt;指针来寻找是否可以响应，然后在根据&lt;code&gt;super_class&lt;/code&gt;指针在继承链中寻找&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-11-20.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h3 id="appleclasses"&gt;为啥我们要继承 Apple Classes&lt;/h3&gt;
+
+&lt;p&gt;初学Cocoa开发的时候，多数教程都要我们继承一个类比方NSObject，然后我们就开始Coding了。比方说：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;MyObject *object = [[MyObject alloc] init];  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个语句用来初始化一个实例，类似于 C++ 的 new 关键字。这个语句首先会执行MyObject这个类的+alloc方法，所以继承 Apple 的类我们不仅是获得了很多很好用的属性，而且也继承了这种内存分配的方法。&lt;/p&gt;
+
+&lt;h3 id="classcacheobjc_cachecache"&gt;什么是Class Cache(objc_cache *cache)&lt;/h3&gt;
+
+&lt;p&gt;每次发送一个消息的时候，都要去查找方法列表的实现有个问题，效率低。比如一个class往往只有20%的函数会被经常调用，可能占总调用次数的80%。每个消息都需要遍历一次&lt;code&gt;objc_method_list&lt;/code&gt;并不合理。如果把经常被调用的函数缓存下来，那可以大大提高函数查询的效率。这也就是&lt;code&gt;objc_class&lt;/code&gt;中另一个重要成员&lt;code&gt;objc_cache&lt;/code&gt;做的事情 - 再找到foo之后，把foo的&lt;code&gt;method_name&lt;/code&gt;作为key，&lt;code&gt;method_imp&lt;/code&gt;作为value给存起来。当再次收到foo消息的时候，可以直接在cache里找到，避免去遍历&lt;code&gt;objc_method_list&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="objc_msgsend"&gt;说回 objc_msgSend 这个方法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[self printMessageWithString:@"Hello World!"];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;会被编译器翻译成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;objc_msgSend(self,@selector(printMessageWithString:),@"Hello World!");  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;objc_msgSend执行的步骤大致是这样：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;检测这个selector是不是要忽略的。比如Mac OS X开发，有了垃圾回收就不理会retain,release这些消息了&lt;/li&gt;
+&lt;li&gt;检测这个target是不是&lt;code&gt;nil&lt;/code&gt;。ObjC的特性是允许对一个&lt;code&gt;nil&lt;/code&gt;对象执行任何一个方法不会Crash，因为会被忽略掉&lt;/li&gt;
+&lt;li&gt;如果上面两个都过了，那就开始查找这个类的IMP，先从cache里面找，找得到的话，就跳到对应的函数去执行&lt;/li&gt;
+&lt;li&gt;如果cache找不到就到成员方法列表里去找，还找不到，就到父类里去找&lt;/li&gt;
+&lt;li&gt;最后还找不到的话，就要进行消息转发逻辑&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=""&gt;消息转发机制&lt;/h3&gt;
+
+&lt;p&gt;在上面的例子中，如果@selector(printMessageWithString:)最终没有找到，通常情况下，程序会在运行时挂掉并抛出&lt;code&gt;unrecognized selector sent to …&lt;/code&gt;的异常。但在异常抛出前，Objective-C的运行时会给你三次拯救程序的机会：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Method resolution&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast forwarding&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Normal forwarding&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="methodresolution"&gt;Method Resolution&lt;/h3&gt;
+
+&lt;p&gt;在找不到消息对应的函数后，首先，Objective-C运行时会调用+resolveInstanceMethod: 或者+resolveClassMethod:，让你有机会提供一个函数实现。如果你添加了函数并返回YES，那运行时系统就会重新启动一次消息发送的过程。以foo为例，你可以这么实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void fooMethod(id obj, SEL _cmd)  
+{
+    NSLog(@"Doing foo");
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)aSEL
+{
+    if(aSEL == @selector(foo:)){
+        class_addMethod([self class], aSEL, (IMP)fooMethod, "v@:");
+        return YES;
+    }
+    return [super resolveInstanceMethod];
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id="readyforabreak"&gt;Ready for a Break?&lt;/h3&gt;
+&lt;p&gt;Core Data有用到这个方法。NSManagedObjects中properties的getter和setter就是在运行时动态添加的&lt;/p&gt;
 
-&lt;p&gt;Throw 3 or more dashes down on any new line and you've got yourself a fancy new divider. Aw yeah.&lt;/p&gt;
+&lt;p&gt;如果resolve方法返回NO，运行时就会移到下一步：消息转发（Message Forwarding）&lt;/p&gt;
 
-&lt;hr&gt;
+&lt;p&gt;PS：iOS 4.3 加入很多新的 runtime 方法，主要都是以 imp 为前缀的方法，比如 imp_implementationWithBlock() 用 block 快速创建一个 imp 。 &lt;br&gt;
+上面的例子可以重写成：&lt;/p&gt;
 
-&lt;h3 id="advancedusage"&gt;Advanced Usage&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;IMP fooIMP = imp_implementationWithBlock(^(id _self) {  
+    NSLog(@"Doing foo");
+});
 
-&lt;p&gt;There's one fantastic secret about Markdown. If you want, you can write plain old HTML and it'll still work! Very flexible.&lt;/p&gt;
+class_addMethod([self class], aSEL, fooIMP, "v@:");  
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;input type="text" placeholder="I'm an input field!"&gt;&lt;/p&gt;
+&lt;h3 id="fastforwarding"&gt;Fast forwarding&lt;/h3&gt;
 
-&lt;p&gt;That should be enough to get you started. Have fun - and let us know what you think :)&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;消息转发（Message Forwarding）首先会执行Fast forwarding，也就是如果目标对象实现了&lt;code&gt;-forwardingTargetForSelector:&lt;/code&gt;，Runtime这时就会调用这个方法，给你把这个消息转发给其他对象的机会&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    if(aSelector == @selector(foo:)){
+        return alternateObject;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;只要这个方法返回的不是nil和self，整个消息发送的过程就会被重启，当然发送的对象会变成你返回的那个对象。否则，就会继续Normal Fowarding。&lt;/p&gt;
+
+&lt;p&gt;这里叫Fast，只是为了区别下一步的转发机制。因为这一步不会创建任何新的对象，但下一步转发会创建一个 NSInvocation 对象，所以相对更快点。&lt;/p&gt;
+
+&lt;h3 id="normalforwarding"&gt;Normal forwarding&lt;/h3&gt;
+
+&lt;p&gt;这一步是Runtime最后一次给你挽救的机会。首先它会发送&lt;code&gt;-methodSignatureForSelector:&lt;/code&gt;消息获得函数的参数和返回值类型。如果&lt;code&gt;-methodSignatureForSelector:&lt;/code&gt;返回nil，Runtime则会发出&lt;code&gt;-doesNotRecognizeSelector:&lt;/code&gt;消息，程序这时也就挂掉了。如果返回了一个函数签名，Runtime就会创建一个&lt;code&gt;NSInvocation&lt;/code&gt;对象并发送&lt;code&gt;-forwardInvocation:&lt;/code&gt;消息给目标对象。&lt;/p&gt;
+
+&lt;p&gt;NSInvocation 实际上就是对一个消息的描述，包括selector 以及参数等信息。所以你可以在&lt;code&gt;-forwardInvocation:&lt;/code&gt;里修改传进来的&lt;code&gt;NSInvocation&lt;/code&gt;对象，然后发送&lt;code&gt;-invokeWithTarget:&lt;/code&gt;消息给它，传进去一个新的目标：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- (void)forwardInvocation:(NSInvocation *)invocation
+{
+    SEL sel = invocation.selector;
+
+    if([alternateObject respondsToSelector:sel]) {
+        [invocation invokeWithTarget:alternateObject];
+    } 
+    else {
+        [self doesNotRecognizeSelector:sel];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Cocoa 里很多地方都利用到了消息传递机制来对语言进行扩展，如 Proxies、NSUndoManager 跟 Responder Chain。NSProxy 就是专门用来作为代理转发消息的；NSUndoManager 截取一个消息之后再发送；而 Responder Chain 保证一个消息转发给合适的响应者。&lt;/p&gt;
+
+&lt;p&gt;Apple 设计这种机制的原因之一就是——用来模拟多重继承（ObjC 原生是不支持多重继承的）。或者把复杂设计隐藏起来。&lt;/p&gt;
+
+&lt;h4 id=""&gt;参考资料&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html"&gt;Understanding the Objective-C Runtime&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://tech.glowing.com/cn/objective-c-runtime/"&gt;Objective-C Runtime&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.sealiesoftware.com/blog/archive/2009/04/14/objc_explain_Classes_and_metaclasses.html"&gt;Classes and metaclasses&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title>JNI基础介绍</title><description>这里简单介绍一下JNI的语法
+&lt;!--more--&gt;
+
+&lt;h4 id=""&gt;初识第一面&lt;/h4&gt;
+
+&lt;h5 id="hellojnijava"&gt;HelloJNI.java&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;public class HelloJNI {  
+   static {
+      System.loadLibrary("hello"); // Load native library at runtime
+                                   // hello.dll (Windows) or libhello.so (Unixes)
+   }
+
+   // Declare a native method sayHello() that receives nothing and returns void
+   private native void sayHello();
+
+   // Test Driver
+   public static void main(String[] args) {
+      new HelloJNI().sayHello();  // invoke&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/jniji-chu-jie-shao/</link><guid isPermaLink="false">960a4dff-371e-4d2d-885a-5cccd3b27dff</guid><category>Android</category><category>JNI</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:45:56 GMT</pubDate><content:encoded>这里简单介绍一下JNI的语法
+&lt;!--more--&gt;
+
+&lt;h4 id=""&gt;初识第一面&lt;/h4&gt;
+
+&lt;h5 id="hellojnijava"&gt;HelloJNI.java&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;public class HelloJNI {  
+   static {
+      System.loadLibrary("hello"); // Load native library at runtime
+                                   // hello.dll (Windows) or libhello.so (Unixes)
+   }
+
+   // Declare a native method sayHello() that receives nothing and returns void
+   private native void sayHello();
+
+   // Test Driver
+   public static void main(String[] args) {
+      new HelloJNI().sayHello();  // invoke the native method
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id="hellojnihc"&gt;HelloJNI.h/.c&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;JNIEXPORT void JNICALL Java_HelloJNI_sayHello(JNIEnv *env, jobject thisObj) {  
+   printf("Hello World!\n");
+   return;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;需要注意的有：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;函数命名约定 &lt;code&gt;Java_{package_and_classname}_{function_name}(JNI arguments)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;JNIEnv*: 对于JNI环境的引用, 通过这个入口可以进行jni函数&lt;/li&gt;
+&lt;li&gt;jobject: 对于this对象的引用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="jni"&gt;JNI基础&lt;/h4&gt;
+
+&lt;p&gt;JNI在native系统中定义了下面这些JNI数据类型，来对应Java的类型。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Java基本类型：jint，jbyte，jshort，jlong，jfloat，jdouble，jchar，jboolean对应Java的int，byte，short，long，float，double，char，boolean&lt;/li&gt;
+&lt;li&gt;Java应用类型：jobject对应java.lang.Object。同时还有一下子类型
+&lt;ul&gt;&lt;li&gt;jclass -&gt; java.lang.Class&lt;/li&gt;
+&lt;li&gt;jstring -&gt; java.lang.String&lt;/li&gt;
+&lt;li&gt;jthrowable -&gt; java.lang.Throwable&lt;/li&gt;
+&lt;li&gt;jarray -&gt; Java Array。也就是jintArray, jbyteArray, jshortArray, jlongArray, jfloatArray, jdoubleArray, jcharArray, jbooleanArray, jobjectArray.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;由于native的函数都是接受JNI类型参数，返回JNI类型参数，所以一般情况下我们需要这样做：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;把JNI的参数转换或者拷贝成C可以操作的类型，如jintArray到int[]&lt;/li&gt;
+&lt;li&gt;使用C类型参数完成计算&lt;/li&gt;
+&lt;li&gt;把结果转换或者拷贝成JNI类型并返回&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;JNI环境提供了大量的这些转换工作的工具可以帮助大家完成&lt;/p&gt;
+
+&lt;h4 id="javanativie"&gt;在Java和Nativie之间传递参数&lt;/h4&gt;
+
+&lt;h5 id=""&gt;基础类型&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;    // In "win\jni_mh.h" - machine header which is machine dependent
+    typedef long            jint;
+    typedef __int64         jlong;
+    typedef signed char     jbyte;
+
+    // In "jni.h"
+    typedef unsigned char   jboolean;
+    typedef unsigned short  jchar;
+    typedef short           jshort;
+    typedef float           jfloat;
+    typedef double          jdouble;
+    typedef jint            jsize;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id="string"&gt;String&lt;/h5&gt;
+
+&lt;p&gt;JNI环境提供了函数可以进行很方便的转换&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;jstring -&gt; char* : &lt;code&gt;const char* GetStringUTFChars(JNIEnv*, jstring, jboolean*)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;char* -&gt; jstring : &lt;code&gt;jstring NewStringUTF(JNIEnv*, char*)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;例如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;JNIEXPORT jstring JNICALL Java_TestJNIString_sayHello(JNIEnv *env, jobject thisObj, jstring inJNIStr) {  
+   // Step 1: Convert the JNI String (jstring) into C-String (char*)
+   const char *inCStr = (*env)-&amp;gt;GetStringUTFChars(env, inJNIStr, NULL);
+   if (NULL == inCSt) return NULL;
+
+   // Step 2: Perform its intended operations
+   printf("In C, the received string is: %s\n", inCStr);
+   (*env)-&amp;gt;ReleaseStringUTFChars(env, inJNIStr, inCStr);  // release resources
+
+   // Prompt user for a C-string
+   char outCStr[128];
+   printf("Enter a String: ");
+   scanf("%s", outCStr);    // not more than 127 characters
+
+   // Step 3: Convert the C-string (char*) into JNI String (jstring) and return
+   return (*env)-&amp;gt;NewStringUTF(env, outCStr);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id="primitive"&gt;primitive数组&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;jintArray -&gt; jint[], &lt;code&gt;jint* GetIntArrayElements(JNIEnv *env, jintArray a, jboolean *iscopy)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;jint[] -&gt; jintArray, 首先分配内存&lt;code&gt;jintArray NewIntArray(JNIEnv *env, jsize len)&lt;/code&gt;, 然后填充&lt;code&gt;void SetIntArrayRegion(JNIEnv *env, jintArray a, jsize start, jsize len, const jint *buf)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;JNIEXPORT jdoubleArray JNICALL Java_TestJNIPrimitiveArray_sumAndAverage  
+          (JNIEnv *env, jobject thisObj, jintArray inJNIArray) {
+   // Step 1: Convert the incoming JNI jintarray to C's jint[]
+   jint *inCArray = (*env)-&amp;gt;GetIntArrayElements(env, inJNIArray, NULL);
+   if (NULL == inCArray) return NULL;
+   jsize length = (*env)-&amp;gt;GetArrayLength(env, inJNIArray);
+
+   // Step 2: Perform its intended operations
+   jint sum = 0;
+   int i;
+   for (i = 0; i &amp;lt; length; i++) {
+      sum += inCArray[i];
+   }
+   jdouble average = (jdouble)sum / length;
+   (*env)-&amp;gt;ReleaseIntArrayElements(env, inJNIArray, inCArray, 0); // release resources
+
+   jdouble outCArray[] = {sum, average};
+
+   // Step 3: Convert the C's Native jdouble[] to JNI jdoublearray, and return
+   jdoubleArray outJNIArray = (*env)-&amp;gt;NewDoubleArray(env, 2);  // allocate
+   if (NULL == outJNIArray) return NULL;
+   (*env)-&amp;gt;SetDoubleArrayRegion(env, outJNIArray, 0 , 2, outCArray);  // copy
+   return outJNIArray;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id="java"&gt;访问对象变量并且调用Java方法&lt;/h5&gt;
+
+&lt;p&gt;&lt;em&gt;访问实例对象&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GetObjectID&lt;/li&gt;
+&lt;li&gt;GetFieldID&lt;/li&gt;
+&lt;li&gt;GetInt&lt;/li&gt;
+&lt;li&gt;SetFieldID&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;JNIEXPORT void JNICALL Java_TestJNIInstanceVariable_modifyInstanceVariable  
+          (JNIEnv *env, jobject thisObj) {
+   // Get a reference to this object's class
+   jclass thisClass = (*env)-&amp;gt;GetObjectClass(env, thisObj);
+
+   // int
+   // Get the Field ID of the instance variables "number"
+   jfieldID fidNumber = (*env)-&amp;gt;GetFieldID(env, thisClass, "number", "I");
+   if (NULL == fidNumber) return;
+
+   // Get the int given the Field ID
+   jint number = (*env)-&amp;gt;GetIntField(env, thisObj, fidNumber);
+   printf("In C, the int is %d\n", number);
+
+   // Change the variable
+   number = 99;
+   (*env)-&amp;gt;SetIntField(env, thisObj, fidNumber, number);
+
+   // Get the Field ID of the instance variables "message"
+   jfieldID fidMessage = (*env)-&amp;gt;GetFieldID(env, thisClass, "message", "Ljava/lang/String;");
+   if (NULL == fidMessage) return;
+
+   // String
+   // Get the object given the Field ID
+   jstring message = (*env)-&amp;gt;GetObjectField(env, thisObj, fidMessage);
+
+   // Create a C-string with the JNI String
+   const char *cStr = (*env)-&amp;gt;GetStringUTFChars(env, message, NULL);
+   if (NULL == cStr) return;
+
+   printf("In C, the string is %s\n", cStr);
+   (*env)-&amp;gt;ReleaseStringUTFChars(env, message, cStr);
+
+   // Create a new C-string and assign to the JNI string
+   message = (*env)-&amp;gt;NewStringUTF(env, "Hello from C");
+   if (NULL == message) return;
+
+   // modify the instance variables
+   (*env)-&amp;gt;SetObjectField(env, thisObj, fidMessage, message);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;访问静态变量&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GetStaticFieldID&lt;/li&gt;
+&lt;li&gt;GetStatic&lt;type&gt;Field&lt;/type&gt;&lt;/li&gt;
+&lt;li&gt;SetStatic&lt;type&gt;Field&lt;/type&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;JNIEXPORT void JNICALL Java_TestJNIStaticVariable_modifyStaticVariable  
+          (JNIEnv *env, jobject thisObj) {
+   // Get a reference to this object's class
+   jclass cls = (*env)-&amp;gt;GetObjectClass(env, thisObj);
+
+   // Read the int static variable and modify its value
+   jfieldID fidNumber = (*env)-&amp;gt;GetStaticFieldID(env, cls, "number", "D");
+   if (NULL == fidNumber) return;
+   jdouble number = (*env)-&amp;gt;GetStaticDoubleField(env, cls, fidNumber);
+   printf("In C, the double is %f\n", number);
+   number = 77.88;
+   (*env)-&amp;gt;SetStaticDoubleField(env, cls, fidNumber, number);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;访问方法和静态方法&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GetMethodID&lt;/li&gt;
+&lt;li&gt;Call&lt;type&gt;Method&lt;/type&gt;&lt;/li&gt;
+&lt;li&gt;GetStaticMethodID&lt;/li&gt;
+&lt;li&gt;CallStatic&lt;type&gt;Method&lt;/type&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;JNIEXPORT void JNICALL Java_TestJNICallBackMethod_nativeMethod  
+          (JNIEnv *env, jobject thisObj) {
+
+   // Get a class reference for this object
+   jclass thisClass = (*env)-&amp;gt;GetObjectClass(env, thisObj);
+
+   // Get the Method ID for method "callback", which takes no arg and return void
+   jmethodID midCallBack = (*env)-&amp;gt;GetMethodID(env, thisClass, "callback", "()V");
+   if (NULL == midCallBack) return;
+   printf("In C, call back Java's callback()\n");
+   // Call back the method (which returns void), baed on the Method ID
+   (*env)-&amp;gt;CallVoidMethod(env, thisObj, midCallBack);
+
+   jmethodID midCallBackStr = (*env)-&amp;gt;GetMethodID(env, thisClass,
+                               "callback", "(Ljava/lang/String;)V");
+   if (NULL == midCallBackStr) return;
+   printf("In C, call back Java's called(String)\n");
+   jstring message = (*env)-&amp;gt;NewStringUTF(env, "Hello from C");
+   (*env)-&amp;gt;CallVoidMethod(env, thisObj, midCallBackStr, message);
+
+   jmethodID midCallBackAverage = (*env)-&amp;gt;GetMethodID(env, thisClass,
+                                  "callbackAverage", "(II)D");
+   if (NULL == midCallBackAverage) return;
+   jdouble average = (*env)-&amp;gt;CallDoubleMethod(env, thisObj, midCallBackAverage, 2, 3);
+   printf("In C, the average is %f\n", average);
+
+   jmethodID midCallBackStatic = (*env)-&amp;gt;GetStaticMethodID(env, thisClass,
+                                 "callbackStatic", "()Ljava/lang/String;");
+   if (NULL == midCallBackStatic) return;
+   jstring resultJNIStr = (*env)-&amp;gt;CallStaticObjectMethod(env, thisClass, midCallBackStatic);
+   const char *resultCStr = (*env)-&amp;gt;GetStringUTFChars(env, resultJNIStr, NULL);
+   if (NULL == resultCStr) return;
+   printf("In C, the returned string is %s\n", resultCStr);
+   (*env)-&amp;gt;ReleaseStringUTFChars(env, resultJNIStr, resultCStr);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id="java"&gt;创建java对象和对象数组&lt;/h5&gt;
+
+&lt;p&gt;&lt;em&gt;创建java对象&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;FindClass&lt;/li&gt;
+&lt;li&gt;NewObject&lt;/li&gt;
+&lt;li&gt;AllocObject&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;JNIEXPORT jobject JNICALL Java_TestJNIConstructor_getIntegerObject  
+          (JNIEnv *env, jobject thisObj, jint number) {
+   // Get a class reference for java.lang.Integer
+   jclass cls = (*env)-&amp;gt;FindClass(env, "java/lang/Integer");
+
+   // Get the Method ID of the constructor which takes an int
+   jmethodID midInit = (*env)-&amp;gt;GetMethodID(env, cls, "&amp;lt;init&amp;gt;", "(I)V");
+   if (NULL == midInit) return NULL;
+   // Call back constructor to allocate a new instance, with an int argument
+   jobject newObj = (*env)-&amp;gt;NewObject(env, cls, midInit, number);
+
+   // Try runnning the toString() on this newly create object
+   jmethodID midToString = (*env)-&amp;gt;GetMethodID(env, cls, "toString", "()Ljava/lang/String;");
+   if (NULL == midToString) return NULL;
+   jstring resultStr = (*env)-&amp;gt;CallObjectMethod(env, newObj, midToString);
+   const char *resultCStr = (*env)-&amp;gt;GetStringUTFChars(env, resultStr, NULL);
+   printf("In C: the number is %s\n", resultCStr);
+
+   return newObj;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;创建java数组&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;NewObjectArray&lt;/li&gt;
+&lt;li&gt;GetObjectArrayElement&lt;/li&gt;
+&lt;li&gt;setObjectArrayElement&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;JNIEXPORT jobjectArray JNICALL Java_TestJNIObjectArray_sumAndAverage  
+          (JNIEnv *env, jobject thisObj, jobjectArray inJNIArray) {
+   // Get a class reference for java.lang.Integer
+   jclass classInteger = (*env)-&amp;gt;FindClass(env, "java/lang/Integer");
+   // Use Integer.intValue() to retrieve the int
+   jmethodID midIntValue = (*env)-&amp;gt;GetMethodID(env, classInteger, "intValue", "()I");
+   if (NULL == midIntValue) return NULL;
+
+   // Get the value of each Integer object in the array
+   jsize length = (*env)-&amp;gt;GetArrayLength(env, inJNIArray);
+   jint sum = 0;
+   int i;
+   for (i = 0; i &amp;lt; length; i++) {
+      jobject objInteger = (*env)-&amp;gt;GetObjectArrayElement(env, inJNIArray, i);
+      if (NULL == objInteger) return NULL;
+      jint value = (*env)-&amp;gt;CallIntMethod(env, objInteger, midIntValue);
+      sum += value;
+   }
+   double average = (double)sum / length;
+   printf("In C, the sum is %d\n", sum);
+   printf("In C, the average is %f\n", average);
+
+   // Get a class reference for java.lang.Double
+   jclass classDouble = (*env)-&amp;gt;FindClass(env, "java/lang/Double");
+
+   // Allocate a jobjectArray of 2 java.lang.Double
+   jobjectArray outJNIArray = (*env)-&amp;gt;NewObjectArray(env, 2, classDouble, NULL);
+
+   // Construct 2 Double objects by calling the constructor
+   jmethodID midDoubleInit = (*env)-&amp;gt;GetMethodID(env, classDouble, "&amp;lt;init&amp;gt;", "(D)V");
+   if (NULL == midDoubleInit) return NULL;
+   jobject objSum = (*env)-&amp;gt;NewObject(env, classDouble, midDoubleInit, (double)sum);
+   jobject objAve = (*env)-&amp;gt;NewObject(env, classDouble, midDoubleInit, average);
+   // Set to the jobjectArray
+   (*env)-&amp;gt;SetObjectArrayElement(env, outJNIArray, 0, objSum);
+   (*env)-&amp;gt;SetObjectArrayElement(env, outJNIArray, 1, objAve);
+
+   return outJNIArray;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=""&gt;本地和全局变量&lt;/h5&gt;
+
+&lt;p&gt;任何类似FindClass(), GetMethodID(), GetFieldID()返回的引用是一个本地引用。&lt;/p&gt;
+
+&lt;p&gt;想要使用全局引用的话，需要使用&lt;code&gt;NewGlobalRef()&lt;/code&gt;，&lt;code&gt;DeleteGlobalRef()&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// Global Reference to the Java class "java.lang.Integer"
+static jclass classInteger;  
+static jmethodID midIntegerInit;
+
+jobject getInteger(JNIEnv *env, jobject thisObj, jint number) {
+
+   // Get a class reference for java.lang.Integer if missing
+   if (NULL == classInteger) {
+      printf("Find java.lang.Integer\n");
+      jclass classIntegerLocal = (*env)-&amp;gt;FindClass(env, "java/lang/Integer");
+      // Create a global reference from the local reference
+      classInteger = (*env)-&amp;gt;NewGlobalRef(env, classIntegerLocal);
+      // No longer need the local reference, free it!
+      //(*env)-&amp;gt;DeleteLocalRef(env, classIntegerLocal);
+   }
+
+   if (NULL == classInteger) return NULL;
+
+   // Get the Method ID of the Integer's constructor if missing
+   if (NULL == midIntegerInit) {
+      printf("Get Method ID for java.lang.Integer's constructor\n");
+      midIntegerInit = (*env)-&amp;gt;GetMethodID(env, classInteger, "&amp;lt;init&amp;gt;", "(I)V");
+   }
+   if (NULL == midIntegerInit) return NULL;
+
+   // Call back constructor to allocate a new instance, with an int argument
+   jobject newObj = (*env)-&amp;gt;NewObject(env, classInteger, midIntegerInit, number);
+   printf("In C, constructed java.lang.Integer with number %d\n", number);
+   return newObj;
+}
+
+JNIEXPORT jobject JNICALL Java_TestJNIReference_getIntegerObject  
+          (JNIEnv *env, jobject thisObj, jint number) {
+   return getInteger(env, thisObj, number);
+}
+
+JNIEXPORT jobject JNICALL Java_TestJNIReference_anotherGetIntegerObject  
+          (JNIEnv *env, jobject thisObj, jint number) {
+   return getInteger(env, thisObj, number);
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Fresco 简介</title><description>&lt;p&gt;翻译自&lt;a href="https://code.facebook.com/posts/366199913563917/introducing-fresco-a-new-image-library-for-android/"&gt;Introducing Fresco: A new image library for Android&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这里并不是单纯的翻译，只是试图总结一下fresco的特点&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;fresco是facebook开源的管理图片的库，主要还是为了管理里图片使用的内存&lt;/p&gt;
+
+&lt;h4 id=""&gt;不同的内存区域&lt;/h4&gt;
+
+&lt;p&gt;对于Android来说，可以使用的内存区域包括:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;java heap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;native heap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ashmem&lt;/code&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;ashmem&lt;/code&gt;非常像&lt;code&gt;native heap&lt;/code&gt;，但是有趣的是，它可以&lt;code&gt;pin/unpin&lt;/code&gt;。所谓的&lt;code&gt;unpin&lt;/code&gt;其实就是lazy free。也就是说，仅仅当Android需要更多内存的时候，才会释放这块内存。当Android重新&lt;code&gt;pin&lt;/code&gt;这块内存时，如果这块内存不曾被是放过的话，那么原来的数据还在那里。&lt;/p&gt;
+
+&lt;h4 id="purgeablebitmaps"&gt;Purgeable bitmaps&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;ashmem&lt;/code&gt;并不能被java应用直接访问，除了一些特殊情况，恰好，图片就是其中的一个。当你创建一个解码过的图片，&lt;code&gt;bitmap&lt;/code&gt;&lt;/p&gt;</description><link>http://localhost:2368/fresco-jian-jie/</link><guid isPermaLink="false">dc622685-8779-4629-a300-3659e90220d3</guid><category>Android</category><category>Skill</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:41:21 GMT</pubDate><content:encoded>&lt;p&gt;翻译自&lt;a href="https://code.facebook.com/posts/366199913563917/introducing-fresco-a-new-image-library-for-android/"&gt;Introducing Fresco: A new image library for Android&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这里并不是单纯的翻译，只是试图总结一下fresco的特点&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;fresco是facebook开源的管理图片的库，主要还是为了管理里图片使用的内存&lt;/p&gt;
+
+&lt;h4 id=""&gt;不同的内存区域&lt;/h4&gt;
+
+&lt;p&gt;对于Android来说，可以使用的内存区域包括:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;java heap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;native heap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ashmem&lt;/code&gt; &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;ashmem&lt;/code&gt;非常像&lt;code&gt;native heap&lt;/code&gt;，但是有趣的是，它可以&lt;code&gt;pin/unpin&lt;/code&gt;。所谓的&lt;code&gt;unpin&lt;/code&gt;其实就是lazy free。也就是说，仅仅当Android需要更多内存的时候，才会释放这块内存。当Android重新&lt;code&gt;pin&lt;/code&gt;这块内存时，如果这块内存不曾被是放过的话，那么原来的数据还在那里。&lt;/p&gt;
+
+&lt;h4 id="purgeablebitmaps"&gt;Purgeable bitmaps&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;ashmem&lt;/code&gt;并不能被java应用直接访问，除了一些特殊情况，恰好，图片就是其中的一个。当你创建一个解码过的图片，&lt;code&gt;bitmap&lt;/code&gt;，api允许你指定这个图片是&lt;code&gt;purgeable&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BitmapFactory.Options = new BitmapFactory.Options();  
+options.inPurgeable = true;  
+Bitmap bitmap = BitmapFactory.decodeByteArray(jpeg, 0, jpeg.length, options);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Purgeable的bitmap就在ashmem里。然而，garbage collector并不自动回收这些内存。Android系统只是在渲染系统渲染的时候&lt;code&gt;pin&lt;/code&gt;住这些内存，然后在渲染结束后&lt;code&gt;unpin&lt;/code&gt;他们。如果这些&lt;code&gt;unpined&lt;/code&gt;图片需要再次被渲染的话，Android就会重新取得需要的内容，如果有必要的话，会重新在线(on the fly)解码。&lt;/p&gt;
+
+&lt;p&gt;但是在线解码(on the fly decode)发生在主线程里，由于这个原因，Google并不建议使用这个特性。目前的建议是使用&lt;code&gt;inBitmap&lt;/code&gt;。但是这个新标志只有在android3.0里才存在。此外在4.4之前，这个特性还有个限制，是要求新解压的图片和原来的图片的大小要一致。这个要求显然并不适合大多数场景。&lt;/p&gt;
+
+&lt;h4 id=""&gt;鱼和熊掌可以兼得&lt;/h4&gt;
+
+&lt;p&gt;我们发现了一个既可以不用频繁释放／分配内存，又可以不阻塞UI的办法。也就是说，如果我们事先在非UI线程pin好一块内存，然后只要永远不要unpin它，这样我们就在ashmem上得到了一块内存，但是却不会引起UI阻塞的问题。非常幸运，我们NDK中有一个函数就是干这个的，&lt;code&gt;AdnroidBitmap_lockPixels&lt;/code&gt;。这个函数设计之初是用来和&lt;code&gt;unlockPixels&lt;/code&gt;配合使用来unpin这块内存的。当我们故意调用lockPixels但是并不调用unlockPixels时候，我们就很安全的在Java Heap之外得到了一块并不阻塞UI线程的内存。&lt;/p&gt;
+
+&lt;h4 id="c"&gt;像C++一样思考&lt;/h4&gt;
+
+&lt;p&gt;ashmem没有类似garbage collector来保证不会内存泄漏。所以我们需要自己来保证。&lt;/p&gt;
+
+&lt;p&gt;在C++里，通常的解决办法是使用smart pointer类来实现引用计数。但这使用了cpp语言的工具，copy constructor，assignment constructor，deterministic destructor。这些语法糖在java中并不存在。所以我们自己要实现类似的机制。&lt;/p&gt;
+
+&lt;p&gt;我们通过两个类来实现这个机制。一个叫做&lt;code&gt;SharedReference&lt;/code&gt;。这个类有两个方法，一个是&lt;code&gt;addReference&lt;/code&gt;，一个是&lt;code&gt;deleteReferece&lt;/code&gt;。通过这个来实现引用计数。&lt;/p&gt;
+
+&lt;p&gt;当然这个对于java程序员来说，明显很容易出错。java语言设计的时候就是要避免这样做。所以在&lt;code&gt;SharedReference&lt;/code&gt;顶上，我们设计了&lt;code&gt;CloseableReference&lt;/code&gt;。它是现实了&lt;code&gt;Closeable&lt;/code&gt;接口，并且也实现了&lt;code&gt;cloneabel&lt;/code&gt;。在构造函数和&lt;code&gt;clone()&lt;/code&gt;里我们调用&lt;code&gt;addReferece()&lt;/code&gt;。在&lt;code&gt;close()&lt;/code&gt;里，我们调用&lt;code&gt;deleteReference()&lt;/code&gt;。所以java开发者只需要遵循两个原则：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;给一个CloseableReference赋值时候，调&lt;code&gt;.clone()&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;离开作用域时，调用&lt;code&gt;.close()&lt;/code&gt;，通常是在一个final块里。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="loaderpipeline"&gt;它不仅仅是一个loader，更是一个pipeline&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/fresco_imagepipeline.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;在移动设备上显示一张图片要涉及很多步骤，如果我们把这些步骤看作是&lt;code&gt;pipeline&lt;/code&gt;而不是&lt;code&gt;loader&lt;/code&gt;，那么事情会完全不一样。每一步都应该尽可能的独立于其他步骤，每一步获得一些参数的输入，而产出一些结果。一些可能需要可以并行，一些需要串行。有一些仅仅需要在一些特定条件下执行，有一些对执行他们的线程有特定要求。而且考虑到弱网络和大图片，我们希望用户可以尽可能快的看到图片，即使是图片并没有完全下载下来。&lt;/p&gt;
+
+&lt;p&gt;对于Java来说，一般异步代码同步的时候我们会用到&lt;code&gt;Future&lt;/code&gt;。但Future只能在执行完毕的时候带回来一个结果。当我们处理大图片的时候，我们需要处理一系列的结果。&lt;/p&gt;
+
+&lt;p&gt;我们的解决办法是涉及一个泛化版的Future，&lt;code&gt;DataSource&lt;/code&gt;。它提供一个订阅的方法，调用者必须传递一个&lt;code&gt;DataSubscriber&lt;/code&gt;和&lt;code&gt;Executor&lt;/code&gt;给它。DataSubscriber将会收到DataSource发来的中间结果或者是最终结果的通知，并且会提供一个简单的办法去区分这两者。&lt;/p&gt;
+
+&lt;p&gt;在底层，上图里的每一个盒子都是使用一个新的架构实现的，叫做Producer/Consumer。这个架构是学习&lt;code&gt;ReactiveX&lt;/code&gt;架构而搭建的。整个接口非常简洁，&lt;code&gt;Producer&lt;/code&gt;只有一个方法，&lt;code&gt;produceResults&lt;/code&gt;，它只有一个参数是&lt;code&gt;Consumer&lt;/code&gt;对象。相对应的，&lt;code&gt;Consumer&lt;/code&gt;只有一个方法叫做&lt;code&gt;onNewResult&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;我们使用一个向下面这样的一个系统来使producters变成一个链条。假设我们有一个producer，它的工作就是把类型I变成类型O。看起来如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class OutputProducer&amp;lt;I, O&amp;gt; implements Producer&amp;lt;O&amp;gt; {
+
+  private final Producer&amp;lt;I&amp;gt; mInputProducer;
+
+  public OutputProducer(Producer&amp;lt;I&amp;gt; inputProducer) {
+    this.mInputProducer = inputProducer;
+  }
+
+  public void produceResults(Consumer&amp;lt;O&amp;gt; outputConsumer, ProducerContext context) {
+    Consumer&amp;lt;I&amp;gt; inputConsumer = new InputConsumer(outputConsumer);
+    mInputProducer.produceResults(inputConsumer, context);
+  }
+
+  private static class InputConsumer implements Consumer&amp;lt;I&amp;gt; {
+    private final Consumer&amp;lt;O&amp;gt; mOutputConsumer;
+
+    public InputConsumer(Consumer&amp;lt;O&amp;gt; outputConsumer) {
+      mOutputConsumer = outputConsumer;
+    }
+
+    public void onNewResult(I newResult, boolean isLast) {
+      O output = doActualWork(newResult);
+      mOutputConsumer.onNewResult(output, isLast);      
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个设计使得我们可以组建一个非常复杂的工作步骤链条，但是却能保证每一步逻辑上的独立性。&lt;/p&gt;
+
+&lt;h4 id=""&gt;动画－－从一到多&lt;/h4&gt;
+
+&lt;p&gt;表情一般来说是GIF或者WebP格式的，这带来了挑战，一个动画由许多bitmap组成，每一个都需要解码，存储和显示。对于大的动画来说，在内存中存储每一帧显然是不可能的。&lt;/p&gt;
+
+&lt;p&gt;所以我们设计了&lt;code&gt;AnimatedDrawable&lt;/code&gt;，实现了Android的&lt;code&gt;Animatable&lt;/code&gt;接口，可以支持以上两种格式，并且我们做了优化，如果比较小，我们可以把所有帧放在内存中，否则我们在线解码。不过这些都是高度可定制的&lt;/p&gt;
+
+&lt;h4 id="drawee"&gt;关于Drawee&lt;/h4&gt;
+
+&lt;p&gt;我们以前的实现使用了View，当图片下载好之后把一个placeholder的View和交换，但是这样效率不高，因为换View会引起Android重新计算整个layout pass。所以一个更合理的做法是使用Android的Drawable，它可以实时交换而不引起任何其他代价。&lt;/p&gt;
+
+&lt;p&gt;所以我们引入了&lt;code&gt;Drawee&lt;/code&gt;。这个MVC类似的架构用来显示图片。Modal叫做&lt;code&gt;DraweeHierarchy&lt;/code&gt;，它由有层次的Drawable组成，每一个实现特定的功能，imaging，layering，fade-in，scaling等。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DraweeControllers&lt;/code&gt;连接image pipeline和处理image后台的操作。它从pipeline收到通知，然后决定怎么处理结果。它决定了DrawHierarchy实际显示了什么，不论是placeholder，错误，或者准备好的图片。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DraweeViews&lt;/code&gt;仅仅有非常有限的功能，但是它提供的功能却是决定性的。它接受Android系统的事件来发出信号说，这个view是不是还在屏幕上显示。当不在屏幕上的时候，DraweeView可以让DraweeController释放被图片使用资源。同时如果这个图片还没有下载的话，它可以取消，这样就可以节约网络带宽的使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;完&lt;/code&gt;&lt;/p&gt;</content:encoded></item><item><title>新Android Gradle Build Tools: Gradle 2.5</title><description>&lt;p&gt;Android Studio 1.3已经除了稳定版了。新特性包括了完全NDK支持，而且一个主要的更改是DSL(Domain-Specific Language)的变化。&lt;/p&gt;
+
+&lt;p&gt;翻译自&lt;a href="http://inthecheesefactory.com/blog/new-gradle-build-tools-with-gradle-2.5/en"&gt;inthechessefactory&lt;/a&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h4 id="androidgradlebuildtools"&gt;什么是Android Gradle Build Tools&lt;/h4&gt;
+
+&lt;p&gt;在把每个module的build.gradle文件传递给Gradle之前，Android Gradle Build Tools 用来提前处理下这些文件。&lt;/p&gt;
+
+&lt;p&gt;Gradle Build Tools的版本是在project的build.gradle里指定的，类似：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dependencies {
+    classpath 'com.android.tools.build:gradle:1.2.3'
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gradle Build Tools版本和Gradle版本对应关系如下：&lt;/p&gt;
+
+&lt;table style="width: 100%; border: 1px solid black;" border="1px solid black"&gt;  
+&lt;tbody&gt;  
+&lt;tr&gt;  
+&lt;td style="width: 50%; border: 1px solid black; padding: 10px; text-align: center;"&gt;&lt;strong&gt;Android Gradle Plugin&lt;/strong&gt;&lt;/td&gt;  
+&lt;td style="border: 1px solid black; text-align: center;"&gt;&lt;strong&gt;Gradle&lt;/strong&gt;&lt;/td&gt;  
+&lt;/tr&gt;  
+&lt;tr&gt;  
+&lt;td style="border: 1px solid black; text-align: center;"&gt;1.0.0 - 1.1.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</description><link>http://localhost:2368/xin-android-gradle-build-tools-gradle-2-5/</link><guid isPermaLink="false">be583e8d-8591-4bde-9cb1-1c7d12ebad69</guid><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:32:29 GMT</pubDate><content:encoded>&lt;p&gt;Android Studio 1.3已经除了稳定版了。新特性包括了完全NDK支持，而且一个主要的更改是DSL(Domain-Specific Language)的变化。&lt;/p&gt;
+
+&lt;p&gt;翻译自&lt;a href="http://inthecheesefactory.com/blog/new-gradle-build-tools-with-gradle-2.5/en"&gt;inthechessefactory&lt;/a&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h4 id="androidgradlebuildtools"&gt;什么是Android Gradle Build Tools&lt;/h4&gt;
+
+&lt;p&gt;在把每个module的build.gradle文件传递给Gradle之前，Android Gradle Build Tools 用来提前处理下这些文件。&lt;/p&gt;
+
+&lt;p&gt;Gradle Build Tools的版本是在project的build.gradle里指定的，类似：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dependencies {
+    classpath 'com.android.tools.build:gradle:1.2.3'
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gradle Build Tools版本和Gradle版本对应关系如下：&lt;/p&gt;
+
+&lt;table style="width: 100%; border: 1px solid black;" border="1px solid black"&gt;  
+&lt;tbody&gt;  
+&lt;tr&gt;  
+&lt;td style="width: 50%; border: 1px solid black; padding: 10px; text-align: center;"&gt;&lt;strong&gt;Android Gradle Plugin&lt;/strong&gt;&lt;/td&gt;  
+&lt;td style="border: 1px solid black; text-align: center;"&gt;&lt;strong&gt;Gradle&lt;/strong&gt;&lt;/td&gt;  
+&lt;/tr&gt;  
+&lt;tr&gt;  
+&lt;td style="border: 1px solid black; text-align: center;"&gt;1.0.0 - 1.1.3&lt;/td&gt;  
+&lt;td style="border: 1px solid black; text-align: center;"&gt;2.2.1 - 2.3&lt;/td&gt;  
+&lt;/tr&gt;  
+&lt;tr&gt;  
+&lt;td style="border: 1px solid black; text-align: center;"&gt;1.2+&lt;/td&gt;  
+&lt;td style="border: 1px solid black; text-align: center;"&gt;2.2.1+&lt;/td&gt;  
+&lt;/tr&gt;  
+&lt;/tbody&gt;  
+&lt;/table&gt;
+
+&lt;h4 id="thenewandroidgradlebuildtools"&gt;The new Android Gradle Build Tools&lt;/h4&gt;
+
+&lt;p&gt;使用新的Gradle Build Tools的话，只需要换掉build tools的version&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dependencies {
+    classpath 'com.android.tools.build:gradle-experimental:0.1.0'
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;不过只有gradle2.5才能匹配使用，所以需要设置gradle-wrapper.properties&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;distributionUrl=https\://services.gradle.org/distributions/gradle-2.5-bin.zip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后像下面这样编辑模块的build.gradle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apply plugin: 'com.android.model.application'
+
+model {
+    android {
+        compileSdkVersion = 22
+        buildToolsVersion = "23.0.0 rc3"
+
+        defaultConfig.with {
+            applicationId = "com.inthecheesefactory.hellojni25"
+            minSdkVersion.apiLevel = 15
+            targetSdkVersion.apiLevel = 22
+            versionCode = 1
+            versionName = "1.0"
+        }
+    }
+
+    android.buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles += file('proguard-rules.pro')
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;仔细看就会发现，plugin不再是&lt;code&gt;com.android.application&lt;/code&gt;，而是&lt;code&gt;com.android.model.application&lt;/code&gt;。 &lt;br&gt;
+&lt;code&gt;+=&lt;/code&gt;被引入表示在一个collection中增加一些元素。&lt;/p&gt;
+
+&lt;h4 id="ndk"&gt;支持 NDK&lt;/h4&gt;
+
+&lt;p&gt;修改项目的local.properites文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ndk.dir=PATH_TO_NDK_ROOT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;，或者直接使用android studio下载ndk&lt;/p&gt;
+
+&lt;p&gt;然后在java的package里创建&lt;code&gt;HelloJni.java&lt;/code&gt;文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class HelloJni {  
+    public native String stringFromJNI();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在src/main目录下创建jni文件夹，然后创建hello-jni.c文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;jni.h&amp;gt;
+
+jstring  
+Java_com_inthecheesefactory_hellojni25_HelloJni_stringFromJNI( JNIEnv* env,  
+                                                  jobject thiz )
+{
+#if defined(__arm__)
+  #if defined(__ARM_ARCH_7A__)
+    #if defined(__ARM_NEON__)
+      #if defined(__ARM_PCS_VFP)
+        #define ABI "armeabi-v7a/NEON (hard-float)"
+      #else
+        #define ABI "armeabi-v7a/NEON"
+      #endif
+    #else
+      #if defined(__ARM_PCS_VFP)
+        #define ABI "armeabi-v7a (hard-float)"
+      #else
+        #define ABI "armeabi-v7a"
+      #endif
+    #endif
+  #else
+   #define ABI "armeabi"
+  #endif
+#elif defined(__i386__)
+   #define ABI "x86"
+#elif defined(__x86_64__)
+   #define ABI "x86_64"
+#elif defined(__mips64)  /* mips64el-* toolchain defines __mips__ too */
+   #define ABI "mips64"
+#elif defined(__mips__)
+   #define ABI "mips"
+#elif defined(__aarch64__)
+   #define ABI "arm64-v8a"
+#else
+   #define ABI "unknown"
+#endif
+
+    return (*env)-&amp;gt;NewStringUTF(env, "Hello from JNI !!  Compiled with ABI " ABI ".");
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;请记住让&lt;code&gt;com_inthecheesefactory_hellojni25&lt;/code&gt;和HelloJni.java的包名是一致的。makefile不再需要了。&lt;/p&gt;
+
+&lt;p&gt;现在在&lt;code&gt;MainActivity.java&lt;/code&gt;里测试一下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class MainActivity extends AppCompatActivity {  
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Toast.makeText(MainActivity.this,
+                    new HelloJni().stringFromJNI(),
+                    Toast.LENGTH_LONG).show();
+    } 
+    ...
+
+    static {
+        System.loadLibrary("hello-jni");
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=SeKXi-viRrk"&gt;more video&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title>到底能不能在extension里override一个函数?</title><description>&lt;p&gt;Swift教程中明确说了，extension并不能override一个已有的函数！可是最近发现有人extension UIImageView时，可以&lt;code&gt;override layoutSubviews()&lt;/code&gt;，到底什么鬼？？&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;在&lt;a href="http://stackoverflow.com/questions/27109006/can-you-override-between-extensions-in-swift-or-not-compiler-seems-confused"&gt;stackoverflow&lt;/a&gt;上找到了答案，并且自己也确认过了。&lt;/p&gt;
+
+&lt;p&gt;解释是这样的：&lt;/p&gt;
+
+&lt;p&gt;至少在目前版本（swift1.1， 1.2），只要在如下两种情况下就可以override函数&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;涉及到的类都是从NSObject继承来的,不使用inout修饰符并且没有enum&lt;/li&gt;
+&lt;li&gt;或者使用了@objc修饰符的函数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;核心思想是，只有&lt;em&gt;Objective-C compatible&lt;/em&gt;的方法和属性才能在extension里override&lt;/p&gt;
+
+&lt;p&gt;请参考下面的例子&lt;/p&gt;
+
+&lt;h4 id="1"&gt;例子1&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;class A : NSObject { }  
+class B : A { }
+
+class SubNSObject : NSObject {}  
+class NotSubbed {}  
+enum SomeEnum { case c1, c2; }
+
+extension A  
+{
+    var y&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/dao-di-neng-bu-neng-zai-extensionli-override-ge-han-shu/</link><guid isPermaLink="false">353c0072-2bd4-4c46-9957-25fd7075c641</guid><category>Swift</category><category>iOS</category><category>Skill</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:30:38 GMT</pubDate><content:encoded>&lt;p&gt;Swift教程中明确说了，extension并不能override一个已有的函数！可是最近发现有人extension UIImageView时，可以&lt;code&gt;override layoutSubviews()&lt;/code&gt;，到底什么鬼？？&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;在&lt;a href="http://stackoverflow.com/questions/27109006/can-you-override-between-extensions-in-swift-or-not-compiler-seems-confused"&gt;stackoverflow&lt;/a&gt;上找到了答案，并且自己也确认过了。&lt;/p&gt;
+
+&lt;p&gt;解释是这样的：&lt;/p&gt;
+
+&lt;p&gt;至少在目前版本（swift1.1， 1.2），只要在如下两种情况下就可以override函数&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;涉及到的类都是从NSObject继承来的,不使用inout修饰符并且没有enum&lt;/li&gt;
+&lt;li&gt;或者使用了@objc修饰符的函数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;核心思想是，只有&lt;em&gt;Objective-C compatible&lt;/em&gt;的方法和属性才能在extension里override&lt;/p&gt;
+
+&lt;p&gt;请参考下面的例子&lt;/p&gt;
+
+&lt;h4 id="1"&gt;例子1&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;class A : NSObject { }  
+class B : A { }
+
+class SubNSObject : NSObject {}  
+class NotSubbed {}  
+enum SomeEnum { case c1, c2; }
+
+extension A  
+{
+    var y : String { get { return "YinA"; } }
+    func f() -&amp;gt; A { return A(); }
+    func g(val: SubNSObject, test: Bool = false) { }
+
+    func h(val: NotSubbed, test: Bool = false) { }
+    func j(val: SomeEnum) { }
+    func k(val: SubNSObject, inout test: Bool) { }
+}
+
+extension B  
+{
+    // THESE OVERIDES DO COMPILE:
+    override var  y : String { get { return "YinB"; } }
+    override func f() -&amp;gt; A { return A(); }
+    override func g(val: SubNSObject, test: Bool) { }
+
+    // THESE OVERIDES DO NOT COMPILE:
+    //override func h(val: NotSubbed, test: Bool = false) { }
+    //override func j(val: SomeEnum) { }
+    //override func k(val: SubNSObject, inout test: Bool) { }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="2"&gt;例子2&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;class A { }
+
+class B : A { }
+
+extension A  
+{
+    @objc var y : String { get { return "YinA" } }
+}
+
+extension B  
+{
+   @objc override var y : String { get { return "YinB" } }
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>建立universal framework</title><description>&lt;p&gt;xcode很有意思，当选择平台是iOS device时，framework支持的architecture是arm系列的，然而如果是iOS simulator的话，又仅产生支持x86_64系列的architecture。&lt;/p&gt;
+
+&lt;p&gt;那么当我们如何编译framework时使它可以支持所有architecture呢&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://medium.com/@syshen/create-an-ios-universal-framework-148eb130a46c"&gt;参考资料1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://kodmunki.wordpress.com/2015/03/04/cocoa-touch-frameworks-for-ios8-remix/"&gt;参考资料2&lt;/a&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;要点如下：&lt;/p&gt;
+
+&lt;p&gt;在build phases里增加一个脚本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;######################
+# Options
+######################
+
+REVEAL_ARCHIVE_IN_FINDER=false
+
+FRAMEWORK_NAME="${PROJECT_NAME}"
+
+SIMULATOR_LIBRARY_PATH="${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework"
+
+DEVICE_LIBRARY_PATH="${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework"
+
+UNIVERSAL_LIBRARY_DIR="${BUILD_DIR}/${CONFIGURATION}&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/jian-li-universal-framework/</link><guid isPermaLink="false">bf8b97b4-4a34-445e-af61-0e50c6699251</guid><category>iOS</category><category>Xcode</category><category>Skill</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:29:03 GMT</pubDate><content:encoded>&lt;p&gt;xcode很有意思，当选择平台是iOS device时，framework支持的architecture是arm系列的，然而如果是iOS simulator的话，又仅产生支持x86_64系列的architecture。&lt;/p&gt;
+
+&lt;p&gt;那么当我们如何编译framework时使它可以支持所有architecture呢&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://medium.com/@syshen/create-an-ios-universal-framework-148eb130a46c"&gt;参考资料1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://kodmunki.wordpress.com/2015/03/04/cocoa-touch-frameworks-for-ios8-remix/"&gt;参考资料2&lt;/a&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;要点如下：&lt;/p&gt;
+
+&lt;p&gt;在build phases里增加一个脚本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;######################
+# Options
+######################
+
+REVEAL_ARCHIVE_IN_FINDER=false
+
+FRAMEWORK_NAME="${PROJECT_NAME}"
+
+SIMULATOR_LIBRARY_PATH="${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework"
+
+DEVICE_LIBRARY_PATH="${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework"
+
+UNIVERSAL_LIBRARY_DIR="${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal"
+
+FRAMEWORK="${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework"
+
+
+######################
+# Build Frameworks
+######################
+
+xcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2&amp;gt;&amp;amp;1
+
+xcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2&amp;gt;&amp;amp;1
+
+######################
+# Create directory for universal
+######################
+
+rm -rf "${UNIVERSAL_LIBRARY_DIR}"
+
+mkdir "${UNIVERSAL_LIBRARY_DIR}"
+
+mkdir "${FRAMEWORK}"
+
+
+######################
+# Copy files Framework
+######################
+
+cp -r "${DEVICE_LIBRARY_PATH}/." "${FRAMEWORK}"
+
+
+######################
+# Make an universal binary
+######################
+
+lipo "${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}" "${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}" -create -output "${FRAMEWORK}/${FRAMEWORK_NAME}" | echo
+
+# For Swift framework, Swiftmodule needs to be copied in the universal framework
+if [ -d "${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/" ]; then
+    cp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* "${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/" | echo
+fi
+
+if [ -d "${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/" ]; then
+    cp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* "${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/" | echo
+fi
+
+######################
+# On Release, copy the result to release directory
+######################
+
+OUTPUT_DIR="${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/"
+
+rm -rf "$OUTPUT_DIR"
+mkdir -p "$OUTPUT_DIR"
+
+cp -r "${FRAMEWORK}" "$OUTPUT_DIR"
+
+if [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then
+    open "${OUTPUT_DIR}/"
+fi
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>自定义Container View Controllers</title><description>&lt;p&gt;多数情况下，container view controller 就像普通的view controller。它管理着view，内容，与其他对象协同工作，并且响应在repsonder chain里的事件。&lt;/p&gt;
+
+&lt;p&gt;当你设计一个container的时候，你需要显式的在你的container，和它的子controller之间创建父子关系。如下图。注意，&lt;code&gt;不仅仅controller之间需要显式的指定关系，view之间的关系也需要显式的指定&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-07-14_1.png" alt=""&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id="container"&gt;常见的Container设计的例子&lt;/h3&gt;
+
+&lt;h4 id="navigationcontrollerviewcontroller"&gt;Navigation Controller管理着一些由子View Controller组成的栈&lt;/h4&gt;
+
+&lt;p&gt;如图所示，Navigation Controller管理着一系列不同的子ViewController。在这个栈最上面的ViewController的View会被显示出来。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-07-14_2.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Navigation Controller定义了一些行为  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;topViewController -- 目前显示的vc&lt;/li&gt;
+&lt;li&gt;viewControllers -- 所有子vc&lt;/li&gt;
+&lt;li&gt;pushViewController:animated: -- 显示&lt;/li&gt;
+&lt;li&gt;popViewControllerAnimated: -- 弹出&lt;/li&gt;
+&lt;li&gt;delegate -- 可以让使用者当状态改变的时候收到通知&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Navigation Controller 使用子VC的一些属性来改变当前显示的内容。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;navigationItem -- 提供了navigation&lt;/li&gt;&lt;/ul&gt;</description><link>http://localhost:2368/zi-ding-yi-container-view-controllers/</link><guid isPermaLink="false">e88fe815-be12-40d2-9ce1-1b980e1fc859</guid><category>Objc</category><category>iOS</category><category>Skill</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:27:00 GMT</pubDate><content:encoded>&lt;p&gt;多数情况下，container view controller 就像普通的view controller。它管理着view，内容，与其他对象协同工作，并且响应在repsonder chain里的事件。&lt;/p&gt;
+
+&lt;p&gt;当你设计一个container的时候，你需要显式的在你的container，和它的子controller之间创建父子关系。如下图。注意，&lt;code&gt;不仅仅controller之间需要显式的指定关系，view之间的关系也需要显式的指定&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-07-14_1.png" alt=""&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id="container"&gt;常见的Container设计的例子&lt;/h3&gt;
+
+&lt;h4 id="navigationcontrollerviewcontroller"&gt;Navigation Controller管理着一些由子View Controller组成的栈&lt;/h4&gt;
+
+&lt;p&gt;如图所示，Navigation Controller管理着一系列不同的子ViewController。在这个栈最上面的ViewController的View会被显示出来。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-07-14_2.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Navigation Controller定义了一些行为  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;topViewController -- 目前显示的vc&lt;/li&gt;
+&lt;li&gt;viewControllers -- 所有子vc&lt;/li&gt;
+&lt;li&gt;pushViewController:animated: -- 显示&lt;/li&gt;
+&lt;li&gt;popViewControllerAnimated: -- 弹出&lt;/li&gt;
+&lt;li&gt;delegate -- 可以让使用者当状态改变的时候收到通知&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Navigation Controller 使用子VC的一些属性来改变当前显示的内容。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;navigationItem -- 提供了navigation toolbar的内容&lt;/li&gt;
+&lt;li&gt;toolbarItem -- 提供了底部bar的内容&lt;/li&gt;
+&lt;li&gt;editButtonItem -- 提供了可以从navigation item访问子view的途径，这样就可以改变子view的edit mode&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="tabbarcontrollervc"&gt;Tab Bar Controller使用一个子VC的集合&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-07-14_3.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Tab Bar Controller定义了一些行为：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;viewControllers -- 所有子vc&lt;/li&gt;
+&lt;li&gt;selectedViewController -- 设置或读取哪个子vc&lt;/li&gt;
+&lt;li&gt;delegate -- 可以让使用者当状态改变的时候收到通知&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tab Bar Controller 使用子VC的一些属性来改变当前显示的内容。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;tabBarItem -- 提供了底部bar的内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="pagecontrollerdatasourcevc"&gt;Page Controller使用DataSource去显示新的子VC&lt;/h4&gt;
+
+&lt;p&gt;Page Controller支持无限多的页面显示，所以把所有的page都放在内存中是不可能的。相反，page controller在需要的时候拉取需要的page。这样page controller就使用一个pull model而不是让app把所有的page一下子push到里面&lt;/p&gt;
+
+&lt;p&gt;Page Controller定义了一些行为：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;spineLocation -- 定义page是如何组织的，有时候只显示一个page，有时候需要两个&lt;/li&gt;
+&lt;li&gt;transitionStyle -- 定义了过场动画的风格&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="containercontroller"&gt;实现自定义Container Controller&lt;/h4&gt;
+
+&lt;h5 id="vc"&gt;增加和移除子vc&lt;/h5&gt;
+
+&lt;p&gt;始终应该记住的是，在&lt;code&gt;addSubview&lt;/code&gt;&lt;em&gt;之前&lt;/em&gt;&lt;code&gt;addChildViewController&lt;/code&gt;,在&lt;code&gt;removeFromSuperVieww&lt;/code&gt;&lt;em&gt;之后&lt;/em&gt;&lt;code&gt;removeFromParentViewController&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;另外，设置子view的大小最好也在addSubview之前&lt;/p&gt;
+
+&lt;p&gt;增加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- (void) displayContentController: (UIViewController*) content;
+{
+    [self addChildViewController:content];                 
+    content.view.frame = [self frameForContentController]; 
+    [self.view addSubview:self.currentClientView];
+    [content didMoveToParentViewController:self];          
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;addChildViewController&lt;/code&gt;会自动调用&lt;code&gt;willMoveToPa&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;移除&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- (void) hideContentController: (UIViewController*) content
+{
+    [content willMoveToParentViewController:nil];  
+    [content.view removeFromSuperview];            
+    [content removeFromParentViewController];      
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=""&gt;简单的转场动画&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;- (void) cycleFromViewController: (UIViewController*) oldC
+        toViewController: (UIViewController*) newC
+{
+    [oldC willMoveToParentViewController:nil];                        
+    [self addChildViewController:newC];
+
+    newC.view.frame = [self newViewStartFrame];                       
+    CGRect endFrame = [self oldViewEndFrame];
+
+    [self transitionFromViewController: oldC toViewController: newC   
+          duration: 0.25 options:0
+          animations:^{
+             newC.view.frame = oldC.view.frame;                       
+             oldC.view.frame = endFrame;
+          }
+          completion:^(BOOL finished) {
+             [oldC removeFromParentViewController];                   
+             [newC didMoveToParentViewController:self];
+          }];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id="callback"&gt;自定义显示和旋转的Callback行为&lt;/h5&gt;
+
+&lt;p&gt;多数时候不用管这个事情，但是有时候你希望自己控制消息发送的时机之类的情况&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- (BOOL) shouldAutomaticallyForwardAppearanceMethods
+{
+    return NO;
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self.child beginAppearanceTransition: YES animated: animated];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [self.child endAppearanceTransition];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [self.child beginAppearanceTransition: NO animated: animated];
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [self.child endAppearanceTransition];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;旋转与显示类似，首先要重载&lt;code&gt;shouldAutomaticallyForwardRotationMethods&lt;/code&gt;，然后在合适的地方调用&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;willRotateToInterfaceOrientation:duration:&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;willAnimateRotationToInterfaceOrientation:duration:&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;didRotateFromInterfaceOrientation:&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id="bestpractices"&gt;Best practices&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;不要干这事！！因为毕竟实现一个复杂的container不是一件容易的事情&lt;/li&gt;
+&lt;li&gt;只访问子VC的最顶层的那个View，其他View不要碰！&lt;/li&gt;
+&lt;li&gt;如果需要子VC暴露一些接口，可以使用protocol！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@protocol MyContentContainerProtocol &amp;lt;NSObject&amp;gt;
+    ...
+@end
+- (void) displayContentController: (UIViewController&amp;lt;MyContentContainerProtocol&amp;gt;*) content;
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Android中的AIDL</title><description>&lt;p&gt;AIDL是用来跨进行通信的。在Android上，跨进程通信需要把对象解构成系统可以识别的基本类型，然后在交给另一个进程使用之前，需要重新组装起来。这些工作是十分枯燥的，AIDL就是为了这个目的而设计的。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;code&gt;注意：当且仅当你允许不同的App的clients需要跨进程来访问你的service，并且需要在service里处理多线程问题的时候，你才应该使用AIDL。如果仅仅是App内部的client来访问服务，并且不需要IPC的话，只要使用Binder就好了。如果是需要IPC，但是不用处理并发的话，那么只要用Messager就好了。只有既要IPC，又要处理并发，才需要用AIDL。总之，只有在必须的时候才使用AIDL&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id="aidl"&gt;关于AIDL调用的背后&lt;/h3&gt;
+
+&lt;p&gt;另一个需要知道的是，AIDL的接口调用是直接调用，所以并不能对调用接口的线程有任何假设。调用的线程在本地进程执行还是在远程进程执行的结果可能是非常不同的。其中：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果是本地进程进行AIDL调用，服务端代码是在进行调用的这个线程中执行的&lt;/li&gt;
+&lt;li&gt;如果是远程进程进行AIDL调用，你就必须为服务端代码同时在不同线程中执行做好准备，也就是说，这些代码必须是线程安全的&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;oneway&lt;/code&gt;关键字用来修饰远调用，使用后表示这个远程调用并不阻塞，它仅仅是发送了数据就立刻返回。而该关键字并不影响本地调用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="aidl"&gt;创建AIDL过程&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;创建.aidl文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用Android Studio自己创建IRemoteService.aidl就很好，比如定义接口getPid()&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;interface IRemoteService {
+    int getPid(&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/androidzhong-de-aidl/</link><guid isPermaLink="false">78aa4458-a3dc-435f-848f-0f3c1a654305</guid><category>Android</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:24:14 GMT</pubDate><content:encoded>&lt;p&gt;AIDL是用来跨进行通信的。在Android上，跨进程通信需要把对象解构成系统可以识别的基本类型，然后在交给另一个进程使用之前，需要重新组装起来。这些工作是十分枯燥的，AIDL就是为了这个目的而设计的。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;code&gt;注意：当且仅当你允许不同的App的clients需要跨进程来访问你的service，并且需要在service里处理多线程问题的时候，你才应该使用AIDL。如果仅仅是App内部的client来访问服务，并且不需要IPC的话，只要使用Binder就好了。如果是需要IPC，但是不用处理并发的话，那么只要用Messager就好了。只有既要IPC，又要处理并发，才需要用AIDL。总之，只有在必须的时候才使用AIDL&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id="aidl"&gt;关于AIDL调用的背后&lt;/h3&gt;
+
+&lt;p&gt;另一个需要知道的是，AIDL的接口调用是直接调用，所以并不能对调用接口的线程有任何假设。调用的线程在本地进程执行还是在远程进程执行的结果可能是非常不同的。其中：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果是本地进程进行AIDL调用，服务端代码是在进行调用的这个线程中执行的&lt;/li&gt;
+&lt;li&gt;如果是远程进程进行AIDL调用，你就必须为服务端代码同时在不同线程中执行做好准备，也就是说，这些代码必须是线程安全的&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;oneway&lt;/code&gt;关键字用来修饰远调用，使用后表示这个远程调用并不阻塞，它仅仅是发送了数据就立刻返回。而该关键字并不影响本地调用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="aidl"&gt;创建AIDL过程&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;创建.aidl文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用Android Studio自己创建IRemoteService.aidl就很好，比如定义接口getPid()&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;interface IRemoteService {
+    int getPid();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;实现该接口的service&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;例如实现文件AIDLService.java，这个service在onBind函数中返回的binder里含有IRemoteService.aidl定义的接口的实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class AIDLService extends Service {
+
+    private final IRemoteService.Stub binder = new IRemoteService.Stub(){
+
+        @Override
+        public int getPid() throws RemoteException {
+            return android.os.Process.myPid();
+        }
+    };
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return binder;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用该AIDL&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;像使用普通service一样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IRemoteService remoteService;
+
+ServiceConnection remoteServiceConnection = new ServiceConnection() {
+    @Override
+    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+        remoteService = IRemoteService.Stub.asInterface(iBinder);
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName componentName) {
+        remoteService = null;
+    }
+};
+
+Intent intent = new Intent(MainActivity.this, AIDLService.class);
+bindService(intent, remoteServiceConnection, BIND_AUTO_CREATE);
+startService(intent);
+
+int remotePid = remoteService.getPid();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="aidl"&gt;在AIDL中传递对象&lt;/h3&gt;
+
+&lt;p&gt;比如我们希望AIDL接口可以传递名为Student的对象,需要做以下一些事情&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;定义Student.aidl&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中声明Student类型&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;parcelable Student;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;定义aidl接口（IRemoteAPI.aidl）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注意要import相应的Student类&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import com.morgenworks.alchemistli.remotelibrary.Student;
+
+interface IRemoteAPI {
+    Student getName();
+    void setName(in Student st);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;定义实现了Parcelble接口的Student类&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;实现Parcelble接口需要实现这样几个函数, Student(Parcel source), writeToParcel(...), readescribeContents(), 以及static Creator&lt;student&gt; CREATOR&lt;/student&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class Student implements Parcelable {
+    public String name;
+    public String fatherName;
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(fatherName);
+    }
+
+    public Student(Parcel source){
+        name = source.readString();
+        fatherName = source.readString();
+    }
+
+    public Student(){}
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setFatherName(String fatherName){
+        this.fatherName = fatherName;
+    }
+
+    public static final Creator&amp;lt;Student&amp;gt; CREATOR = new Creator&amp;lt;Student&amp;gt;() {
+        @Override
+        public Student createFromParcel(Parcel source) {
+            return new Student(source);
+        }
+
+        @Override
+        public Student[] newArray(int size) {
+            return new Student[size];
+        }
+    };
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;实现AIDL接口的服务&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;就像实现普通的AIDL接口服务一样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class RemoteAPIService extends Service {
+    private Student stuInfo;
+
+    private IRemoteAPI.Stub binder = new IRemoteAPI.Stub() {
+        @Override
+        public Student getName() throws RemoteException {
+            stuInfo.name = stuInfo.name.toUpperCase();
+            return stuInfo;
+        }
+
+        @Override
+        public void setName(Student st) throws RemoteException {
+            stuInfo = st;
+        }
+    };
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return binder;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Swift Optional Chaining</title><description>&lt;p&gt;&lt;code&gt;optinal chainging&lt;/code&gt;是一个查询和调用&lt;code&gt;optional&lt;/code&gt;的property, method, subscript的过程。如果其中的&lt;code&gt;optional&lt;/code&gt;没有nil，那么表达式求值成功。否则，失败。失败后返回nil。所以整个表达式返回值始终是&lt;code&gt;optional&lt;/code&gt;类型。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;以下是一些sample code, 先构造一些类&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Person{ var residence: Residence? }
+
+class Residence {
+    var rooms = [Room]()
+    var numberOfRooms: Int { return rooms.count }
+
+    subscript(i: Int) -&amp;gt; Room {
+        get { return rooms[i] }
+        set { rooms[i] = newValue&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swift-optional-chaining/</link><guid isPermaLink="false">dfeac41b-a73f-47fc-bd8f-0414ad82f6f7</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:22:06 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code&gt;optinal chainging&lt;/code&gt;是一个查询和调用&lt;code&gt;optional&lt;/code&gt;的property, method, subscript的过程。如果其中的&lt;code&gt;optional&lt;/code&gt;没有nil，那么表达式求值成功。否则，失败。失败后返回nil。所以整个表达式返回值始终是&lt;code&gt;optional&lt;/code&gt;类型。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;以下是一些sample code, 先构造一些类&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Person{ var residence: Residence? }
+
+class Residence {
+    var rooms = [Room]()
+    var numberOfRooms: Int { return rooms.count }
+
+    subscript(i: Int) -&amp;gt; Room {
+        get { return rooms[i] }
+        set { rooms[i] = newValue }
+    }
+
+    func printNumberOfRooms(){
+        println("The number of rooms is \(numberOfRooms)")
+    }
+}
+
+class Room {
+    let name: String
+    init(name: String){ self.name = name }
+}
+
+class Address {
+    var buildingName: String?
+    var buildingNumber: String?
+    var street: String?
+
+    func buildingIdentifier() -&amp;gt; String? {
+        if buildingName != nil {
+            return buildingName
+        } else if buildNumber != nil {
+            return buldingNumber
+        } else {
+            return nil
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面就是如何使用&lt;code&gt;optional chain&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;let john = Person()
+if let roomCount = john.residence?.numberOfRooms {
+    println("john's residence has \(roomCount) rooms.")
+}
+// will print nothing
+
+let someAddress = Address()
+someAddress.buildingNumber = "29"
+someAddress.street = "Acacia Road"
+john.residence?.address = someAddress //will fail
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Residence里的方法printNumberOfRooms()没有返回值，但是这意味着该方法返回类型是Void，也就是返回值是(),也就是一个空的tuple. 在&lt;code&gt;optional chain&lt;/code&gt;里，会返回Void?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if john.residence?.printNumberOfRoom() != nil {
+    println("It was possible to print the number of rooms."
+} 
+// will print nothing
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对于通过&lt;code&gt;optional chain&lt;/code&gt;来设置属性也一样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (john.residence?.address = someAddress) != nil {
+    println("It was possible to set the address."
+}
+// will print nothing
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过&lt;code&gt;optional chaining&lt;/code&gt;访问subscript&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if let firstRoomName = john.residence?[0].name {
+    println("the first room name is \(firstRoomName)")
+}
+// will print nothing
+
+let johnsHouse = Residence()
+johnsHouse.rooms.append(Room(name: "Living Room"))
+johnsHouse.rooms.append(Room(name: "Kitchen"))
+john.residence = johnsHouse
+
+if let firstRoomName = john.residence?[0].name {
+    println("the first room name is \(firstRoomName)")
+}
+// prints "the first room name is Living Room"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;访问&lt;code&gt;optional&lt;/code&gt;的subscript&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var testScrores = ["Dave": [86, 82, 84], "Bev": [79, 94, 81]]
+testScores["Dave"]?[0] = 91
+testScores["Bev"]?[0]++
+testScores["Brain"]?[0]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;多层的optional chain， 原则是
+* 如果试图查询的东西的类型并非是&lt;code&gt;optional&lt;/code&gt;的，会由于使用了chain而变成&lt;code&gt;optional&lt;/code&gt;
+* 如果正在查询的东西已经是&lt;code&gt;optional&lt;/code&gt;的，它不会因为chain变得“更”&lt;code&gt;optional&lt;/code&gt;（&lt;code&gt;optional&lt;/code&gt;的&lt;code&gt;optional&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;下面是代码示例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if let johnsStreet = john.residence?.address?.street{
+    println("John's street name is \(johnsStreet)")
+}
+// print nothing
+
+let johnsAddress = Address()
+johnsAddress.buildingName = "The Larches"
+johnsAddress.street = "Laurel Street"
+john.residence?.address = johnsAddress
+
+if let johnsStreet = john.residence?.address?.street{
+    println("John's street name is \(johnsStreet)")
+}
+// print "John's street name is Laurel Street"
+
+if let beginsWithThe = john.residence?.address?.buildingIdentifier()?.hasPrefix("The") {
+    if beginWithThe {
+        println("John's building identifier begins with \"The\".")
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Swift Method</title><description>&lt;p&gt;swift &lt;code&gt;method&lt;/code&gt;分为&lt;code&gt;instance method&lt;/code&gt;和&lt;code&gt;type method&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;instance method&lt;/code&gt;是属于实例的函数，&lt;code&gt;type mothod&lt;/code&gt;则是属于&lt;code&gt;type&lt;/code&gt;的函数&lt;/p&gt;
+
+&lt;!--more--&gt;  
+
+&lt;h3 id="localandexternalparameternamesformethod"&gt;Local and External Parameter Names for Method&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;local and external parameter name&lt;/code&gt;的默认行为并不等同于&lt;code&gt;function&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;swift的method的参数名字非常像objective－c。比如说，一般来说，swift的method的名字带有by， with， for等介词，例如incrementBy。&lt;/p&gt;
+
+&lt;p&gt;需要指出的是，swift默认会给第一个参数local parameter name，但是对于第二个以后参数则默认生成local and external parameter name。
+    class Counter {
+        var&lt;/p&gt;</description><link>http://localhost:2368/swift-method/</link><guid isPermaLink="false">204a70b7-ecf1-49ca-9c23-4ec874e318c0</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:19:55 GMT</pubDate><content:encoded>&lt;p&gt;swift &lt;code&gt;method&lt;/code&gt;分为&lt;code&gt;instance method&lt;/code&gt;和&lt;code&gt;type method&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;instance method&lt;/code&gt;是属于实例的函数，&lt;code&gt;type mothod&lt;/code&gt;则是属于&lt;code&gt;type&lt;/code&gt;的函数&lt;/p&gt;
+
+&lt;!--more--&gt;  
+
+&lt;h3 id="localandexternalparameternamesformethod"&gt;Local and External Parameter Names for Method&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;local and external parameter name&lt;/code&gt;的默认行为并不等同于&lt;code&gt;function&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;swift的method的参数名字非常像objective－c。比如说，一般来说，swift的method的名字带有by， with， for等介词，例如incrementBy。&lt;/p&gt;
+
+&lt;p&gt;需要指出的是，swift默认会给第一个参数local parameter name，但是对于第二个以后参数则默认生成local and external parameter name。
+    class Counter {
+        var count : Int = 0
+        func incrementBy(amount: Int, numberOfTimes: Int){
+            count += amount * numberOfTimes
+        }
+    }
+swift会把amount看作local name，但是会把numberOfTimes看作local and external name。所以调用该method，需要像如下这样 &lt;br&gt;
+    let counter = Counter()
+    counter.incrementBy(5, numberOfTimes: 3)
+当然也可以显式的提供第一个参数的external name或者不提供非第一参数的external name
+    class Counter2{
+        var count : Int = 0
+        func incrementBy(#amount: Int, _ numberOfTimes: Int){
+            count += amount * numberOfTimes
+        }
+    }
+    let count2 = Count2()
+    count2.incrementBy(amount: 5, 3)&lt;/p&gt;
+
+&lt;h3 id="selfpropety"&gt;Self Propety&lt;/h3&gt;
+
+&lt;p&gt;一般情况下可以不写，但是如果有歧义就需要写
+    struct Point{
+        var x = 0.0, y = 0.0
+        func isToTheRightOfX(x: Double) -&gt; Bool{
+            return self.x &gt; x   // must use self
+        }
+        func description() -&gt; String{
+            return "x: (x), y: (y)") //no need to use self
+        }
+    }&lt;/p&gt;
+
+&lt;h3 id="instancemethod"&gt;在instance method内改变值类型变量自身&lt;/h3&gt;
+
+&lt;p&gt;对于&lt;code&gt;value types&lt;/code&gt;来说，一般情况下，instance method不能更改属性，但是加上mutating关键字来改变这点。
+    struct Point{
+        var x = 0.0, y = 0.0
+        mutating func moveByX(deltaX: Double, y deltaY: Double){
+            x += deltaX
+            y += deltaY
+        }
+    }&lt;/p&gt;
+
+&lt;h3 id="assigningtoselfwithinamutatingmethod"&gt;Assigning to self Within a Mutating Method&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;struct Point{
+    var x = 0.0, y = 0.0
+    mutating func moveByX(deltaX: Double, y deltaY: Double){
+        self ＝ Point(x: x+deltaX, y: y + deltaY)
+    }
+}
+
+enum TriStateSwitch {
+    case Off, Low, High
+    mutating func next() {
+        switch self {
+        case Off:
+            self = Low
+        case Low:
+            self = High
+        case High:
+            self = Off
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="typemethod"&gt;Type Method&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;type method&lt;/code&gt;在类中使用关键字&lt;code&gt;class&lt;/code&gt;来表示，在结构体和枚举中使用&lt;code&gt;static&lt;/code&gt;来表示  &lt;/p&gt;
+
+&lt;p&gt;在&lt;code&gt;type method&lt;/code&gt;中，&lt;code&gt;self&lt;/code&gt;表示类型本身，而不是实例本身&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;​struct​ ​LevelTracker​ {
+​    ​static​ ​var​ ​highestUnlockedLevel​ = ​1
+​    ​static​ ​func​ ​unlockLevel​(​level​: ​Int​) {
+​        ​if​ ​level​ &amp;gt; ​highestUnlockedLevel​ { ​highestUnlockedLevel​ = ​level​ }
+​    }
+​    ​static​ ​func​ ​levelIsUnlocked​(​level​: ​Int​) -&amp;gt; ​Bool​ {
+​        ​return​ ​level​ &amp;lt;= ​highestUnlockedLevel
+​    }
+​    ​var​ ​currentLevel​ = ​1
+​    ​mutating​ ​func​ ​advanceToLevel​(​level​: ​Int​) -&amp;gt; ​Bool​ {
+​        ​if​ ​LevelTracker​.​levelIsUnlocked​(​level​) {
+​            ​currentLevel​ = ​level
+​            ​return​ ​true
+​        } ​else​ {
+​            ​return​ ​false
+​        }
+​    }
+​}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Swift extension</title><description>`extensions`可以给已有的type增加功能，而且不必访问源代码(`retroactive modeling`)
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;code&gt;extensions&lt;/code&gt;可以&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;增加&lt;code&gt;computed property&lt;/code&gt;和&lt;code&gt;computed static property&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;定义&lt;code&gt;instance methods&lt;/code&gt;和&lt;code&gt;type methods&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;提供新的&lt;code&gt;initializers&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;定义&lt;code&gt;subscripts&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;定义和使用新的&lt;code&gt;nested types&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;为一个&lt;code&gt;type&lt;/code&gt;实现一个&lt;code&gt;protocol&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;extension&lt;/code&gt;不可以&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;extension&lt;/code&gt;可以增加新的&lt;code&gt;funtionality&lt;/code&gt;，但是不能覆盖以有的&lt;code&gt;functionality&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;extension&lt;/code&gt;不能增加&lt;code&gt;stored properties&lt;/code&gt;，或者给存在的&lt;code&gt;property&lt;/code&gt;增加&lt;code&gt;property observers&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;extension&lt;/code&gt;不能增加新的&lt;code&gt;designated&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</description><link>http://localhost:2368/swift-extension/</link><guid isPermaLink="false">5f11f486-e3f5-4cf3-a793-9ccb7324ffad</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:16:12 GMT</pubDate><content:encoded>`extensions`可以给已有的type增加功能，而且不必访问源代码(`retroactive modeling`)
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;code&gt;extensions&lt;/code&gt;可以&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;增加&lt;code&gt;computed property&lt;/code&gt;和&lt;code&gt;computed static property&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;定义&lt;code&gt;instance methods&lt;/code&gt;和&lt;code&gt;type methods&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;提供新的&lt;code&gt;initializers&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;定义&lt;code&gt;subscripts&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;定义和使用新的&lt;code&gt;nested types&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;为一个&lt;code&gt;type&lt;/code&gt;实现一个&lt;code&gt;protocol&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;extension&lt;/code&gt;不可以&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;extension&lt;/code&gt;可以增加新的&lt;code&gt;funtionality&lt;/code&gt;，但是不能覆盖以有的&lt;code&gt;functionality&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;extension&lt;/code&gt;不能增加&lt;code&gt;stored properties&lt;/code&gt;，或者给存在的&lt;code&gt;property&lt;/code&gt;增加&lt;code&gt;property observers&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;extension&lt;/code&gt;不能增加新的&lt;code&gt;designated initializer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="extension"&gt;Extension 语法&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;extension SomeType {
+    ...
+}
+
+extiosion SomeType: Someprotocol, AnotherProtocol {
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一个有趣的例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;extension Double {
+    var km: Double { return self * 1000.0 }
+    var m: Double { return self }
+}
+
+let aMarathon = 42.m + 195.m
+println("A marathon is \(aMarathon) masters long")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="initializers"&gt;Initializers&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;struct Size { var width = 0.0, height = 0.0 }
+struct Point { var x = 0.0, y = 0.0 }
+struct Rect {
+    var origin = Point()
+    var size = Size()
+}
+
+extension Rect{
+    init(center: Point, size: Size){
+        let originX = center.x - (size.width / 2)
+        let originY = center.y - (size.height / 2)
+        self.init(origin: Point(x:originX, y:originY), size: size)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="methods"&gt;Methods&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;extension Int{
+    func repetitions(task: ()-&amp;gt; ()){
+        for i in 0..&amp;lt;self {
+            task()
+        }
+    }
+}
+
+3.repetitions{ println("hello") }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="mutatinginstancemethods"&gt;Mutating Instance Methods&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;extension Int {
+    mutating func square(){
+        self = self * self
+    }
+}
+
+var someInt = 3.square()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="subscripts"&gt;Subscripts&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;extension Int {
+    subscript(var digitIndex: Int) -&amp;gt; Int{
+        var decimalBase = 1
+        while digitIndex &amp;gt; 0 {
+            decimalBase *= 10
+            --digitIndex
+        }
+
+        return (self / decimalBase) % 10
+    }
+}
+
+74631295[1] //return 9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="nestedtyeps"&gt;Nested Tyeps&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;extension Int {
+    enum Kind {
+        case Negative, Zero, Positive
+    }
+
+    var kind: Kind {
+        switch self {
+        case 0: retrun .Zero
+        case let x where x &amp;gt; 0: return .Positive
+        default: return .Negative
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Swift中optional</title><description>&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，剩下的只是swift里面有关的特殊术语，搞清楚还是很有必要的&lt;/p&gt;
+
+&lt;h4 id="forceunwrapping"&gt;Force Unwrapping&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;Force Unwarpping&lt;/code&gt;指的是把&lt;code&gt;optional&lt;/code&gt;对象转化成一个非空的对象&lt;/p&gt;
+
+&lt;h4 id="optionalbinding"&gt;Optional Binding&lt;/h4&gt;
+
+&lt;p&gt;其基本形式是&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if let constantName = someOptional
+
+while let constantName = someOptional
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="implicityunwrappedoptionals"&gt;Implicity Unwrapped Optionals&lt;/h4&gt;
+
+&lt;p&gt;一个optinal变量可以定义为&lt;code&gt;implicity unwrapped optionals&lt;/code&gt;, 那么使用这个变量的时候就不再需要force unwrap, 一旦unwrap失败，程序会崩溃&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var storyboardName&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftzhong-optional/</link><guid isPermaLink="false">902d5d50-ebd8-4263-9642-8aec63f5ff01</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:13:58 GMT</pubDate><content:encoded>&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，剩下的只是swift里面有关的特殊术语，搞清楚还是很有必要的&lt;/p&gt;
+
+&lt;h4 id="forceunwrapping"&gt;Force Unwrapping&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;Force Unwarpping&lt;/code&gt;指的是把&lt;code&gt;optional&lt;/code&gt;对象转化成一个非空的对象&lt;/p&gt;
+
+&lt;h4 id="optionalbinding"&gt;Optional Binding&lt;/h4&gt;
+
+&lt;p&gt;其基本形式是&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if let constantName = someOptional
+
+while let constantName = someOptional
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="implicityunwrappedoptionals"&gt;Implicity Unwrapped Optionals&lt;/h4&gt;
+
+&lt;p&gt;一个optinal变量可以定义为&lt;code&gt;implicity unwrapped optionals&lt;/code&gt;, 那么使用这个变量的时候就不再需要force unwrap, 一旦unwrap失败，程序会崩溃&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var storyboardName : String! = "hello"
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Swift中的类型转换</title><description>&lt;p&gt;Swift中使用&lt;code&gt;as&lt;/code&gt;和&lt;code&gt;is&lt;/code&gt;运算符来进行类型转换&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h4 id=""&gt;一个类继承的例子&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;class MediaItem{
+}
+
+class Movie: MediaItem{
+    var director : String
+    init(director: String){ self.director = director; super.init() }
+
+}
+
+class Song: MediaItem{
+    var artist : String
+    init(artist: String){ self.artist = artist; super.init() }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="is"&gt;类型检查使用&lt;code&gt;is&lt;/code&gt;&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;let library = [Movie("d1"), Song("a1"), Song("a2"), Movie("d2")]
+
+var movieCount&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftzhong-de-lei-xing-zhuan-huan/</link><guid isPermaLink="false">1fc2e9cf-b34f-4266-accd-9ae3c1620910</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:10:19 GMT</pubDate><content:encoded>&lt;p&gt;Swift中使用&lt;code&gt;as&lt;/code&gt;和&lt;code&gt;is&lt;/code&gt;运算符来进行类型转换&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h4 id=""&gt;一个类继承的例子&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;class MediaItem{
+}
+
+class Movie: MediaItem{
+    var director : String
+    init(director: String){ self.director = director; super.init() }
+
+}
+
+class Song: MediaItem{
+    var artist : String
+    init(artist: String){ self.artist = artist; super.init() }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="is"&gt;类型检查使用&lt;code&gt;is&lt;/code&gt;&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;let library = [Movie("d1"), Song("a1"), Song("a2"), Movie("d2")]
+
+var movieCount = 0
+var songCount = 0
+
+for item in library {
+    if item as Movie {
+        ++movieCount
+    } else if item is Song {
+        ++songCount
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;值得一提的是，&lt;code&gt;is&lt;/code&gt;不仅仅用来检测有继承关系的类，而且可以用来检测是否实现了某个接口&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;protocal HasArea{
+    var area: Double { get }
+}
+
+class Circle: HasArea{
+    var radius: Double
+    var area: Double { return 3.14 * radius * radius }
+    init(radius: Double){ self.radius = radius }
+}
+
+var circle = Circle(2.5)
+if circle is HasArea {
+    println("Area: \(circle.area)")
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=""&gt;类型转换&lt;/h4&gt;
+
+&lt;p&gt;可以使用&lt;code&gt;as&lt;/code&gt;来进行类型转换&lt;/p&gt;
+
+&lt;p&gt;可以用两种方式来使用&lt;code&gt;as&lt;/code&gt;, &lt;code&gt;as?&lt;/code&gt;和&lt;code&gt;as!&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;as?&lt;/code&gt;表示不确定该转换是否能成功，&lt;code&gt;as!&lt;/code&gt;表示一定会成功，但是如果运行时转换失败的话，程序会崩掉&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for item in library {
+    if let movie = item as? Movie {
+        println("Director: \(movie.director)")
+    } else if let song = item as? Song {
+        println("Artist: \(song.artist)")
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="anyanyobject"&gt;&lt;code&gt;Any&lt;/code&gt;和&lt;code&gt;AnyObject&lt;/code&gt;的类型转换&lt;/h4&gt;
+
+&lt;p&gt;其实，&lt;code&gt;Any&lt;/code&gt;和&lt;code&gt;AnyObject&lt;/code&gt;的转换和普通的类型转换是一样的。值得说的是为什么swift要有他们两个。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;AnyObject&lt;/code&gt;可以代表任何class类型的实例&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Any&lt;/code&gt;却可以代表任何类型的实例，包括funtion类型&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;举两个例子，第一个例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;let someObjects: [AnyObject] = [Movie('d1'),Movie('d1'),Movie('d1')]
+for object in someObjects{
+    let movie = object as! Movie
+    println("Movie director: \(movie.director)")
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;该例子中，还可以直接cast整个数组&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for movie in someObjects as! [Movie] {
+    println("Movie director: \(movie.director)")
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另外一个是关于&lt;code&gt;Any&lt;/code&gt;的例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var things = [Any]()
+
+things.append(0)
+things.append(0.0)
+things.append(42)
+things.append(3.14)
+things.append("hello")
+things.append((3.0, 5.0))
+things.append(Movie("d1"))
+things.append({(name: String) -&amp;gt; String in 
+    "Hello, \(name)" })
+
+for thing in things{
+    switch thing{
+        case 0 as Int: 
+            println("zero as an Int")
+        case 0 as Double:
+            println("zero as an Double")
+        case let someInt as Int:
+            println("an integer value of \(someInt)")
+        case let someDouble as Double where someDouble &amp;gt; 0:
+            println("a positive double : \(someDouble)")
+        case is Double:
+            println("some other double value &amp;lt;= 0")
+        case let someString as String:
+            println("a string value : \(someString)")
+        case let (x, y) as (Double, Double) :
+            println("an (x,y) point at \(x), \(y)")
+        case let movie as Movie:
+            println("a movie director: \(movie.director)")
+        case let stringConverter as String -&amp;gt; String:
+            println(stringConverter("Michael")
+        default:
+            println("something else")
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;需要指出，在switch的case语句中，使用的&lt;code&gt;as&lt;/code&gt;是强制转换版的，并不写作&lt;code&gt;as?&lt;/code&gt;或者&lt;code&gt;as!&lt;/code&gt;，在case语句中使用这种检查总是安全的。&lt;/p&gt;</content:encoded></item><item><title>Swift的初始化</title><description>这里不是要权威的解释initilization，而是想总结一些swift initilizer的特点
+&lt;!--more--&gt;
+
+&lt;p&gt;初始化发生在&lt;em&gt;class&lt;/em&gt;, &lt;em&gt;structure&lt;/em&gt;, &lt;em&gt;enumeration&lt;/em&gt;初始准备的过程中。coder可以通过定义&lt;em&gt;initializers&lt;/em&gt;来实现初始化。值得注意的是，&lt;em&gt;initializers&lt;/em&gt;没有返回值。&lt;/p&gt;
+
+&lt;p&gt;此外，class还可以实现一个'deinitializer'&lt;/p&gt;
+
+&lt;h3 id="initializer"&gt;如何定义initializer&lt;/h3&gt;
+
+&lt;p&gt;定义initializer需要用关键字&lt;em&gt;init&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id="simplestinitializer"&gt;Simplest initializer&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;struct Fahrenhit{  
+    var temperature: Double
+    init(){
+        temperature = 32.0
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="initializer"&gt;自定义initializer&lt;/h3&gt;
+
+&lt;p&gt;可以使用initializer parameters来自定义initializer&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct Celsius{
+    var temperatureInCelsius: Double
+    init(fromFahrenhit fahrenhit: Double){
+        temperatureInCelsius = (fahrenhit - 32.0)/1.8
+    }
+    init(&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftde-chu-shi-hua/</link><guid isPermaLink="false">596b7132-f494-41ad-a294-117f786ada0c</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 02:57:59 GMT</pubDate><content:encoded>这里不是要权威的解释initilization，而是想总结一些swift initilizer的特点
+&lt;!--more--&gt;
+
+&lt;p&gt;初始化发生在&lt;em&gt;class&lt;/em&gt;, &lt;em&gt;structure&lt;/em&gt;, &lt;em&gt;enumeration&lt;/em&gt;初始准备的过程中。coder可以通过定义&lt;em&gt;initializers&lt;/em&gt;来实现初始化。值得注意的是，&lt;em&gt;initializers&lt;/em&gt;没有返回值。&lt;/p&gt;
+
+&lt;p&gt;此外，class还可以实现一个'deinitializer'&lt;/p&gt;
+
+&lt;h3 id="initializer"&gt;如何定义initializer&lt;/h3&gt;
+
+&lt;p&gt;定义initializer需要用关键字&lt;em&gt;init&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id="simplestinitializer"&gt;Simplest initializer&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;struct Fahrenhit{  
+    var temperature: Double
+    init(){
+        temperature = 32.0
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="initializer"&gt;自定义initializer&lt;/h3&gt;
+
+&lt;p&gt;可以使用initializer parameters来自定义initializer&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct Celsius{
+    var temperatureInCelsius: Double
+    init(fromFahrenhit fahrenhit: Double){
+        temperatureInCelsius = (fahrenhit - 32.0)/1.8
+    }
+    init(fromKelvin kelvin: Double){
+        temperatureInCelsius = kelvin - 273.15
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="initializer"&gt;调用initializer&lt;/h3&gt;
+
+&lt;p&gt;由于initializer每个参数默认有external name，所以调用的时候一定要写external name&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;let boilingPoint = Celsius(fromFahrenhit: 212.0)
+let freezePoint = Celsius(fromKelvin: 273.15)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="defaultinitializer"&gt;Default initializer&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果structure或者base class没有提供initializer的话，编译器会提供一个默认的init()。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对于structure来说如果没有任何自定义的initializer的话，编译器会还会提供一个memberwise initializer&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="initializerdelegation"&gt;Initializer Delegation&lt;/h3&gt;
+
+&lt;p&gt;value类型和class类型的initilizer delegation的规则是不同的&lt;/p&gt;
+
+&lt;h4 id="structureenumunationintializerdelegation"&gt;Structure和Enumunation的Intializer Delegation&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;只能在initializer中调用self.init&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="classinheriantanceandinitialization"&gt;Class Inheriantance and Initialization&lt;/h4&gt;
+
+&lt;p&gt;class的initializer分为Designated initializer和Convenience initializer&lt;/p&gt;
+
+&lt;h5 id="designatedinitializerconvenienceinitializer"&gt;Designated initializer和Convenience initializer&lt;/h5&gt;
+
+&lt;p&gt;Designated initializer是primary initializer，每个class只要有一个&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;init(parameters) { statements }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Convenience initializer是为了方便而存在的，需要通过Designated initializer来初始化，关键字为&lt;em&gt;convenience&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;convenience init(parameters){ statements }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id="initializerdelegattionforclasstypes"&gt;Initializer Delegattion for Class Types&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rule1 一个designated initializer必须调用它直接父类的designated initializer  &lt;/li&gt;
+&lt;li&gt;Rule2 一个convenience initializer必须调用它自己的另一个initializer  &lt;/li&gt;
+&lt;li&gt;Rule3 一个convenience initializer必须最终调用它自己的designated initializer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可以简单总结为&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;designated initializer必须delegate up  &lt;/li&gt;
+&lt;li&gt;convenience initializer必须delegate across&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可以看下图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_1.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;下面是一个更复杂的例子&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_2.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id=""&gt;两阶段的初始化&lt;/h4&gt;
+
+&lt;p&gt;在初始化过程中，首先所有的类属性都会被赋予初始值，当这一阶段完成之后，然后在被initializer里代码设置其值 &lt;br&gt;
+关于这点，swift的编译器会进行一些检查  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;safety check 1 : designated initializer在delegates up到superclass initializer之前，必须保证所有属性都被初始化了&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;safety check 2 : designated initializer必须先delegate up到superclass initializer才能赋值给继承下来的属性&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;safety check 3 : convenience initializer必须先delegate到其他initializer才能修改属性&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;safety check 4 : initializer需要第一阶段初始化完成才能修改属性，调用成员方法&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;两阶段初始化的具体过程不详细说了，需要知道的是，当内存分配好之后，先由子类的initializer负责初始化自己的属性，然后向上传递控制权，父类做相同的事情，直到根基类。这时候第一阶段初始化就完成了。第二阶段初始化是从顶向下进行，这时候self就可以访问了，同时可以修改访问self的属性了，调用成员函数了。&lt;/p&gt;
+
+&lt;h5 id=""&gt;第一阶段初始化&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_3.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h5 id=""&gt;第二阶段初始化&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_4.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="initializerinheritanceoverride"&gt;Initializer的Inheritance和Override&lt;/h4&gt;
+
+&lt;p&gt;原则上，swift不允许initializer继承，但是在下列情况下可以继承&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果子类没有写任何designated initializer，子类可以继承所有父类的designated initializer&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果子类提供了所有父类的designated initializer的实现－－无论是继承而来的，还是自己override的，那么自动继承所有的父类的convenience initializer  &lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面举个例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Food{
+    var name : String
+    init(name: String){ self.name = name }
+    convenience init() { self.init(name: "[Unnamed]") }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下图显示了initializer chain&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_5.png" alt=""&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class RecipeIngredient: Food{
+    var quantity : Int
+    init(name: String, quantity: Int){
+        self.quantity = quantity
+        super.init(name: name)
+    }
+    override convenience init(name: String){
+        self.init(name: name, quantity: 1)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;initializer chain如图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_6.png" alt=""&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class ShoppingListItem: RecipeIngredient {
+    var purchased = false
+    var description: String {
+        var output = "\(quantity) x \(name)"
+        output += purchased ? "OK" : "Not"
+        return output
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;initializer chain如图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_7.png" alt=""&gt;&lt;/p&gt;
+
+&lt;h4 id="failableinitializer"&gt;Failable Initializer&lt;/h4&gt;
+
+&lt;p&gt;语法如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;init?(parameters){ statments }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;举个例子来说
+    struct Animal{
+        let species: String
+        init?(species: String){ 
+            if species.isEmpty { return nil }
+            self.species = species
+        }
+    }&lt;/p&gt;
+
+&lt;p&gt;通过&lt;em&gt;return nil&lt;/em&gt;，我们可以表示初始化失败&lt;/p&gt;
+
+&lt;p&gt;可以像如下方式来使用
+    let someCreature = Animal(species: "")
+    if let griaffe = someCreature{ println("no species") }&lt;/p&gt;
+
+&lt;h4 id="failableinitializerforenumerations"&gt;Failable Initializer for Enumerations&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;enum TemperatureUnit{
+    case Kelvin, Celsius, Fahrenheit
+    init?(symbol: Character){
+        switch symbol{
+        case "K": self = .Kelvin
+        case "C": self = .Celsius
+        case "K": self = .Fahrenheit
+        default:
+            return nil
+        }
+    }
+}
+
+
+if let unknowUnit = TemperatureUnit("X") { println("no such unit") }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="automaticfailableinitializerforenumerationswithrawvalue"&gt;Automatic Failable Initializer for Enumerations with Raw Value&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;enum TemperatureUnit : Character{
+    case Kelvin = "K", Celsius = "C", Fahrenheit = "F"
+}
+
+if let unknowUnit = TemperatureUnit("D"){ println ("no such unit") }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="failableinitializerforclassespropagationofinitializationfailure"&gt;Failable Initializer for Classes &amp;amp; Propagation of Initialization Failure&lt;/h4&gt;
+
+&lt;p&gt;对于类来说，初始化失败只能在所有属性都已经被设置了初始值之后发生&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Product{
+    let name: String!
+    init?(name: String){
+        self.name = name
+        if name.isEmpty { return nil }
+    }
+}
+
+class CartItem: Product{
+    let quantity: Int!
+    init?(name: String, quantity: Int){
+        self.quantity = quantity
+        super.init(name: name)
+        if(quantity &amp;lt; 1) { return nil }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="overrideafailableinitializer"&gt;Override a Failable Initializer&lt;/h4&gt;
+
+&lt;p&gt;你可以使用non-failable initializer去override父类的failable initializer，但这时就不能再delegate up到failable initilizer&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Document{
+    var name: String?
+    init() {}
+    init?(name: String){
+        self.name = name
+        if name.isEmpty { return nil }
+    }
+}
+
+class AutomaticallyNamedDocument: Document{
+    override init(){ 
+        super.init()
+        self.name = "[Untitled]"
+    }
+    override init(name: String){
+        super.init()
+        if name.isEmpty{ 
+            self.name = "[Untitled]"
+        }
+        else{ 
+            self.name = name 
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="requiredinitializer"&gt;Required Initializer&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;required&lt;/em&gt; modifier表示该类的每一个子类都必须实现这个initilizer &lt;br&gt;
+在子类实现该initializer时候必须也添加&lt;em&gt;required&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class SomeClass{
+    required init(){ ... }
+}
+
+class SomeSubClass{
+    required init(){ ... }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="settingadefaultpropertyvaluewithaclosureorfunction"&gt;Setting a Default Property Value with a Closure or Function&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;class SomeClass{
+    let someProperty: SomeType = {
+        return someValue
+    }()
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
