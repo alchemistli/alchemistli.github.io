@@ -1,0 +1,323 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ReactiveCocoa的架构设计</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ReactiveCocoa的架构设计">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="ReactiveCocoa的架构设计">
+    <meta property="og:description" content="">
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link href="../assets/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=fa23bf9e5d">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=fa23bf9e5d">
+    
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Alchemist's Crafts">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="ReactiveCocoa的架构设计">
+    <meta property="og:description" content="&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;...">
+    <meta property="og:url" content="http://localhost:2368/reactivecocoade-jia-gou-she-ji/">
+    <meta property="article:published_time" content="2015-11-25T08:20:59.753Z">
+    <meta property="article:modified_time" content="2015-11-25T08:20:59.746Z">
+    <meta property="article:tag" content="ReactiveCocoa">
+    <meta property="article:tag" content="Architecture">
+    <meta property="article:tag" content="Skill">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ReactiveCocoa的架构设计">
+    <meta name="twitter:description" content="&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;...">
+    <meta name="twitter:url" content="http://localhost:2368/reactivecocoade-jia-gou-she-ji/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Alchemist's Crafts",
+    "author": {
+        "@type": "Person",
+        "name": "Alchemist Li",
+        "url": "http://localhost:2368/author/alchemist",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "ReactiveCocoa的架构设计",
+    "url": "http://localhost:2368/reactivecocoade-jia-gou-she-ji/",
+    "datePublished": "2015-11-25T08:20:59.753Z",
+    "dateModified": "2015-11-25T08:20:59.746Z",
+    "keywords": "ReactiveCocoa, Architecture, Skill",
+    "description": "&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Alchemist's Crafts" href="../rss/index.rss">
+
+</head>
+<body class="post-template tag-reactivecocoa tag-architecture tag-skill no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="../" title="前往 Alchemist's Crafts 的主页"><img src="../content/images/2015/11/logo.jpeg" width="80" alt="Alchemist's Crafts logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="../" title="前往 Alchemist's Crafts 的主页">Alchemist's Crafts</a></h1>
+        <span class="panel-cover__subtitle panel-subtitle">茗香淡水</span>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Thoughts, stories and ideas.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="../index.html#blog" title="访问博客" class="blog-button">博客</a></li>
+<!--              <li class="navigation__item"><a href="http://project.onevcat.com" target="_blank" title="我的项目">项目</a></li> -->
+<!--              <li class="navigation__item"><a href="http://about.onevcat.com/" title="了解更多">关于</a></li> -->
+<!--              <li class="navigation__item"><a href="http://eepurl.com/" title="邮件订阅本站">订阅</a></li> -->
+              <li class="navigation__item"><a href="http://alchemistli.github.io/rss/index.rss" title="邮件订阅本站">订阅</a></li>
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Weibo -->
+<!-- 
+  <li class="navigation__item">
+    <a href="http://weibo.com/onevcat" title="@onevcat 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+-->
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/IamAlchemist" title="@IamAlchemist 的 Github" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="https://twitter.com/wizardle" title="@Alchemist" target="_blank">
+      <i class="social fa fa-twitter"></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="../rss/index.rss" rel="author" title="RSS" target="_blank">
+      <i class="social fa fa-rss"></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:babyfat.candy@gmail.com" title="邮件联系我">
+      <i class="social fa fa-envelope"></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-green"></div>
+  </div>
+</header>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="25 Nov 2015" class="post-meta__date date">25 Nov 2015</time> • <span class="post-meta__tags tags">于 <a href="../tag/reactivecocoa/">ReactiveCocoa</a>, <a href="../tag/architecture/">Architecture</a>, <a href="../tag/skill/">Skill</a></span>
+        <!--<span class="post-meta__author author"><img src="" alt="profile image for Alchemist Li" class="avatar post-meta__avatar" /> by Alchemist Li</span>-->
+      </div>
+      <h1 class="post-title">ReactiveCocoa的架构设计</h1>
+    </header>
+
+    <section class="post tag-reactivecocoa tag-architecture tag-skill">
+      <p>简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下</p>
+
+<!--more-->
+
+<h2 id="event">Event</h2>
+
+<p>一个 <code>event</code> 代表着某个事情发生了，比如说按了一个 button ，收到了一个网络请求，某个错误发生了等等。<code>event</code> 可以通过 <code>signal</code> 来发送给每一个 <code>observer</code>. 我们用 <code>Event</code> 类型来描述一个 <code>event</code> 。</p>
+
+<p><code>Event</code> 是一个 Enum 类型，它或者代表一个值，或者代表后面事件之一</p>
+
+<ul>
+<li><code>Next event</code> 表示有新值到来</li>
+<li><code>Failed event</code> 表示在 <code>signal</code> 结束之前有错误发生。具体是什么类型的错误，可以通过 <code>Event</code> 里面的 <code>ErrorType</code> 来获知。 但是如果根本不允许出现错误， 可以制定错误类型为 <code>NoError</code></li>
+<li><code>Completed event</code> 表示 <code>signal</code> 已经结束，不会有新值来了</li>
+<li><code>Interrupted event</code> 表示 <code>signal</code> 表示操作被 cancel 了，结果既不是成功也不是失败</li>
+</ul>
+
+<h2 id="signals">Signals</h2>
+
+<p>一系列的 <code>event</code> 就组成了 <code>signal</code>, <code>signal</code> 是可以被观察的</p>
+
+<p>信号通常代表着 <code>in progress</code> 的事件流，比如说 notifications, user input 等。当收到新数据，或者任务完成的时候，<code>event</code> 会通过 <code>signal</code> 
+里同时推送到每一个观察者那里。</p>
+
+<p>如果想要接收到某个 <code>signal</code> 的 <code>event</code> , 就必须观察这个 <code>signal</code>。 观察一个 <code>signal</code> 并不会有任何副作用。 也就是说，<code>signal</code> 是完全的基于生产者驱动以及推送的，消费者（observers）对自己的生命周期没有任何控制权。当观察一个 <code>signal</code> 时，用户仅仅能对发送过来的 <code>event</code> 按照发送的顺序进行处理。不存在随机访问这些值的办法。</p>
+
+<p>可以通过使用基础操作符来操作 <code>signal</code>。包括 <code>filter</code>，<code>map</code>，<code>reduce</code>，还有一次性处理多个 <code>signal</code> 的 <code>zip</code>。这些基础操作仅仅作用于对 <code>next</code> 事件</p>
+
+<p><code>signal</code> 的生命周期由任意数量的 <code>Next</code> 事件和一个结束 <code>event</code> 组成。结束事件可以是 <code>Failed</code>，或<code>Completed</code>，或<code>Interrupted</code>。<code>signal</code> 发送的值不包括结束 <code>event</code>，他们必须被单独处理。</p>
+
+<h2 id="pipes">Pipes</h2>
+
+<p><code>pipe</code> 是一个可以人工控制的 <code>signal</code>，它由 <code>Signal.pipe()</code> 方法创建的。</p>
+
+<p>这个方法返回一个 <code>signal</code> 和一个 <code>observer</code>. 发送给观察者的事件是受控制的。这个在把 non-RAC 的代码转换成 <code>signal</code> 是非常有用的。</p>
+
+<p>举个例子，我们可以简单的通过 <code>signal</code> 给观察者发送 <code>event</code>，来替代以前使用的 <code>callback</code>。 同时 <code>signal</code> 可以返回，这样就隐藏了 <code>callback</code> 的细节。</p>
+
+<h2 id="signalproducers">Signal Producers</h2>
+
+<p><code>signal producer</code>, 可以创建 <code>signal</code> 并且引起一些副作用， 我们用 <code>SignalProducer</code> 来表示。</p>
+
+<p><code>signal producer</code> 可以用来代表一系列操作或者任务，比如网络请求。每次调用 <code>start()</code> 都会引起一个相关的操作，并且使得调用者观察结果。<code>startWithSignal()</code> 返回出产生的信号，使得多次观察比较方便。</p>
+
+<p>由于 <code>start()</code> 的不同行为，每个从同一个 <code>signal producer</code> 产生的 <code>signal</code> 都可能产生不同顺序不同版本的 <code>event</code>。这是和普通的 <code>signal</code> 不同的地方。</p>
+
+<p>启动一个 <code>signal producer</code> 会得到一个 <code>disposable</code>，它可以用来 <code>interrupt／cancel</code> 相关的 <code>signal</code></p>
+
+<p><code>signal producers</code> 也可以被基础操作符操作，比如 <code>map</code>，<code>filter</code>。除此之外，它还可以被 <code>lift</code>。或者是用 <code>time</code> 来控制何时 <code>start</code>。</p>
+
+<h2 id="buffers">Buffers</h2>
+
+<p><code>buffer</code> 保存了一系列 <code>events</code>，当有新的 <code>signal</code> 从 <code>signal producer</code> 里创建的时候，它可以重现这些 <code>event</code>。RAC 用 <code>SignalProducer.buffer()</code> 来创建 <code>buffer</code>。 <code>buffer</code>是有大小的，满了以后，会自动顶出最先进入的 <code>event</code>。</p>
+
+<h2 id="observers">Observers</h2>
+
+<p>RAC 使用 <code>Observer</code> 来表示 <code>observer</code>，显然它可以接收 <code>event</code> 的值</p>
+
+<p><code>observers</code> 可以隐含的被创建，比如说被基于 callback 的 <code>Signal.observe</code> 或者 <code>SignalProducer.start</code> 方法</p>
+
+<h2 id="actions">Actions</h2>
+
+<p>一个 action 可以在输入发生的时候执行某些工作。我们用 <code>Action</code> 类型来表示一个 action。 当 action 执行的时候，可能产生一个，多个输出值，也可能产生失败事件。</p>
+
+<p>action 非常适合用来执行某个用户操作（比如点击一个button）的副作用。action 也可以根据一个属性自动的 enable/disable ，并且这种 diable 状态还可以和相关联的 UI 控件的 enable/disable 状态绑定。</p>
+
+<p>对于 UIControl 或者 NSControl 来说，RAC 也提供了 CocoaAction 与之对应。 </p>
+
+<h2 id="properties">Properties</h2>
+
+<p>用 <code>PropertyType</code> 协议表示的 <code>property</code>, 它保存着一个值，并且可以在值变化的时候通知 <code>observer</code></p>
+
+<p>property 的当前值可以使用 <code>value</code> 这个 getter 来获得. 另外的一个叫做 <code>producter</code> 的 getter 会返回一个 signal producer ，它会发送这个属性的当前值，并且以后任何变化也都会被推送</p>
+
+<p><code>&lt;~</code> 操作符可以用来绑定属性。需要注意，目标一定得是 <code>MutablePropertyType</code></p>
+
+<ul>
+<li><code>property &lt;~ signal</code> 把一个 signal 绑定到 property上，property的值会根据 signal 发送的新值而变化</li>
+<li><code>property &lt;~ producer</code> 启动这个绑定的 producer，并且根据新发送的值而改变</li>
+<li><code>property &lt;~ otherProperty</code> 绑定另一个 property 到本 property 这样本 property 就会睡着 otherProperty 而变化了</li>
+</ul>
+
+<p><code>DynamicProperty</code> 类型可以用来桥接以前的 Objective－c API，比如KVC 或者 KVO, 像 NSOperation 之类的. 注意，始终应该优先考虑使用<code>MutableProperty</code> 而不是 dynamic property !</p>
+
+<h2 id="disposables">Disposables</h2>
+
+<p>使用 <code>Disposable</code> 协议表示的 <code>disposable</code>, 是一种内存管理和取消的机制</p>
+
+<p>每当启动一次 signal producer, 都会返回一个 disposable . 它可以被调用者用来取消已经启动的工作(比如 后台处理或者网络请求等), 清理所有的临时的资源，然后发送 <code>Interrupted</code> event.</p>
+
+<p>观察一个 signal 也许也会产生 disposable. 丢弃它可以阻止 observer 继续接收未来的 event , 但是它不会对 signal 自身有任何影响.</p>
+
+<h2 id="schedulers">Schedulers</h2>
+
+<p>使用 <code>SchedulerType</code> 协议表示的 scheduler 是一个工作队列，上面执行着发布到它上面的任务</p>
+
+<p>signal 和 signal producer 可以指定它们发送 event 的 scheduler. signal producer 还可以指定它的工作在哪个 scheduler 里启动.</p>
+
+<p>scheduler 和 Grand Central Dispatch 队列类似, 但是 scheduler 支持取消 (通过 disposable), 并且永远是顺序执行. 除了 <code>ImmediateScheduler</code>, scheduler 不支持同步执行. 这有助于避免死锁，鼓励使用操作符而不是 block 来工作</p>
+
+<p>scheduler 更像 NSOperationQueue, 但是 schedulers 不允许重置任务顺序或者任务有依赖关系.</p>
+    </section>
+
+  </article>
+
+  <section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'alchemistliscraft'; // required: replace example with your forum shortname
+      
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">© 2015  All rights reserved.</span>
+    <span class="footer__copyright"><a href="https://github.com/onevcat/vno">Vno</a> theme by <a href="http://im.onevcat.com">@onevcat</a></span>
+</footer>        </div>
+    </div>
+
+    
+
+    <!-- Compatibility for Ghost 0.7.0: http://dev.ghost.org/no-more-jquery/ -->
+    <script type="text/javascript">  
+      if (typeof jQuery == 'undefined') {
+        document.write('<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></'+'script>');
+      }
+    </script>
+    
+    <script type="text/javascript" src="../assets/js/main.js?v=fa23bf9e5d"></script>
+
+    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=fa23bf9e5d"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>

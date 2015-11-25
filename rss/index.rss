@@ -1,4 +1,118 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Wed, 25 Nov 2015 05:14:05 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ReactiveCocoa和MVVM简介</title><description>&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Wed, 25 Nov 2015 08:21:28 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ReactiveCocoa的架构设计</title><description>&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id="event"&gt;Event&lt;/h2&gt;
+
+&lt;p&gt;一个 &lt;code&gt;event&lt;/code&gt; 代表着某个事情发生了，比如说按了一个 button ，收到了一个网络请求，某个错误发生了等等。&lt;code&gt;event&lt;/code&gt; 可以通过 &lt;code&gt;signal&lt;/code&gt; 来发送给每一个 &lt;code&gt;observer&lt;/code&gt;. 我们用 &lt;code&gt;Event&lt;/code&gt; 类型来描述一个 &lt;code&gt;event&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Event&lt;/code&gt; 是一个 Enum 类型，它或者代表一个值，或者代表后面事件之一&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Next event&lt;/code&gt; 表示有新值到来&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Failed event&lt;/code&gt; 表示在 &lt;code&gt;signal&lt;/code&gt; 结束之前有错误发生。具体是什么类型的错误，可以通过 &lt;code&gt;Event&lt;/code&gt; 里面的 &lt;code&gt;ErrorType&lt;/code&gt; 来获知。 但是如果根本不允许出现错误， 可以制定错误类型为 &lt;code&gt;NoError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Completed event&lt;/code&gt; 表示 &lt;code&gt;signal&lt;/code&gt; 已经结束，不会有新值来了&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Interrupted&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</description><link>http://localhost:2368/reactivecocoade-jia-gou-she-ji/</link><guid isPermaLink="false">012007db-c51a-4af3-9bdc-7bb6ecd48b85</guid><category>ReactiveCocoa</category><category>Architecture</category><category>Skill</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 08:20:59 GMT</pubDate><content:encoded>&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id="event"&gt;Event&lt;/h2&gt;
+
+&lt;p&gt;一个 &lt;code&gt;event&lt;/code&gt; 代表着某个事情发生了，比如说按了一个 button ，收到了一个网络请求，某个错误发生了等等。&lt;code&gt;event&lt;/code&gt; 可以通过 &lt;code&gt;signal&lt;/code&gt; 来发送给每一个 &lt;code&gt;observer&lt;/code&gt;. 我们用 &lt;code&gt;Event&lt;/code&gt; 类型来描述一个 &lt;code&gt;event&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Event&lt;/code&gt; 是一个 Enum 类型，它或者代表一个值，或者代表后面事件之一&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Next event&lt;/code&gt; 表示有新值到来&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Failed event&lt;/code&gt; 表示在 &lt;code&gt;signal&lt;/code&gt; 结束之前有错误发生。具体是什么类型的错误，可以通过 &lt;code&gt;Event&lt;/code&gt; 里面的 &lt;code&gt;ErrorType&lt;/code&gt; 来获知。 但是如果根本不允许出现错误， 可以制定错误类型为 &lt;code&gt;NoError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Completed event&lt;/code&gt; 表示 &lt;code&gt;signal&lt;/code&gt; 已经结束，不会有新值来了&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Interrupted event&lt;/code&gt; 表示 &lt;code&gt;signal&lt;/code&gt; 表示操作被 cancel 了，结果既不是成功也不是失败&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="signals"&gt;Signals&lt;/h2&gt;
+
+&lt;p&gt;一系列的 &lt;code&gt;event&lt;/code&gt; 就组成了 &lt;code&gt;signal&lt;/code&gt;, &lt;code&gt;signal&lt;/code&gt; 是可以被观察的&lt;/p&gt;
+
+&lt;p&gt;信号通常代表着 &lt;code&gt;in progress&lt;/code&gt; 的事件流，比如说 notifications, user input 等。当收到新数据，或者任务完成的时候，&lt;code&gt;event&lt;/code&gt; 会通过 &lt;code&gt;signal&lt;/code&gt; 
+里同时推送到每一个观察者那里。&lt;/p&gt;
+
+&lt;p&gt;如果想要接收到某个 &lt;code&gt;signal&lt;/code&gt; 的 &lt;code&gt;event&lt;/code&gt; , 就必须观察这个 &lt;code&gt;signal&lt;/code&gt;。 观察一个 &lt;code&gt;signal&lt;/code&gt; 并不会有任何副作用。 也就是说，&lt;code&gt;signal&lt;/code&gt; 是完全的基于生产者驱动以及推送的，消费者（observers）对自己的生命周期没有任何控制权。当观察一个 &lt;code&gt;signal&lt;/code&gt; 时，用户仅仅能对发送过来的 &lt;code&gt;event&lt;/code&gt; 按照发送的顺序进行处理。不存在随机访问这些值的办法。&lt;/p&gt;
+
+&lt;p&gt;可以通过使用基础操作符来操作 &lt;code&gt;signal&lt;/code&gt;。包括 &lt;code&gt;filter&lt;/code&gt;，&lt;code&gt;map&lt;/code&gt;，&lt;code&gt;reduce&lt;/code&gt;，还有一次性处理多个 &lt;code&gt;signal&lt;/code&gt; 的 &lt;code&gt;zip&lt;/code&gt;。这些基础操作仅仅作用于对 &lt;code&gt;next&lt;/code&gt; 事件&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;signal&lt;/code&gt; 的生命周期由任意数量的 &lt;code&gt;Next&lt;/code&gt; 事件和一个结束 &lt;code&gt;event&lt;/code&gt; 组成。结束事件可以是 &lt;code&gt;Failed&lt;/code&gt;，或&lt;code&gt;Completed&lt;/code&gt;，或&lt;code&gt;Interrupted&lt;/code&gt;。&lt;code&gt;signal&lt;/code&gt; 发送的值不包括结束 &lt;code&gt;event&lt;/code&gt;，他们必须被单独处理。&lt;/p&gt;
+
+&lt;h2 id="pipes"&gt;Pipes&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;pipe&lt;/code&gt; 是一个可以人工控制的 &lt;code&gt;signal&lt;/code&gt;，它由 &lt;code&gt;Signal.pipe()&lt;/code&gt; 方法创建的。&lt;/p&gt;
+
+&lt;p&gt;这个方法返回一个 &lt;code&gt;signal&lt;/code&gt; 和一个 &lt;code&gt;observer&lt;/code&gt;. 发送给观察者的事件是受控制的。这个在把 non-RAC 的代码转换成 &lt;code&gt;signal&lt;/code&gt; 是非常有用的。&lt;/p&gt;
+
+&lt;p&gt;举个例子，我们可以简单的通过 &lt;code&gt;signal&lt;/code&gt; 给观察者发送 &lt;code&gt;event&lt;/code&gt;，来替代以前使用的 &lt;code&gt;callback&lt;/code&gt;。 同时 &lt;code&gt;signal&lt;/code&gt; 可以返回，这样就隐藏了 &lt;code&gt;callback&lt;/code&gt; 的细节。&lt;/p&gt;
+
+&lt;h2 id="signalproducers"&gt;Signal Producers&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;signal producer&lt;/code&gt;, 可以创建 &lt;code&gt;signal&lt;/code&gt; 并且引起一些副作用， 我们用 &lt;code&gt;SignalProducer&lt;/code&gt; 来表示。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;signal producer&lt;/code&gt; 可以用来代表一系列操作或者任务，比如网络请求。每次调用 &lt;code&gt;start()&lt;/code&gt; 都会引起一个相关的操作，并且使得调用者观察结果。&lt;code&gt;startWithSignal()&lt;/code&gt; 返回出产生的信号，使得多次观察比较方便。&lt;/p&gt;
+
+&lt;p&gt;由于 &lt;code&gt;start()&lt;/code&gt; 的不同行为，每个从同一个 &lt;code&gt;signal producer&lt;/code&gt; 产生的 &lt;code&gt;signal&lt;/code&gt; 都可能产生不同顺序不同版本的 &lt;code&gt;event&lt;/code&gt;。这是和普通的 &lt;code&gt;signal&lt;/code&gt; 不同的地方。&lt;/p&gt;
+
+&lt;p&gt;启动一个 &lt;code&gt;signal producer&lt;/code&gt; 会得到一个 &lt;code&gt;disposable&lt;/code&gt;，它可以用来 &lt;code&gt;interrupt／cancel&lt;/code&gt; 相关的 &lt;code&gt;signal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;signal producers&lt;/code&gt; 也可以被基础操作符操作，比如 &lt;code&gt;map&lt;/code&gt;，&lt;code&gt;filter&lt;/code&gt;。除此之外，它还可以被 &lt;code&gt;lift&lt;/code&gt;。或者是用 &lt;code&gt;time&lt;/code&gt; 来控制何时 &lt;code&gt;start&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id="buffers"&gt;Buffers&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;buffer&lt;/code&gt; 保存了一系列 &lt;code&gt;events&lt;/code&gt;，当有新的 &lt;code&gt;signal&lt;/code&gt; 从 &lt;code&gt;signal producer&lt;/code&gt; 里创建的时候，它可以重现这些 &lt;code&gt;event&lt;/code&gt;。RAC 用 &lt;code&gt;SignalProducer.buffer()&lt;/code&gt; 来创建 &lt;code&gt;buffer&lt;/code&gt;。 &lt;code&gt;buffer&lt;/code&gt;是有大小的，满了以后，会自动顶出最先进入的 &lt;code&gt;event&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id="observers"&gt;Observers&lt;/h2&gt;
+
+&lt;p&gt;RAC 使用 &lt;code&gt;Observer&lt;/code&gt; 来表示 &lt;code&gt;observer&lt;/code&gt;，显然它可以接收 &lt;code&gt;event&lt;/code&gt; 的值&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;observers&lt;/code&gt; 可以隐含的被创建，比如说被基于 callback 的 &lt;code&gt;Signal.observe&lt;/code&gt; 或者 &lt;code&gt;SignalProducer.start&lt;/code&gt; 方法&lt;/p&gt;
+
+&lt;h2 id="actions"&gt;Actions&lt;/h2&gt;
+
+&lt;p&gt;一个 action 可以在输入发生的时候执行某些工作。我们用 &lt;code&gt;Action&lt;/code&gt; 类型来表示一个 action。 当 action 执行的时候，可能产生一个，多个输出值，也可能产生失败事件。&lt;/p&gt;
+
+&lt;p&gt;action 非常适合用来执行某个用户操作（比如点击一个button）的副作用。action 也可以根据一个属性自动的 enable/disable ，并且这种 diable 状态还可以和相关联的 UI 控件的 enable/disable 状态绑定。&lt;/p&gt;
+
+&lt;p&gt;对于 UIControl 或者 NSControl 来说，RAC 也提供了 CocoaAction 与之对应。 &lt;/p&gt;
+
+&lt;h2 id="properties"&gt;Properties&lt;/h2&gt;
+
+&lt;p&gt;用 &lt;code&gt;PropertyType&lt;/code&gt; 协议表示的 &lt;code&gt;property&lt;/code&gt;, 它保存着一个值，并且可以在值变化的时候通知 &lt;code&gt;observer&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;property 的当前值可以使用 &lt;code&gt;value&lt;/code&gt; 这个 getter 来获得. 另外的一个叫做 &lt;code&gt;producter&lt;/code&gt; 的 getter 会返回一个 signal producer ，它会发送这个属性的当前值，并且以后任何变化也都会被推送&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;~&lt;/code&gt; 操作符可以用来绑定属性。需要注意，目标一定得是 &lt;code&gt;MutablePropertyType&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;property &amp;lt;~ signal&lt;/code&gt; 把一个 signal 绑定到 property上，property的值会根据 signal 发送的新值而变化&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;property &amp;lt;~ producer&lt;/code&gt; 启动这个绑定的 producer，并且根据新发送的值而改变&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;property &amp;lt;~ otherProperty&lt;/code&gt; 绑定另一个 property 到本 property 这样本 property 就会睡着 otherProperty 而变化了&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;DynamicProperty&lt;/code&gt; 类型可以用来桥接以前的 Objective－c API，比如KVC 或者 KVO, 像 NSOperation 之类的. 注意，始终应该优先考虑使用&lt;code&gt;MutableProperty&lt;/code&gt; 而不是 dynamic property !&lt;/p&gt;
+
+&lt;h2 id="disposables"&gt;Disposables&lt;/h2&gt;
+
+&lt;p&gt;使用 &lt;code&gt;Disposable&lt;/code&gt; 协议表示的 &lt;code&gt;disposable&lt;/code&gt;, 是一种内存管理和取消的机制&lt;/p&gt;
+
+&lt;p&gt;每当启动一次 signal producer, 都会返回一个 disposable . 它可以被调用者用来取消已经启动的工作(比如 后台处理或者网络请求等), 清理所有的临时的资源，然后发送 &lt;code&gt;Interrupted&lt;/code&gt; event.&lt;/p&gt;
+
+&lt;p&gt;观察一个 signal 也许也会产生 disposable. 丢弃它可以阻止 observer 继续接收未来的 event , 但是它不会对 signal 自身有任何影响.&lt;/p&gt;
+
+&lt;h2 id="schedulers"&gt;Schedulers&lt;/h2&gt;
+
+&lt;p&gt;使用 &lt;code&gt;SchedulerType&lt;/code&gt; 协议表示的 scheduler 是一个工作队列，上面执行着发布到它上面的任务&lt;/p&gt;
+
+&lt;p&gt;signal 和 signal producer 可以指定它们发送 event 的 scheduler. signal producer 还可以指定它的工作在哪个 scheduler 里启动.&lt;/p&gt;
+
+&lt;p&gt;scheduler 和 Grand Central Dispatch 队列类似, 但是 scheduler 支持取消 (通过 disposable), 并且永远是顺序执行. 除了 &lt;code&gt;ImmediateScheduler&lt;/code&gt;, scheduler 不支持同步执行. 这有助于避免死锁，鼓励使用操作符而不是 block 来工作&lt;/p&gt;
+
+&lt;p&gt;scheduler 更像 NSOperationQueue, 但是 schedulers 不允许重置任务顺序或者任务有依赖关系.&lt;/p&gt;</content:encoded></item><item><title>ReactiveCocoa和MVVM简介</title><description>&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt;
 
 &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt;
 
@@ -628,7 +742,7 @@ class_addMethod([self class], aSEL, fooIMP, "v@:");
 
    // Test Driver
    public static void main(String[] args) {
-      new HelloJNI().sayHello();  // invoke&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/jniji-chu-jie-shao/</link><guid isPermaLink="false">960a4dff-371e-4d2d-885a-5cccd3b27dff</guid><category>Android</category><category>JNI</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:45:56 GMT</pubDate><content:encoded>这里简单介绍一下JNI的语法
+      new HelloJNI().sayHello();  // invoke&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/jniji-chu-jie-shao/</link><guid isPermaLink="false">960a4dff-371e-4d2d-885a-5cccd3b27dff</guid><category>Android</category><category>JNI</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:45:56 GMT</pubDate><content:encoded>这里简单介绍一下JNI的语法
 &lt;!--more--&gt;
 
 &lt;h4 id=""&gt;初识第一面&lt;/h4&gt;
@@ -1784,7 +1898,7 @@ fi
 &lt;p&gt;使用Android Studio自己创建IRemoteService.aidl就很好，比如定义接口getPid()&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;interface IRemoteService {
-    int getPid(&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/androidzhong-de-aidl/</link><guid isPermaLink="false">78aa4458-a3dc-435f-848f-0f3c1a654305</guid><category>Android</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:24:14 GMT</pubDate><content:encoded>&lt;p&gt;AIDL是用来跨进行通信的。在Android上，跨进程通信需要把对象解构成系统可以识别的基本类型，然后在交给另一个进程使用之前，需要重新组装起来。这些工作是十分枯燥的，AIDL就是为了这个目的而设计的。&lt;/p&gt;
+    int getPid(&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/androidzhong-de-aidl/</link><guid isPermaLink="false">78aa4458-a3dc-435f-848f-0f3c1a654305</guid><category>Android</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:24:14 GMT</pubDate><content:encoded>&lt;p&gt;AIDL是用来跨进行通信的。在Android上，跨进程通信需要把对象解构成系统可以识别的基本类型，然后在交给另一个进程使用之前，需要重新组装起来。这些工作是十分枯燥的，AIDL就是为了这个目的而设计的。&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -1981,7 +2095,7 @@ class Residence {
 
     subscript(i: Int) -&amp;gt; Room {
         get { return rooms[i] }
-        set { rooms[i] = newValue&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swift-optional-chaining/</link><guid isPermaLink="false">dfeac41b-a73f-47fc-bd8f-0414ad82f6f7</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:22:06 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code&gt;optinal chainging&lt;/code&gt;是一个查询和调用&lt;code&gt;optional&lt;/code&gt;的property, method, subscript的过程。如果其中的&lt;code&gt;optional&lt;/code&gt;没有nil，那么表达式求值成功。否则，失败。失败后返回nil。所以整个表达式返回值始终是&lt;code&gt;optional&lt;/code&gt;类型。&lt;/p&gt;
+        set { rooms[i] = newValue&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swift-optional-chaining/</link><guid isPermaLink="false">dfeac41b-a73f-47fc-bd8f-0414ad82f6f7</guid><category>Swift</category><category>iOS</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:22:06 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code&gt;optinal chainging&lt;/code&gt;是一个查询和调用&lt;code&gt;optional&lt;/code&gt;的property, method, subscript的过程。如果其中的&lt;code&gt;optional&lt;/code&gt;没有nil，那么表达式求值成功。否则，失败。失败后返回nil。所以整个表达式返回值始终是&lt;code&gt;optional&lt;/code&gt;类型。&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -2121,7 +2235,7 @@ if let beginsWithThe = john.residence?.address?.buildingIdentifier()?.hasPrefix(
 
 &lt;p&gt;需要指出的是，swift默认会给第一个参数local parameter name，但是对于第二个以后参数则默认生成local and external parameter name。
     class Counter {
-        var&lt;/p&gt;</description><link>http://localhost:2368/swift-method/</link><guid isPermaLink="false">204a70b7-ecf1-49ca-9c23-4ec874e318c0</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:19:55 GMT</pubDate><content:encoded>&lt;p&gt;swift &lt;code&gt;method&lt;/code&gt;分为&lt;code&gt;instance method&lt;/code&gt;和&lt;code&gt;type method&lt;/code&gt;&lt;/p&gt;
+        var&lt;/p&gt;</description><link>http://localhost:2368/swift-method/</link><guid isPermaLink="false">204a70b7-ecf1-49ca-9c23-4ec874e318c0</guid><category>Swift</category><category>iOS</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:19:55 GMT</pubDate><content:encoded>&lt;p&gt;swift &lt;code&gt;method&lt;/code&gt;分为&lt;code&gt;instance method&lt;/code&gt;和&lt;code&gt;type method&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;instance method&lt;/code&gt;是属于实例的函数，&lt;code&gt;type mothod&lt;/code&gt;则是属于&lt;code&gt;type&lt;/code&gt;的函数&lt;/p&gt;
 
@@ -2244,7 +2358,7 @@ enum TriStateSwitch {
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;extension&lt;/code&gt;可以增加新的&lt;code&gt;funtionality&lt;/code&gt;，但是不能覆盖以有的&lt;code&gt;functionality&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;extension&lt;/code&gt;不能增加&lt;code&gt;stored properties&lt;/code&gt;，或者给存在的&lt;code&gt;property&lt;/code&gt;增加&lt;code&gt;property observers&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;extension&lt;/code&gt;不能增加新的&lt;code&gt;designated&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</description><link>http://localhost:2368/swift-extension/</link><guid isPermaLink="false">5f11f486-e3f5-4cf3-a793-9ccb7324ffad</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:16:12 GMT</pubDate><content:encoded>`extensions`可以给已有的type增加功能，而且不必访问源代码(`retroactive modeling`)
+&lt;li&gt;&lt;code&gt;extension&lt;/code&gt;不能增加新的&lt;code&gt;designated&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</description><link>http://localhost:2368/swift-extension/</link><guid isPermaLink="false">5f11f486-e3f5-4cf3-a793-9ccb7324ffad</guid><category>Swift</category><category>iOS</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:16:12 GMT</pubDate><content:encoded>`extensions`可以给已有的type增加功能，而且不必访问源代码(`retroactive modeling`)
 &lt;!--more--&gt;
 
 &lt;p&gt;&lt;code&gt;extensions&lt;/code&gt;可以&lt;/p&gt;
@@ -2385,7 +2499,7 @@ while let constantName = someOptional
 
 &lt;p&gt;一个optinal变量可以定义为&lt;code&gt;implicity unwrapped optionals&lt;/code&gt;, 那么使用这个变量的时候就不再需要force unwrap, 一旦unwrap失败，程序会崩溃&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;var storyboardName&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftzhong-optional/</link><guid isPermaLink="false">902d5d50-ebd8-4263-9642-8aec63f5ff01</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:13:58 GMT</pubDate><content:encoded>&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var storyboardName&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftzhong-optional/</link><guid isPermaLink="false">902d5d50-ebd8-4263-9642-8aec63f5ff01</guid><category>Swift</category><category>iOS</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:13:58 GMT</pubDate><content:encoded>&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -2434,7 +2548,7 @@ class Song: MediaItem{
 
 &lt;pre&gt;&lt;code&gt;let library = [Movie("d1"), Song("a1"), Song("a2"), Movie("d2")]
 
-var movieCount&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftzhong-de-lei-xing-zhuan-huan/</link><guid isPermaLink="false">1fc2e9cf-b34f-4266-accd-9ae3c1620910</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:10:19 GMT</pubDate><content:encoded>&lt;p&gt;Swift中使用&lt;code&gt;as&lt;/code&gt;和&lt;code&gt;is&lt;/code&gt;运算符来进行类型转换&lt;/p&gt;
+var movieCount&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftzhong-de-lei-xing-zhuan-huan/</link><guid isPermaLink="false">1fc2e9cf-b34f-4266-accd-9ae3c1620910</guid><category>Swift</category><category>iOS</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:10:19 GMT</pubDate><content:encoded>&lt;p&gt;Swift中使用&lt;code&gt;as&lt;/code&gt;和&lt;code&gt;is&lt;/code&gt;运算符来进行类型转换&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -2571,331 +2685,4 @@ for thing in things{
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;需要指出，在switch的case语句中，使用的&lt;code&gt;as&lt;/code&gt;是强制转换版的，并不写作&lt;code&gt;as?&lt;/code&gt;或者&lt;code&gt;as!&lt;/code&gt;，在case语句中使用这种检查总是安全的。&lt;/p&gt;</content:encoded></item><item><title>Swift的初始化</title><description>这里不是要权威的解释initilization，而是想总结一些swift initilizer的特点
-&lt;!--more--&gt;
-
-&lt;p&gt;初始化发生在&lt;em&gt;class&lt;/em&gt;, &lt;em&gt;structure&lt;/em&gt;, &lt;em&gt;enumeration&lt;/em&gt;初始准备的过程中。coder可以通过定义&lt;em&gt;initializers&lt;/em&gt;来实现初始化。值得注意的是，&lt;em&gt;initializers&lt;/em&gt;没有返回值。&lt;/p&gt;
-
-&lt;p&gt;此外，class还可以实现一个'deinitializer'&lt;/p&gt;
-
-&lt;h3 id="initializer"&gt;如何定义initializer&lt;/h3&gt;
-
-&lt;p&gt;定义initializer需要用关键字&lt;em&gt;init&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id="simplestinitializer"&gt;Simplest initializer&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;struct Fahrenhit{  
-    var temperature: Double
-    init(){
-        temperature = 32.0
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="initializer"&gt;自定义initializer&lt;/h3&gt;
-
-&lt;p&gt;可以使用initializer parameters来自定义initializer&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct Celsius{
-    var temperatureInCelsius: Double
-    init(fromFahrenhit fahrenhit: Double){
-        temperatureInCelsius = (fahrenhit - 32.0)/1.8
-    }
-    init(&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftde-chu-shi-hua/</link><guid isPermaLink="false">596b7132-f494-41ad-a294-117f786ada0c</guid><category>Swift</category><category>iOS</category><category>knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 02:57:59 GMT</pubDate><content:encoded>这里不是要权威的解释initilization，而是想总结一些swift initilizer的特点
-&lt;!--more--&gt;
-
-&lt;p&gt;初始化发生在&lt;em&gt;class&lt;/em&gt;, &lt;em&gt;structure&lt;/em&gt;, &lt;em&gt;enumeration&lt;/em&gt;初始准备的过程中。coder可以通过定义&lt;em&gt;initializers&lt;/em&gt;来实现初始化。值得注意的是，&lt;em&gt;initializers&lt;/em&gt;没有返回值。&lt;/p&gt;
-
-&lt;p&gt;此外，class还可以实现一个'deinitializer'&lt;/p&gt;
-
-&lt;h3 id="initializer"&gt;如何定义initializer&lt;/h3&gt;
-
-&lt;p&gt;定义initializer需要用关键字&lt;em&gt;init&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id="simplestinitializer"&gt;Simplest initializer&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;struct Fahrenhit{  
-    var temperature: Double
-    init(){
-        temperature = 32.0
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="initializer"&gt;自定义initializer&lt;/h3&gt;
-
-&lt;p&gt;可以使用initializer parameters来自定义initializer&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct Celsius{
-    var temperatureInCelsius: Double
-    init(fromFahrenhit fahrenhit: Double){
-        temperatureInCelsius = (fahrenhit - 32.0)/1.8
-    }
-    init(fromKelvin kelvin: Double){
-        temperatureInCelsius = kelvin - 273.15
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="initializer"&gt;调用initializer&lt;/h3&gt;
-
-&lt;p&gt;由于initializer每个参数默认有external name，所以调用的时候一定要写external name&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;let boilingPoint = Celsius(fromFahrenhit: 212.0)
-let freezePoint = Celsius(fromKelvin: 273.15)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="defaultinitializer"&gt;Default initializer&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;如果structure或者base class没有提供initializer的话，编译器会提供一个默认的init()。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;对于structure来说如果没有任何自定义的initializer的话，编译器会还会提供一个memberwise initializer&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id="initializerdelegation"&gt;Initializer Delegation&lt;/h3&gt;
-
-&lt;p&gt;value类型和class类型的initilizer delegation的规则是不同的&lt;/p&gt;
-
-&lt;h4 id="structureenumunationintializerdelegation"&gt;Structure和Enumunation的Intializer Delegation&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;只能在initializer中调用self.init&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id="classinheriantanceandinitialization"&gt;Class Inheriantance and Initialization&lt;/h4&gt;
-
-&lt;p&gt;class的initializer分为Designated initializer和Convenience initializer&lt;/p&gt;
-
-&lt;h5 id="designatedinitializerconvenienceinitializer"&gt;Designated initializer和Convenience initializer&lt;/h5&gt;
-
-&lt;p&gt;Designated initializer是primary initializer，每个class只要有一个&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;init(parameters) { statements }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Convenience initializer是为了方便而存在的，需要通过Designated initializer来初始化，关键字为&lt;em&gt;convenience&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;convenience init(parameters){ statements }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id="initializerdelegattionforclasstypes"&gt;Initializer Delegattion for Class Types&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Rule1 一个designated initializer必须调用它直接父类的designated initializer  &lt;/li&gt;
-&lt;li&gt;Rule2 一个convenience initializer必须调用它自己的另一个initializer  &lt;/li&gt;
-&lt;li&gt;Rule3 一个convenience initializer必须最终调用它自己的designated initializer&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;可以简单总结为&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;designated initializer必须delegate up  &lt;/li&gt;
-&lt;li&gt;convenience initializer必须delegate across&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;可以看下图&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_1.png" alt=""&gt;&lt;/p&gt;
-
-&lt;p&gt;下面是一个更复杂的例子&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_2.png" alt=""&gt;&lt;/p&gt;
-
-&lt;h4 id=""&gt;两阶段的初始化&lt;/h4&gt;
-
-&lt;p&gt;在初始化过程中，首先所有的类属性都会被赋予初始值，当这一阶段完成之后，然后在被initializer里代码设置其值 &lt;br&gt;
-关于这点，swift的编译器会进行一些检查  &lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;safety check 1 : designated initializer在delegates up到superclass initializer之前，必须保证所有属性都被初始化了&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;safety check 2 : designated initializer必须先delegate up到superclass initializer才能赋值给继承下来的属性&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;safety check 3 : convenience initializer必须先delegate到其他initializer才能修改属性&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;safety check 4 : initializer需要第一阶段初始化完成才能修改属性，调用成员方法&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;两阶段初始化的具体过程不详细说了，需要知道的是，当内存分配好之后，先由子类的initializer负责初始化自己的属性，然后向上传递控制权，父类做相同的事情，直到根基类。这时候第一阶段初始化就完成了。第二阶段初始化是从顶向下进行，这时候self就可以访问了，同时可以修改访问self的属性了，调用成员函数了。&lt;/p&gt;
-
-&lt;h5 id=""&gt;第一阶段初始化&lt;/h5&gt;
-
-&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_3.png" alt=""&gt;&lt;/p&gt;
-
-&lt;h5 id=""&gt;第二阶段初始化&lt;/h5&gt;
-
-&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_4.png" alt=""&gt;&lt;/p&gt;
-
-&lt;h4 id="initializerinheritanceoverride"&gt;Initializer的Inheritance和Override&lt;/h4&gt;
-
-&lt;p&gt;原则上，swift不允许initializer继承，但是在下列情况下可以继承&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;如果子类没有写任何designated initializer，子类可以继承所有父类的designated initializer&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果子类提供了所有父类的designated initializer的实现－－无论是继承而来的，还是自己override的，那么自动继承所有的父类的convenience initializer  &lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;下面举个例子：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Food{
-    var name : String
-    init(name: String){ self.name = name }
-    convenience init() { self.init(name: "[Unnamed]") }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;下图显示了initializer chain&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_5.png" alt=""&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class RecipeIngredient: Food{
-    var quantity : Int
-    init(name: String, quantity: Int){
-        self.quantity = quantity
-        super.init(name: name)
-    }
-    override convenience init(name: String){
-        self.init(name: name, quantity: 1)
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;initializer chain如图&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_6.png" alt=""&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class ShoppingListItem: RecipeIngredient {
-    var purchased = false
-    var description: String {
-        var output = "\(quantity) x \(name)"
-        output += purchased ? "OK" : "Not"
-        return output
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;initializer chain如图&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/11/2015-06-10_7.png" alt=""&gt;&lt;/p&gt;
-
-&lt;h4 id="failableinitializer"&gt;Failable Initializer&lt;/h4&gt;
-
-&lt;p&gt;语法如下&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;init?(parameters){ statments }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;举个例子来说
-    struct Animal{
-        let species: String
-        init?(species: String){ 
-            if species.isEmpty { return nil }
-            self.species = species
-        }
-    }&lt;/p&gt;
-
-&lt;p&gt;通过&lt;em&gt;return nil&lt;/em&gt;，我们可以表示初始化失败&lt;/p&gt;
-
-&lt;p&gt;可以像如下方式来使用
-    let someCreature = Animal(species: "")
-    if let griaffe = someCreature{ println("no species") }&lt;/p&gt;
-
-&lt;h4 id="failableinitializerforenumerations"&gt;Failable Initializer for Enumerations&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;enum TemperatureUnit{
-    case Kelvin, Celsius, Fahrenheit
-    init?(symbol: Character){
-        switch symbol{
-        case "K": self = .Kelvin
-        case "C": self = .Celsius
-        case "K": self = .Fahrenheit
-        default:
-            return nil
-        }
-    }
-}
-
-
-if let unknowUnit = TemperatureUnit("X") { println("no such unit") }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="automaticfailableinitializerforenumerationswithrawvalue"&gt;Automatic Failable Initializer for Enumerations with Raw Value&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;enum TemperatureUnit : Character{
-    case Kelvin = "K", Celsius = "C", Fahrenheit = "F"
-}
-
-if let unknowUnit = TemperatureUnit("D"){ println ("no such unit") }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="failableinitializerforclassespropagationofinitializationfailure"&gt;Failable Initializer for Classes &amp;amp; Propagation of Initialization Failure&lt;/h4&gt;
-
-&lt;p&gt;对于类来说，初始化失败只能在所有属性都已经被设置了初始值之后发生&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Product{
-    let name: String!
-    init?(name: String){
-        self.name = name
-        if name.isEmpty { return nil }
-    }
-}
-
-class CartItem: Product{
-    let quantity: Int!
-    init?(name: String, quantity: Int){
-        self.quantity = quantity
-        super.init(name: name)
-        if(quantity &amp;lt; 1) { return nil }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="overrideafailableinitializer"&gt;Override a Failable Initializer&lt;/h4&gt;
-
-&lt;p&gt;你可以使用non-failable initializer去override父类的failable initializer，但这时就不能再delegate up到failable initilizer&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Document{
-    var name: String?
-    init() {}
-    init?(name: String){
-        self.name = name
-        if name.isEmpty { return nil }
-    }
-}
-
-class AutomaticallyNamedDocument: Document{
-    override init(){ 
-        super.init()
-        self.name = "[Untitled]"
-    }
-    override init(name: String){
-        super.init()
-        if name.isEmpty{ 
-            self.name = "[Untitled]"
-        }
-        else{ 
-            self.name = name 
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="requiredinitializer"&gt;Required Initializer&lt;/h4&gt;
-
-&lt;p&gt;&lt;em&gt;required&lt;/em&gt; modifier表示该类的每一个子类都必须实现这个initilizer &lt;br&gt;
-在子类实现该initializer时候必须也添加&lt;em&gt;required&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class SomeClass{
-    required init(){ ... }
-}
-
-class SomeSubClass{
-    required init(){ ... }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="settingadefaultpropertyvaluewithaclosureorfunction"&gt;Setting a Default Property Value with a Closure or Function&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;class SomeClass{
-    let someProperty: SomeType = {
-        return someValue
-    }()
-}
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;需要指出，在switch的case语句中，使用的&lt;code&gt;as&lt;/code&gt;是强制转换版的，并不写作&lt;code&gt;as?&lt;/code&gt;或者&lt;code&gt;as!&lt;/code&gt;，在case语句中使用这种检查总是安全的。&lt;/p&gt;</content:encoded></item></channel></rss>
