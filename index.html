@@ -1,3 +1,4 @@
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,9 +25,9 @@
     <link href="assets/images/favicon.png" rel="shortcut icon" type="image/png">
     <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="assets/css/vno.css?v=fa23bf9e5d">
+    <link rel="stylesheet" type="text/css" href="assets/css/vno.css?v=10e95c5ac2">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/tomorrow.css?v=fa23bf9e5d">
+    <link rel="stylesheet" type="text/css" href="assets/css/tomorrow.css?v=10e95c5ac2">
     
     <link rel="canonical" href="index.html">
     <meta name="referrer" content="origin">
@@ -154,6 +155,18 @@
 
     <ol class="post-list">
       <li>
+        <h2 class="post-list__post-title post-title"><a href="diao-shi-qi-shi-zen-yang-gong-zuo-de-part-2-duan-dian/" title="link to 调试器是怎样工作的: Part 2 – 断点">调试器是怎样工作的: Part 2 – 断点</a></h2>
+        <p class="excerpt"></p><p>翻译自<a href="http://eli.thegreenplace.net/2011/01/27/how-debuggers-work-part-2-breakpoints">原文</a></p> <p>接下来展示一下断点是如何在调试器里实现的。断点是调试器的两大杀器之一，另外一个是可以查看被调试进程的内存。在上一篇中我们已经大致看到了第二个杀器的缩影，但是断点仍然是很神秘。不过看完这篇后，一切会水落石出。</p> <h4 id="softwareinterrupts">Software interrupts</h4> <p>为了在x86架构上实现断点，我们使用了软中断（也叫<code>traps</code>)。在我们一猛子扎到细节之前，我先解释一下<code>interrupt</code>和<code>trap</code>的概念。</p> <p>CPU可以看成是指令流，一条一条的执行指令。为了处理异步事件（比如IO或者硬件计时器），CPU使用<code>i</code></p>…
+        <div class="post-list__meta"><time datetime="14 Dec 2015" class="post-list__meta--date date">14 Dec 2015</time> • <span class="post-list__meta--tags tags">于 <a href="tag/debugger/">Debugger</a>, <a href="tag/knowledge/">Knowledge</a></span><a class="btn-border-small" href="diao-shi-qi-shi-zen-yang-gong-zuo-de-part-2-duan-dian/">继续阅读</a></div>
+        <hr class="post-list__divider">
+      </li>
+      <li>
+        <h2 class="post-list__post-title post-title"><a href="geng-qing-liang-de-view-controllers/" title="link to 调试器是怎样工作的: Part 1-基础篇">调试器是怎样工作的: Part 1-基础篇</a></h2>
+        <p class="excerpt"></p><p>翻译自<a href="http://eli.thegreenplace.net/2011/01/23/how-debuggers-work-part-1">原文</a></p> <p>在这篇文章中,我将解释实现Linux下的调试器的基石–ptrace系统调用.本文的所有例子都是在32位Ubuntu上编写的,需要注意的是,这些代码是高度依赖于计算机体系结构的,好在移植他们应该不会太难.</p> <p>这里我们想搞明白，到底怎样才能让调试器可以工作起来呢？ 调试器可以启动一个进程并调试之,或者将自己attach到一个正在运行的进程.调试器还可以在代码中单步执行,设置断点,到断点停住，查看变量值和堆栈跟踪信息(stack trace)。很多调试器还有一些高级特性,比如说执行表达式,调</p>…
+        <div class="post-list__meta"><time datetime="13 Dec 2015" class="post-list__meta--date date">13 Dec 2015</time> • <span class="post-list__meta--tags tags">于 <a href="tag/debugger/">Debugger</a>, <a href="tag/knowledge/">Knowledge</a></span><a class="btn-border-small" href="geng-qing-liang-de-view-controllers/">继续阅读</a></div>
+        <hr class="post-list__divider">
+      </li>
+      <li>
         <h2 class="post-list__post-title post-title"><a href="reactivecocoade-jia-gou-she-ji/" title="link to ReactiveCocoa的架构设计">ReactiveCocoa的架构设计</a></h2>
         <p class="excerpt"></p><p>简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下</p>…
         <div class="post-list__meta"><time datetime="25 Nov 2015" class="post-list__meta--date date">25 Nov 2015</time> • <span class="post-list__meta--tags tags">于 <a href="tag/reactivecocoa/">ReactiveCocoa</a>, <a href="tag/architecture/">Architecture</a>, <a href="tag/skill/">Skill</a></span><a class="btn-border-small" href="reactivecocoade-jia-gou-she-ji/">继续阅读</a></div>
@@ -161,7 +174,7 @@
       </li>
       <li>
         <h2 class="post-list__post-title post-title"><a href="reactivecocoahe-mvvmjian-jie/" title="link to ReactiveCocoa和MVVM简介">ReactiveCocoa和MVVM简介</a></h2>
-        <p class="excerpt"></p><p>本文主要翻译自<a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/">原文</a>, 不过省去了大段啰嗦，并且也加入了其他的一些观点。</p> <p>MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。<code>MVVM</code>是解决的方法之一。</p> <h2 id="mvvm">MVVM的三个结论</h2> <ul> <li><code>MVVM</code>可以兼容当下使用的<code>MVC</code></li> <li><code>MVVM</code>可以增加应用的可测试新</li> <li><code>MVVM</code>配合绑定机制效果最好</li> </ul> <h2 id="mvvm">什么是MVVM</h2>…
+        <p class="excerpt"></p><p>本文主要翻译自<a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/">原文</a>, 不过省去了大段啰嗦，并且也加入了其他的一些观点。</p> <p>MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。<code>MVVM</code>是解决的方法之一。</p> <h3 id="mvvm">MVVM的三个结论</h3> <ul> <li><code>MVVM</code>可以兼容当下使用的<code>MVC</code></li> <li><code>MVVM</code>可以增加应用的可测试新</li> <li><code>MVVM</code>配合绑定机制效果最好</li> </ul> <h3 id="mvvm">什么是MVVM</h3>…
         <div class="post-list__meta"><time datetime="25 Nov 2015" class="post-list__meta--date date">25 Nov 2015</time> • <span class="post-list__meta--tags tags">于 <a href="tag/ios/">iOS</a>, <a href="tag/reactivecocoa/">ReactiveCocoa</a>, <a href="tag/architecture/">Architecture</a>, <a href="tag/skill/">Skill</a></span><a class="btn-border-small" href="reactivecocoahe-mvvmjian-jie/">继续阅读</a></div>
         <hr class="post-list__divider">
       </li>
@@ -171,24 +184,12 @@
         <div class="post-list__meta"><time datetime="25 Nov 2015" class="post-list__meta--date date">25 Nov 2015</time> • <span class="post-list__meta--tags tags">于 <a href="tag/objc/">Objc</a>, <a href="tag/ios/">iOS</a>, <a href="tag/skill/">Skill</a></span><a class="btn-border-small" href="li-jie-objective-c-runtime/">继续阅读</a></div>
         <hr class="post-list__divider">
       </li>
-      <li>
-        <h2 class="post-list__post-title post-title"><a href="jniji-chu-jie-shao/" title="link to JNI基础介绍">JNI基础介绍</a></h2>
-        <p class="excerpt">这里简单介绍一下JNI的语法…</p>
-        <div class="post-list__meta"><time datetime="25 Nov 2015" class="post-list__meta--date date">25 Nov 2015</time> • <span class="post-list__meta--tags tags">于 <a href="tag/android/">Android</a>, <a href="tag/jni/">JNI</a>, <a href="tag/knowledge/">Knowledge</a></span><a class="btn-border-small" href="jniji-chu-jie-shao/">继续阅读</a></div>
-        <hr class="post-list__divider">
-      </li>
-      <li>
-        <h2 class="post-list__post-title post-title"><a href="fresco-jian-jie/" title="link to Fresco 简介">Fresco 简介</a></h2>
-        <p class="excerpt"></p><p>翻译自<a href="https://code.facebook.com/posts/366199913563917/introducing-fresco-a-new-image-library-for-android/">Introducing Fresco: A new image library for Android</a></p> <p>这里并不是单纯的翻译，只是试图总结一下fresco的特点</p>…
-        <div class="post-list__meta"><time datetime="25 Nov 2015" class="post-list__meta--date date">25 Nov 2015</time> • <span class="post-list__meta--tags tags">于 <a href="tag/android/">Android</a>, <a href="tag/skill/">Skill</a></span><a class="btn-border-small" href="fresco-jian-jie/">继续阅读</a></div>
-        <hr class="post-list__divider">
-      </li>
     </ol>
 
     <hr class="post-list__divider ">
 
 <nav class="pagination" role="navigation">
-    <span class="pagination__page-number">1 / 5</span>
+    <span class="pagination__page-number">1 / 6</span>
         <a class="older-posts pagination__older btn btn-small btn-tertiary" href="page/2/index.html#blog">更早 →</a>
 </nav>
 
@@ -209,8 +210,8 @@
       }
     </script>
     
-    <script type="text/javascript" src="assets/js/main.js?v=fa23bf9e5d"></script>
+    <script type="text/javascript" src="assets/js/main.js?v=10e95c5ac2"></script>
 
-    <script type="text/javascript" src="assets/js/highlight.pack.js?v=fa23bf9e5d"></script>
+    <script type="text/javascript" src="assets/js/highlight.pack.js?v=10e95c5ac2"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </body>

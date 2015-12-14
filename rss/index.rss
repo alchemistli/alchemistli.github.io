@@ -1,4 +1,617 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Wed, 25 Nov 2015 08:30:40 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ReactiveCocoa的架构设计</title><description>&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Mon, 14 Dec 2015 14:50:51 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>调试器是怎样工作的: Part 2 – 断点</title><description>&lt;p&gt;翻译自&lt;a href="http://eli.thegreenplace.net/2011/01/27/how-debuggers-work-part-2-breakpoints"&gt;原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;接下来展示一下断点是如何在调试器里实现的。断点是调试器的两大杀器之一，另外一个是可以查看被调试进程的内存。在上一篇中我们已经大致看到了第二个杀器的缩影，但是断点仍然是很神秘。不过看完这篇后，一切会水落石出。&lt;/p&gt;
+
+&lt;h4 id="softwareinterrupts"&gt;Software interrupts&lt;/h4&gt;
+
+&lt;p&gt;为了在x86架构上实现断点，我们使用了软中断（也叫&lt;code&gt;traps&lt;/code&gt;)。在我们一猛子扎到细节之前，我先解释一下&lt;code&gt;interrupt&lt;/code&gt;和&lt;code&gt;trap&lt;/code&gt;的概念。&lt;/p&gt;
+
+&lt;p&gt;CPU可以看成是指令流，一条一条的执行指令。为了处理异步事件（比如IO或者硬件计时器），CPU使用&lt;code&gt;interrupt&lt;/code&gt;。一个硬件&lt;code&gt;interrupt&lt;/code&gt;通常是一个专门的电子信号，挂载了一段特殊的响应电路。这个电路发出&lt;code&gt;interrupt&lt;/code&gt;开始的通知，并且把CPU暂停在它当前执行的指令上，然后保存状态，接下来跳转到预先定好的一段处理代码处。但这段处理&lt;code&gt;interrupt&lt;/code&gt;代码执行完毕后，CPU再恢复现场，从暂停处执行。&lt;/p&gt;
+
+&lt;p&gt;软件&lt;code&gt;interrupt&lt;/code&gt;原理上和硬件&lt;code&gt;interrupt&lt;/code&gt;一样，不过具体上有一些不同。 CPU支持特殊的指令来模拟&lt;code&gt;interrupt&lt;/code&gt;&lt;/p&gt;</description><link>http://localhost:2368/diao-shi-qi-shi-zen-yang-gong-zuo-de-part-2-duan-dian/</link><guid isPermaLink="false">9e097196-c617-478e-a325-99eb442d92db</guid><category>Debugger</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Mon, 14 Dec 2015 14:40:43 GMT</pubDate><content:encoded>&lt;p&gt;翻译自&lt;a href="http://eli.thegreenplace.net/2011/01/27/how-debuggers-work-part-2-breakpoints"&gt;原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;接下来展示一下断点是如何在调试器里实现的。断点是调试器的两大杀器之一，另外一个是可以查看被调试进程的内存。在上一篇中我们已经大致看到了第二个杀器的缩影，但是断点仍然是很神秘。不过看完这篇后，一切会水落石出。&lt;/p&gt;
+
+&lt;h4 id="softwareinterrupts"&gt;Software interrupts&lt;/h4&gt;
+
+&lt;p&gt;为了在x86架构上实现断点，我们使用了软中断（也叫&lt;code&gt;traps&lt;/code&gt;)。在我们一猛子扎到细节之前，我先解释一下&lt;code&gt;interrupt&lt;/code&gt;和&lt;code&gt;trap&lt;/code&gt;的概念。&lt;/p&gt;
+
+&lt;p&gt;CPU可以看成是指令流，一条一条的执行指令。为了处理异步事件（比如IO或者硬件计时器），CPU使用&lt;code&gt;interrupt&lt;/code&gt;。一个硬件&lt;code&gt;interrupt&lt;/code&gt;通常是一个专门的电子信号，挂载了一段特殊的响应电路。这个电路发出&lt;code&gt;interrupt&lt;/code&gt;开始的通知，并且把CPU暂停在它当前执行的指令上，然后保存状态，接下来跳转到预先定好的一段处理代码处。但这段处理&lt;code&gt;interrupt&lt;/code&gt;代码执行完毕后，CPU再恢复现场，从暂停处执行。&lt;/p&gt;
+
+&lt;p&gt;软件&lt;code&gt;interrupt&lt;/code&gt;原理上和硬件&lt;code&gt;interrupt&lt;/code&gt;一样，不过具体上有一些不同。 CPU支持特殊的指令来模拟&lt;code&gt;interrupt&lt;/code&gt;，触发同样的过程。这样的软件&lt;code&gt;trap&lt;/code&gt;使得现代操作系统的许多奇迹（任务调度，虚拟内存，内存保护，调试）实现起来易如反掌。&lt;/p&gt;
+
+&lt;p&gt;但是一些程序错误（比如说除以0）也被CPU当作&lt;code&gt;trap&lt;/code&gt;，并且经常被称作&lt;code&gt;exception&lt;/code&gt;。在这里硬件和软件的边界变的模糊，因为很难说这是硬件还是软件的中断。书归正传。&lt;/p&gt;
+
+&lt;h4 id="int3intheory"&gt;int 3 in theory&lt;/h4&gt;
+
+&lt;p&gt;经过前面的部分，我现在可以简单的说，断点就是通过CPU的特殊指令触发&lt;code&gt;trap&lt;/code&gt;，这个指令叫做int 3。int就是&lt;code&gt;trap&lt;/code&gt;指令在x86上的术语。x86支持&lt;code&gt;int&lt;/code&gt;指令带有一个8-bit的参数。参数指明了哪种中断发生的，所以理论上支持256种中断。头32个中断是被CPU保留下来给自己用的，数字3就是我们目前感兴趣的，被称作&lt;code&gt;trap to debugger&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;进一步之前，我们看看文档怎么说的&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code&gt;INT 3&lt;/code&gt;指令产生出一个特殊的字节操作码（CC),它的目的是用来调用调试异常处理程序。（单字节的形式是精心设计的，因为它可以被用来替换任何带有断点的指令的第一个字节，包括单字节指令，并且不会覆盖掉其他代码）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;括号里面的内容相当重要,但是现在解释还是为时过早了,在文章后半部分我们再做回顾.&lt;/p&gt;
+
+&lt;h4 id="int3inpractice"&gt;int 3 in practice&lt;/h4&gt;
+
+&lt;p&gt;说完理论，让我们看下如何用&lt;code&gt;int 3&lt;/code&gt;来实现断点&lt;/p&gt;
+
+&lt;p&gt;这个其实做起来很简单。一旦你的进程执行了&lt;code&gt;int 3&lt;/code&gt;指令，操作系统就会挂起它。在Linux上，系统会给进程发送一个信号&lt;code&gt;SIGTRAP&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;这就是全部。回忆一下第一部分，每当子进程收到信号的时候，父进程都会收到通知。现在你可以大概猜出来我们会怎么做了&lt;/p&gt;
+
+&lt;p&gt;让我们来看一下代码&lt;/p&gt;
+
+&lt;h4 id="settingbreakpointsmanually"&gt;Setting breakpoints manually&lt;/h4&gt;
+
+&lt;p&gt;先看一下目标程序&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-`"&gt;section    .text  
+    ; The _start symbol must be declared for the linker (ld)
+    global _start
+
+_start:
+
+    ; Prepare arguments for the sys_write system call:
+    ;   - eax: system call number (sys_write)
+    ;   - ebx: file descriptor (stdout)
+    ;   - ecx: pointer to string
+    ;   - edx: string length
+    mov     edx, len1
+    mov     ecx, msg1
+    mov     ebx, 1
+    mov     eax, 4
+
+    ; Execute the sys_write system call
+    int     0x80
+
+    ; Now print the other message
+    mov     edx, len2
+    mov     ecx, msg2
+    mov     ebx, 1
+    mov     eax, 4
+    int     0x80
+
+    ; Execute sys_exit
+    mov     eax, 1
+    int     0x80
+
+section    .data
+
+msg1    db      'Hello,', 0xa  
+len1    equ     $ - msg1  
+msg2    db      'world!', 0xa  
+len2    equ     $ - msg2  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;假设我们希望在第一次输出之后,在第2次输出之前插入断点,也就是在第一个&lt;code&gt;int 0x80&lt;/code&gt;之后,在&lt;code&gt;mov edx, len2&lt;/code&gt;之前.首先我们需要知道这条指令&lt;code&gt;mov edx, len2&lt;/code&gt;被映射到虚拟内存何处,跑一下objdump -d:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;traced_printer2:     file format elf32-i386
+
+Sections:  
+Idx Name          Size      VMA       LMA       File off  Algn  
+  0 .text         00000033  08048080  08048080  00000080  2**4
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000e  080490b4  080490b4  000000b4  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+
+Disassembly of section .text:
+
+08048080 &amp;lt;.text&amp;gt;:  
+ 8048080:     ba 07 00 00 00          mov    $0x7,%edx
+ 8048085:     b9 b4 90 04 08          mov    $0x80490b4,%ecx
+ 804808a:     bb 01 00 00 00          mov    $0x1,%ebx
+ 804808f:     b8 04 00 00 00          mov    $0x4,%eax
+ 8048094:     cd 80                   int    $0x80
+ 8048096:     ba 07 00 00 00          mov    $0x7,%edx
+ 804809b:     b9 bb 90 04 08          mov    $0x80490bb,%ecx
+ 80480a0:     bb 01 00 00 00          mov    $0x1,%ebx
+ 80480a5:     b8 04 00 00 00          mov    $0x4,%eax
+ 80480aa:     cd 80                   int    $0x80
+ 80480ac:     b8 01 00 00 00          mov    $0x1,%eax
+ 80480b1:     cd 80                   int    $0x80
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到,断点所在位置为0×8048096&lt;/p&gt;
+
+&lt;h4 id="settingbreakpointsinthedebuggerwithint3"&gt;Setting breakpoints in the debugger with int 3&lt;/h4&gt;
+
+&lt;p&gt;在被跟踪进程的某个特定地址插入断点,跟踪进程需要:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;记住目的地址的数据  &lt;/li&gt;
+&lt;li&gt;将目的地址的第一个字节修改为int 3指令&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;然后,跟踪进程通知OS恢复被跟踪进程的运行(通过PTRACE_CONT),被跟踪进程一直运行,直到执行int 3指令后,OS向它发送一个信号使之再一次暂停.这时,跟踪进程也将接收到一个表示子进程(或被跟踪进程)已经暂停的信号,再一次插手:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;将目的地址对应的int 3指令恢复为原来的数据  &lt;/li&gt;
+&lt;li&gt;回滚EIP(减1).因为执行int 3指令后,EIP将指向它的下一条指令  &lt;/li&gt;
+&lt;li&gt;与被跟踪进程做些其他交互,因为这时被跟踪进程仍然在目的地址处暂停.调试器也就是在这时告诉你变量值,调用栈等等的.  &lt;/li&gt;
+&lt;li&gt;这时候如果用户希望被跟踪进程继续运行,那么跟踪进程将负责在目的地址重新设置断点(在step 1被移除了),除非用户明确要求取消断点.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;我们看一下这些步骤是如何被转化为代码的吧.我们将借鉴part 1中的模板(fork一个子进程并跟踪它).完整的源代码请见后文.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* Obtain and show child's instruction pointer */
+ptrace(PTRACE_GETREGS, child_pid, 0, &amp;amp;regs);  
+procmsg("Child started. EIP = 0x%08x\n", regs.eip);
+
+/* Look at the word at the address we're interested in */
+unsigned addr = 0x8048096;  
+unsigned data = ptrace(PTRACE_PEEKTEXT, child_pid, (void*)addr, 0);  
+procmsg("Original data at 0x%08x: 0x%08x\n", addr, data);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;跟踪进程读出被跟踪进程的eip寄存器值,保存0×8048096对应的第一个字节.如果我们跟踪上文列出的汇编程序,输出如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[13028] Child started. EIP = 0x08048080
+[13028] Original data at 0x08048096: 0x000007ba
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接下来:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* Write the trap instruction 'int 3' into the address */
+unsigned data_with_trap = (data &amp;amp; 0xFFFFFF00) | 0xCC;  
+ptrace(PTRACE_POKETEXT, child_pid, (void*)addr, (void*)data_with_trap);
+
+/* See what's there again... */
+unsigned readback_data = ptrace(PTRACE_PEEKTEXT, child_pid, (void*)addr, 0);  
+procmsg("After trap, data at 0x%08x: 0x%08x\n", addr, readback_data);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意int 3是怎样被插入目的地址的.输出为:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[13028] After trap, data at 0x08048096: 0x000007cc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;跟踪进程这时让被跟踪进程继续运行,直到它在断点处暂停:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* Let the child run to the breakpoint and wait for it to
+** reach it
+*/
+ptrace(PTRACE_CONT, child_pid, 0, 0);
+
+wait(&amp;amp;wait_status);  
+if (WIFSTOPPED(wait_status)) {  
+    procmsg("Child got a signal: %s\n", strsignal(WSTOPSIG(wait_status)));
+}
+else {  
+    perror("wait");
+    return;
+}
+
+/* See where the child is now */
+ptrace(PTRACE_GETREGS, child_pid, 0, &amp;amp;regs);  
+procmsg("Child stopped at EIP = 0x%08x\n", regs.eip);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;输出如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Hello,  
+[13028] Child got a signal: Trace/breakpoint trap
+[13028] Child stopped at EIP = 0x08048097
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到,”Hello,”在断点之前输出,而且这时候,被跟踪进程在执行int 3后立刻暂停.&lt;/p&gt;
+
+&lt;p&gt;最后,根据上文的解释,要让被跟踪进程继续运行,我们需要将中断指令恢复成原来的指令.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* Remove the breakpoint by restoring the previous data
+** at the target address, and unwind the EIP back by 1 to
+** let the CPU execute the original instruction that was
+** there.
+*/
+ptrace(PTRACE_POKETEXT, child_pid, (void*)addr, (void*)data);  
+regs.eip -= 1;  
+ptrace(PTRACE_SETREGS, child_pid, 0, &amp;amp;regs);
+
+/* The child can continue running now */
+ptrace(PTRACE_CONT, child_pid, 0, 0);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;被跟踪进程输出”world!”,然后退出.&lt;/p&gt;
+
+&lt;p&gt;注意,在这里我们没有重新设置断点.如果要重新设置的话,我们让被跟踪进程单步执行(PTRACE&lt;em&gt;SINGLE)0x08048096对应的原来执行,然后插回断点,并让被跟踪进程继续运行(PTRACE&lt;/em&gt;CONT).下文的debug库实现了这个功能.&lt;/p&gt;
+
+&lt;h4 id="moreonint3"&gt;More on int 3&lt;/h4&gt;
+
+&lt;p&gt;让我们温习一下int 3和它古怪的说明:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;单字节的形式是精心设计的，因为它可以被用来替换任何带有断点的指令的第一个字节，包括单字节指令，并且不会覆盖掉其他代码&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;x86上的int指令占据两个字节 –- “0xcd”之后是中断号.如果你将int 3指令直接code成cd 03,那就上当啦,哈哈.因为在x86的实现上,int 3对应的是单字节指令0xcc.&lt;/p&gt;
+
+&lt;p&gt;诡异,为什么会这样呢? 因为只有单字节才允许我们不篡改其他指令地插入断点,再次强调,这是很重要的.考虑下面的样例:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    .. some code ..
+    jz    foo
+    dec   eax
+foo:  
+    call  bar
+    .. some code ..
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果我们想要在dec eax对应的地址插入断点.dec eax的机器码正好是一个字节的(0x48),如果插入的断点机器码超出了一个字节,那么dec eax的下一指令(call)将不可避免的被篡改, 这会让程序产生不可预料的错误.&lt;/p&gt;
+
+&lt;p&gt;将int 3设计成单字节指令就是为了解决这个问题的.因为x86上的指令最短为一个字节,所以,我们可以确定只修改了目的指令.&lt;/p&gt;
+
+&lt;h4 id="encapsulatingsomegorydetails"&gt;Encapsulating some gory details&lt;/h4&gt;
+
+&lt;p&gt;为了省事,我把上文提到的龌龊底层和细节封装到API中,命名为库debuglib.接下来就看展示吧.&lt;/p&gt;
+
+&lt;h4 id="tracingacprogram"&gt;Tracing a C program&lt;/h4&gt;
+
+&lt;p&gt;目前,我们仅仅跟踪过汇编程序.是时候跟踪C程序了.&lt;/p&gt;
+
+&lt;p&gt;出乎意料的,其实这也没有什么不一样的 — 只是找出断点的地址有点困难而已.考虑这个简单的程序:&lt;/p&gt;
+
+&lt;h1 id="includestdioh"&gt;include &lt;stdio.h&gt;&lt;/stdio.h&gt;&lt;/h1&gt;
+
+&lt;p&gt;void do_stuff() &lt;br&gt;
+{
+    printf("Hello, ");
+}&lt;/p&gt;
+
+&lt;p&gt;int main() &lt;br&gt;
+{
+    for (int i = 0; i &amp;lt; 4; ++i)
+        do&lt;em&gt;stuff();
+    printf("world!\n");
+    return 0;
+}
+在函数do&lt;/em&gt;stuff的入口我们想要插入一个断点.借助我们的老朋友 — objdump,我们可以很方便地反汇编.因为text段包含了很多C库初始化代码,我们对它没有什么兴趣.还是直接搜索do_stuff吧:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;080483e4 :  
+ 80483e4:     55                      push   %ebp
+ 80483e5:     89 e5                   mov    %esp,%ebp
+ 80483e7:     83 ec 18                sub    $0x18,%esp
+ 80483ea:     c7 04 24 f0 84 04 08    movl   $0x80484f0,(%esp)
+ 80483f1:     e8 22 ff ff ff          call   8048318
+
+ 80483f6:     c9                      leave
+ 80483f7:     c3                      ret
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK,do&lt;em&gt;stuff入口地址是0×080483e4,它对应着do&lt;/em&gt;stuff函数的第一条指令.用debuglib库实现跟踪进程如下:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void run_debugger(pid_t child_pid)  
+{
+    procmsg("debugger started\n");
+
+    /* Wait for child to stop on its first instruction */
+    wait(0);
+    procmsg("child now at EIP = 0x%08x\n", get_child_eip(child_pid));
+
+    /* Create breakpoint and run to it*/
+    debug_breakpoint* bp = create_breakpoint(child_pid, (void*)0x080483e4);
+    procmsg("breakpoint created\n");
+    ptrace(PTRACE_CONT, child_pid, 0, 0);
+    wait(0);
+
+    /* Loop as long as the child didn't exit */
+    while (1) {
+        /* The child is stopped at a breakpoint here. Resume its
+        ** execution until it either exits or hits the
+        ** breakpoint again.
+        */
+        procmsg("child stopped at breakpoint. EIP = 0x%08X\n", get_child_eip(child_pid));
+        procmsg("resuming\n");
+        int rc = resume_from_breakpoint(child_pid, bp);
+
+        if (rc == 0) {
+            procmsg("child exited\n");
+            break;
+        }
+        else if (rc == 1) {
+            continue;
+        }
+        else {
+            procmsg("unexpected: %d\n", rc);
+            break;
+        }
+    }
+
+    cleanup_breakpoint(bp);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们用create&lt;em&gt;breakpoint, resume&lt;/em&gt;from&lt;em&gt;breakpoint和cleanup&lt;/em&gt;breakpoint来避免直接修改EIP和目标进程的内存.看一下输出吧:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bp_use_lib traced_c_loop
+[13363] debugger started
+[13364] target started. will run 'traced_c_loop'
+[13363] child now at EIP = 0x00a37850
+[13363] breakpoint created
+[13363] child stopped at breakpoint. EIP = 0x080483E5
+[13363] resuming
+Hello,  
+[13363] child stopped at breakpoint. EIP = 0x080483E5
+[13363] resuming
+Hello,  
+[13363] child stopped at breakpoint. EIP = 0x080483E5
+[13363] resuming
+Hello,  
+[13363] child stopped at breakpoint. EIP = 0x080483E5
+[13363] resuming
+Hello,  
+world!  
+[13363] child exited
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just as expected!&lt;/p&gt;</content:encoded></item><item><title>调试器是怎样工作的: Part 1-基础篇</title><description>&lt;p&gt;翻译自&lt;a href="http://eli.thegreenplace.net/2011/01/23/how-debuggers-work-part-1"&gt;原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在这篇文章中,我将解释实现Linux下的调试器的基石–ptrace系统调用.本文的所有例子都是在32位Ubuntu上编写的,需要注意的是,这些代码是高度依赖于计算机体系结构的,好在移植他们应该不会太难.&lt;/p&gt;
+
+&lt;p&gt;这里我们想搞明白，到底怎样才能让调试器可以工作起来呢？
+调试器可以启动一个进程并调试之,或者将自己attach到一个正在运行的进程.调试器还可以在代码中单步执行,设置断点,到断点停住，查看变量值和堆栈跟踪信息(stack trace)。很多调试器还有一些高级特性,比如说执行表达式,调用在被调试进程空间中的函数,甚至对正在运行的进程的代码做出on-the-fly的修改,并监测它带来的影响。&lt;/p&gt;
+
+&lt;p&gt;现代调试器都是集合了各种特技的怪兽,但是它们的实现基础却出奇的简单。调试器不过是使用了操作系统和编译器/链接器提供的一些基础服务罢了,剩下的就是一些体力劳动了。&lt;/p&gt;
+
+&lt;h4 id="linuxdebuggingptrace"&gt;Linux debugging - ptrace&lt;/h4&gt;
+
+&lt;p&gt;Linux下调试器的大杀器正是&lt;code&gt;ptrace&lt;/code&gt;系统调用. 它功能强而复杂的工具,它允许一个进程控制另外一个进程,甚至能够peek and poke被跟踪进程的内部.对ptrace的详细解释至少需要半本书的篇幅,所以下面我重点着墨于ptrace的使用.&lt;/p&gt;
+
+&lt;p&gt;现在,让我们开始吧.&lt;/p&gt;
+
+&lt;h4 id="steppingthroughthecodeofaprocess"&gt;Stepping through the code of&lt;/h4&gt;</description><link>http://localhost:2368/geng-qing-liang-de-view-controllers/</link><guid isPermaLink="false">d2b05321-1e0a-42b4-8d6a-5c1a0ad523b3</guid><category>Debugger</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Sun, 13 Dec 2015 12:23:06 GMT</pubDate><content:encoded>&lt;p&gt;翻译自&lt;a href="http://eli.thegreenplace.net/2011/01/23/how-debuggers-work-part-1"&gt;原文&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在这篇文章中,我将解释实现Linux下的调试器的基石–ptrace系统调用.本文的所有例子都是在32位Ubuntu上编写的,需要注意的是,这些代码是高度依赖于计算机体系结构的,好在移植他们应该不会太难.&lt;/p&gt;
+
+&lt;p&gt;这里我们想搞明白，到底怎样才能让调试器可以工作起来呢？
+调试器可以启动一个进程并调试之,或者将自己attach到一个正在运行的进程.调试器还可以在代码中单步执行,设置断点,到断点停住，查看变量值和堆栈跟踪信息(stack trace)。很多调试器还有一些高级特性,比如说执行表达式,调用在被调试进程空间中的函数,甚至对正在运行的进程的代码做出on-the-fly的修改,并监测它带来的影响。&lt;/p&gt;
+
+&lt;p&gt;现代调试器都是集合了各种特技的怪兽,但是它们的实现基础却出奇的简单。调试器不过是使用了操作系统和编译器/链接器提供的一些基础服务罢了,剩下的就是一些体力劳动了。&lt;/p&gt;
+
+&lt;h4 id="linuxdebuggingptrace"&gt;Linux debugging - ptrace&lt;/h4&gt;
+
+&lt;p&gt;Linux下调试器的大杀器正是&lt;code&gt;ptrace&lt;/code&gt;系统调用. 它功能强而复杂的工具,它允许一个进程控制另外一个进程,甚至能够peek and poke被跟踪进程的内部.对ptrace的详细解释至少需要半本书的篇幅,所以下面我重点着墨于ptrace的使用.&lt;/p&gt;
+
+&lt;p&gt;现在,让我们开始吧.&lt;/p&gt;
+
+&lt;h4 id="steppingthroughthecodeofaprocess"&gt;Stepping through the code of a process&lt;/h4&gt;
+
+&lt;p&gt;这里有一份代码,它是一个处于&lt;code&gt;traced&lt;/code&gt;模式的进程, CPU将单步执行的它机器代码(汇编指令).我会分几部分的展示这些代码，解释每一个部分，在文章的最后你可以找到可以编译的完整的C文件。&lt;/p&gt;
+
+&lt;p&gt;代码分为两部分,一部分是执行用户所提供的指令(user-supplied command)的子进程,另外一部分是一个父进程,它跟踪子进程.下面是main函数:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;int main(int argc, char** argv)  
+{
+    pid_t child_pid;
+
+    if (argc &amp;lt; 2) {
+        fprintf(stderr, "Expected a program name as argument\n");
+        return -1;
+    }
+
+    child_pid = fork();
+    if (child_pid == 0)
+        run_target(argv[1]);
+    else if (child_pid &amp;gt; 0)
+        run_debugger(child_pid);
+    else {
+        perror("fork");
+        return -1;
+    }
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的代码很简单: 用fork创建一个子进程. 第二条if语句运行子进程(这里叫做”target”),接下来的else if 分支执行父进程(这里叫做”debugger”).&lt;/p&gt;
+
+&lt;p&gt;这是target的代码:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void run_target(const char* programname)  
+{
+    procmsg("target started. will run '%s'\n", programname);
+
+    /* Allow tracing of this process */
+    if (ptrace(PTRACE_TRACEME, 0, 0, 0) &amp;lt; 0) {
+        perror("ptrace");
+        return;
+    }
+
+    /* Replace this process's image with the given program */
+    execl(programname, programname, 0);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里最有意思的就是ptrace语句.ptrace原型如下(in sys/ptrace.h):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;long ptrace(enum __ptrace_request request, pid_t pid,  
+                 void *addr, void *data);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第一个参数request的取值范围包括了很多的预定义的常数PTRACE&lt;em&gt;*。第二个参数指定了request起作用的进程ID.参数addr和data分别是地址和指向数据的指针,它们可以用来操作内存.上面代码中的ptrace做出了PTRACE&lt;/em&gt;TRACEME请求,意味着子进程通知操作系统,让父进程跟踪自己.PTRACE_TRACEME在man-page中有很清楚的解释:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;PTRACE&lt;em&gt;TRACEME表明父进程可以跟踪子进程,任何信号(除了SIGKILL)都会暂停子进程,并且通过wait()来通知它的父进程。&lt;strong&gt;子进程内部对exec()的调用将发出SIGTRAP信号,这可以让父进程在子进程新程序开始运行之前就完全控制它&lt;/strong&gt;.如果父进程不打算跟踪子进程,子进程就不应该发出PTRACE&lt;/em&gt;TRACEME请求.(在PTRACE_TRACEME请求时,参数pid,addr和data被忽略.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;与我们例子相关的解释已经高亮出来了。run_target在做出ptrace调用之后的第一步,就是用execl执行参数programname.正如引文解释的那样,子进程在执行execl的新程序之前会被暂停,而且父进程将收到OS发送的信号.&lt;/p&gt;
+
+&lt;p&gt;是时候看看父进程了:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void run_debugger(pid_t child_pid)  
+{
+    int wait_status;
+    unsigned icounter = 0;
+    procmsg("debugger started\n");
+
+    /* Wait for child to stop on its first instruction */
+    wait(&amp;amp;wait_status);
+
+    while (WIFSTOPPED(wait_status)) {
+        icounter++;
+        /* Make the child execute another instruction */
+        if (ptrace(PTRACE_SINGLESTEP, child_pid, 0, 0) &amp;lt; 0) {
+            perror("ptrace");
+            return;
+        }
+
+        /* Wait for child to stop on its next instruction */
+        wait(&amp;amp;wait_status);
+    }
+
+    procmsg("the child executed %u instructions\n", icounter);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Recall from above that once the child starts executing the exec call, it will stop and be sent the SIGTRAP signal. The parent here waits for this to happen with the first wait call. wait will return once something interesting happens, and the parent checks that it was because the child was stopped (WIFSTOPPED returns true if the child process was stopped by delivery of a signal). &lt;br&gt;
+回忆一下,子进程内部执行exec调用,它将会停下，并收到SIGTRAP信号。父进程中的第一条wait()就是等待发生这个情况。一旦有有趣的事情发生，wait将会返回。这时父进程检查就会发现这是由于子进程停止引发的。（WIFSTOPPED在子进程由于信号被暂停时，会返回true）&lt;/p&gt;
+
+&lt;p&gt;接下来发生的就是最有趣的事了,父进程通过参数 PTRACE_SINGLESTEP，和子进程的id值做ptrace调用,告诉操作系统,重新唤醒子进程,但是在每条机器指令运行之后暂停.再一次的,父进程阻塞等待子进程暂停并计数,子进程结束(WIFEXITED会返回true)后,父进程跳出loop循环.&lt;/p&gt;
+
+&lt;p&gt;icounter对子进程执行的每条指令计数.所以我们简单的例子也做了有用的事情，从命令行给定一个程序的名字，它会执行这个程序，然后汇报出这个程序从开始到结束执行了多少条cpu指令。我们来动手试试。&lt;/p&gt;
+
+&lt;h4 id="atestrun"&gt;A test run&lt;/h4&gt;
+
+&lt;p&gt;编译下面的代码,运行之,让它被跟踪.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
+
+int main()  
+{
+    printf("Hello, world!\n");
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;出乎意料的,跟踪进程执行了很长的时间,报告说上面的代码执行了超过100,000条机器指令.开什么玩笑,仅仅一行printf就..? 搞什么鬼啊? 答案很值得讨论.Linux下gcc默认将程序动态链接到C运行库,这意味着,当一个程序被运行时,发生的第一件事就是动态库装载器(dynamic library loader)搜索共享库(shared libraries)。这的确需要很多代码。。。并且记住我们的这个简单的tracer会跟踪程序的每一条指令，而不是仅仅main函数。&lt;/p&gt;
+
+&lt;p&gt;如果用-static标志编译代码,让它静态链接(这时候可执行文件大小超过了500KB),这时跟踪程序报告说样例执行的机器指令只有大概7,000条.还是有点多,但是考虑到在main之前libc的初始化,还有main退出后的清理工作,这也就说得过去了.再说了,printf也挺复杂的.&lt;/p&gt;
+
+&lt;p&gt;但是我还是不满意,我想要的是可验证的程序,也就是说,程序执行的整个过程我都一清二楚.所以我写了一个汇编版本的”Hello, world!”:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;section    .text  
+    ; The _start symbol must be declared for the linker (ld)
+    global _start
+
+_start:
+
+    ; Prepare arguments for the sys_write system call:
+    ;   - eax: system call number (sys_write)
+    ;   - ebx: file descriptor (stdout)
+    ;   - ecx: pointer to string
+    ;   - edx: string length
+    mov    edx, len
+    mov    ecx, msg
+    mov    ebx, 1
+    mov    eax, 4
+
+    ; Execute the sys_write system call
+    int    0x80
+
+    ; Execute sys_exit
+    mov    eax, 1
+    int    0x80
+
+section   .data  
+msg db    'Hello, world!', 0xa  
+len equ    $ - msg  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;跟踪进程报告有7条指令被执行,很好,我可以很容易地验证它.&lt;/p&gt;
+
+&lt;p&gt;有了上面的汇编代码,我们看看ptrace的另一个强悍功能吧–它可以用来跟踪进程的状态.这是run_debugger的下一个版本:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void run_debugger(pid_t child_pid)  
+{
+    int wait_status;
+    unsigned icounter = 0;
+    procmsg("debugger started\n");
+
+    /* Wait for child to stop on its first instruction */
+    wait(&amp;amp;wait_status);
+
+    while (WIFSTOPPED(wait_status)) {
+        icounter++;
+        struct user_regs_struct regs;
+        ptrace(PTRACE_GETREGS, child_pid, 0, &amp;amp;regs);
+        unsigned instr = ptrace(PTRACE_PEEKTEXT, child_pid, regs.eip, 0);
+
+        procmsg("icounter = %u.  EIP = 0x%08x.  instr = 0x%08x\n",
+                    icounter, regs.eip, instr);
+
+        /* Make the child execute another instruction */
+        if (ptrace(PTRACE_SINGLESTEP, child_pid, 0, 0) &amp;lt; 0) {
+            perror("ptrace");
+            return;
+        }
+
+        /* Wait for child to stop on its next instruction */
+        wait(&amp;amp;wait_status);
+    }
+
+    procmsg("the child executed %u instructions\n", icounter);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;唯一的不同是&lt;code&gt;while&lt;/code&gt;循环的前面几条代码.有两条&lt;code&gt;ptrace&lt;/code&gt;语句,第一条读取被跟踪进程的寄存器,保存到数据结构user&lt;em&gt;regs&lt;/em&gt;struct(参考sys/user.h)中. 这个头文件顶部的一些注释相当搞笑&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* The whole purpose of this file is for GDB and GDB only.
+   Don't read too much into it. Don't use it for
+   anything other than GDB unless know what you are
+   doing.  */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看了这个之后，我不知道你怎么想的，我反正觉得我走在正确的大道上了：）。说回demo，一旦在获得了所有寄存器的值后,我们就可以用PTRACE_PEEKTEXT读取eip(extended instruction pointer on x86)对应的机器指令. 现在我们得到的就是机器指令。看一下用我们汇编代码跑在这个tracer里后的输出结果:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ simple_tracer traced_helloworld
+[5700] debugger started
+[5701] target started. will run 'traced_helloworld'
+[5700] icounter = 1.  EIP = 0x08048080.  instr = 0x00000eba
+[5700] icounter = 2.  EIP = 0x08048085.  instr = 0x0490a0b9
+[5700] icounter = 3.  EIP = 0x0804808a.  instr = 0x000001bb
+[5700] icounter = 4.  EIP = 0x0804808f.  instr = 0x000004b8
+[5700] icounter = 5.  EIP = 0x08048094.  instr = 0x01b880cd
+Hello, world!  
+[5700] icounter = 6.  EIP = 0x08048096.  instr = 0x000001b8
+[5700] icounter = 7.  EIP = 0x0804809b.  instr = 0x000080cd
+[5700] the child executed 7 instructions
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK,现在除了icounter,我们还能看到eip和它对应的机器指令.怎样验证结果对不对呢? 我们可以借助&lt;code&gt;objdump -d&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ objdump -d traced_helloworld
+
+traced_helloworld:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08048080 &amp;lt;.text&amp;gt;:  
+ 8048080:     ba 0e 00 00 00          mov    $0xe,%edx
+ 8048085:     b9 a0 90 04 08          mov    $0x80490a0,%ecx
+ 804808a:     bb 01 00 00 00          mov    $0x1,%ebx
+ 804808f:     b8 04 00 00 00          mov    $0x4,%eax
+ 8048094:     cd 80                   int    $0x80
+ 8048096:     b8 01 00 00 00          mov    $0x1,%eax
+ 804809b:     cd 80                   int    $0x80
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们可以很容易的把这个结果和我们的输出进行比较&lt;/p&gt;
+
+&lt;h4 id="attachingtoarunningprocess"&gt;Attaching to a running process&lt;/h4&gt;
+
+&lt;p&gt;正如你知道的那样调试器还可以调试正在运行的进程.不出乎意料的,这也是用PTRACE_ATTACH请求来实现.我不再给出代码了,因为在看过我们已经写的代码后，就知道这不难编写.出于教学目的这里选择了比较容易的方法（毕竟我们可以在子进程一开始就暂停子进程）。&lt;/p&gt;
+
+&lt;h4 id="thecode"&gt;The code&lt;/h4&gt;
+
+&lt;p&gt;完整的代码在&lt;a href="https://github.com/eliben/code-for-blog/blob/master/2011/simple_tracer.c"&gt;这里&lt;/a&gt;
+. 用gcc -Wall -pedantic –std=c99 code.c编译它(gcc 版本4.4）&lt;/p&gt;
+
+&lt;h4 id="conclusionandnextsteps"&gt;Conclusion and next steps&lt;/h4&gt;
+
+&lt;p&gt;我承认,这篇文章覆盖的内容不多 -– 离真正可以工作的调试器还差得很远.不管怎么样,我希望至少现在看来,调试器没有那么神秘了.ptrace很好很强大,我们刚上路呢.&lt;/p&gt;
+
+&lt;p&gt;在C代码中单步执行确实很有用,但只是某种程度上.以C版本的”Hello, world!”为例,在执行main函数之前,程序已经单步执行了上万条用于C库初始化的机器指令了,可以看出,这很不方便.我们的需求其实是在main入口前面放置断点,然后break到main函数.在part2里面我打算告诉大家breakpoint是如何实现的.&lt;/p&gt;</content:encoded></item><item><title>ReactiveCocoa的架构设计</title><description>&lt;p&gt;简单学习一下ReactiveCocoa的架构设计, 目前找不到一个很好的中文翻译，所以这里就试着翻译一下&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -116,7 +729,7 @@
 
 &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt;
 
-&lt;h2 id="mvvm"&gt;MVVM的三个结论&lt;/h2&gt;
+&lt;h3 id="mvvm"&gt;MVVM的三个结论&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt;
@@ -124,7 +737,7 @@
 &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id="mvvm"&gt;什么是MVVM&lt;/h2&gt;
+&lt;h3 id="mvvm"&gt;什么是MVVM&lt;/h3&gt;
 
 &lt;!--more--&gt;
 
@@ -138,7 +751,7 @@
 
 &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt;
 
-&lt;h2 id="mvvm"&gt;MVVM的三个结论&lt;/h2&gt;
+&lt;h3 id="mvvm"&gt;MVVM的三个结论&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt;
@@ -146,7 +759,7 @@
 &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id="mvvm"&gt;什么是MVVM&lt;/h2&gt;
+&lt;h3 id="mvvm"&gt;什么是MVVM&lt;/h3&gt;
 
 &lt;!--more--&gt;
 
@@ -2476,213 +3089,4 @@ var someInt = 3.square()
         }
     }
 }
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Swift中optional</title><description>&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，剩下的只是swift里面有关的特殊术语，搞清楚还是很有必要的&lt;/p&gt;
-
-&lt;h4 id="forceunwrapping"&gt;Force Unwrapping&lt;/h4&gt;
-
-&lt;p&gt;&lt;code&gt;Force Unwarpping&lt;/code&gt;指的是把&lt;code&gt;optional&lt;/code&gt;对象转化成一个非空的对象&lt;/p&gt;
-
-&lt;h4 id="optionalbinding"&gt;Optional Binding&lt;/h4&gt;
-
-&lt;p&gt;其基本形式是&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if let constantName = someOptional
-
-while let constantName = someOptional
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="implicityunwrappedoptionals"&gt;Implicity Unwrapped Optionals&lt;/h4&gt;
-
-&lt;p&gt;一个optinal变量可以定义为&lt;code&gt;implicity unwrapped optionals&lt;/code&gt;, 那么使用这个变量的时候就不再需要force unwrap, 一旦unwrap失败，程序会崩溃&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var storyboardName&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftzhong-optional/</link><guid isPermaLink="false">902d5d50-ebd8-4263-9642-8aec63f5ff01</guid><category>Swift</category><category>iOS</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:13:58 GMT</pubDate><content:encoded>&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，剩下的只是swift里面有关的特殊术语，搞清楚还是很有必要的&lt;/p&gt;
-
-&lt;h4 id="forceunwrapping"&gt;Force Unwrapping&lt;/h4&gt;
-
-&lt;p&gt;&lt;code&gt;Force Unwarpping&lt;/code&gt;指的是把&lt;code&gt;optional&lt;/code&gt;对象转化成一个非空的对象&lt;/p&gt;
-
-&lt;h4 id="optionalbinding"&gt;Optional Binding&lt;/h4&gt;
-
-&lt;p&gt;其基本形式是&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if let constantName = someOptional
-
-while let constantName = someOptional
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="implicityunwrappedoptionals"&gt;Implicity Unwrapped Optionals&lt;/h4&gt;
-
-&lt;p&gt;一个optinal变量可以定义为&lt;code&gt;implicity unwrapped optionals&lt;/code&gt;, 那么使用这个变量的时候就不再需要force unwrap, 一旦unwrap失败，程序会崩溃&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var storyboardName : String! = "hello"
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Swift中的类型转换</title><description>&lt;p&gt;Swift中使用&lt;code&gt;as&lt;/code&gt;和&lt;code&gt;is&lt;/code&gt;运算符来进行类型转换&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h4 id=""&gt;一个类继承的例子&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;class MediaItem{
-}
-
-class Movie: MediaItem{
-    var director : String
-    init(director: String){ self.director = director; super.init() }
-
-}
-
-class Song: MediaItem{
-    var artist : String
-    init(artist: String){ self.artist = artist; super.init() }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="is"&gt;类型检查使用&lt;code&gt;is&lt;/code&gt;&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;let library = [Movie("d1"), Song("a1"), Song("a2"), Movie("d2")]
-
-var movieCount&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swiftzhong-de-lei-xing-zhuan-huan/</link><guid isPermaLink="false">1fc2e9cf-b34f-4266-accd-9ae3c1620910</guid><category>Swift</category><category>iOS</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:10:19 GMT</pubDate><content:encoded>&lt;p&gt;Swift中使用&lt;code&gt;as&lt;/code&gt;和&lt;code&gt;is&lt;/code&gt;运算符来进行类型转换&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h4 id=""&gt;一个类继承的例子&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;class MediaItem{
-}
-
-class Movie: MediaItem{
-    var director : String
-    init(director: String){ self.director = director; super.init() }
-
-}
-
-class Song: MediaItem{
-    var artist : String
-    init(artist: String){ self.artist = artist; super.init() }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="is"&gt;类型检查使用&lt;code&gt;is&lt;/code&gt;&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;let library = [Movie("d1"), Song("a1"), Song("a2"), Movie("d2")]
-
-var movieCount = 0
-var songCount = 0
-
-for item in library {
-    if item as Movie {
-        ++movieCount
-    } else if item is Song {
-        ++songCount
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;值得一提的是，&lt;code&gt;is&lt;/code&gt;不仅仅用来检测有继承关系的类，而且可以用来检测是否实现了某个接口&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;protocal HasArea{
-    var area: Double { get }
-}
-
-class Circle: HasArea{
-    var radius: Double
-    var area: Double { return 3.14 * radius * radius }
-    init(radius: Double){ self.radius = radius }
-}
-
-var circle = Circle(2.5)
-if circle is HasArea {
-    println("Area: \(circle.area)")
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=""&gt;类型转换&lt;/h4&gt;
-
-&lt;p&gt;可以使用&lt;code&gt;as&lt;/code&gt;来进行类型转换&lt;/p&gt;
-
-&lt;p&gt;可以用两种方式来使用&lt;code&gt;as&lt;/code&gt;, &lt;code&gt;as?&lt;/code&gt;和&lt;code&gt;as!&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;as?&lt;/code&gt;表示不确定该转换是否能成功，&lt;code&gt;as!&lt;/code&gt;表示一定会成功，但是如果运行时转换失败的话，程序会崩掉&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;for item in library {
-    if let movie = item as? Movie {
-        println("Director: \(movie.director)")
-    } else if let song = item as? Song {
-        println("Artist: \(song.artist)")
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="anyanyobject"&gt;&lt;code&gt;Any&lt;/code&gt;和&lt;code&gt;AnyObject&lt;/code&gt;的类型转换&lt;/h4&gt;
-
-&lt;p&gt;其实，&lt;code&gt;Any&lt;/code&gt;和&lt;code&gt;AnyObject&lt;/code&gt;的转换和普通的类型转换是一样的。值得说的是为什么swift要有他们两个。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;AnyObject&lt;/code&gt;可以代表任何class类型的实例&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Any&lt;/code&gt;却可以代表任何类型的实例，包括funtion类型&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;举两个例子，第一个例子&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;let someObjects: [AnyObject] = [Movie('d1'),Movie('d1'),Movie('d1')]
-for object in someObjects{
-    let movie = object as! Movie
-    println("Movie director: \(movie.director)")
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;该例子中，还可以直接cast整个数组&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;for movie in someObjects as! [Movie] {
-    println("Movie director: \(movie.director)")
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;另外一个是关于&lt;code&gt;Any&lt;/code&gt;的例子&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var things = [Any]()
-
-things.append(0)
-things.append(0.0)
-things.append(42)
-things.append(3.14)
-things.append("hello")
-things.append((3.0, 5.0))
-things.append(Movie("d1"))
-things.append({(name: String) -&amp;gt; String in 
-    "Hello, \(name)" })
-
-for thing in things{
-    switch thing{
-        case 0 as Int: 
-            println("zero as an Int")
-        case 0 as Double:
-            println("zero as an Double")
-        case let someInt as Int:
-            println("an integer value of \(someInt)")
-        case let someDouble as Double where someDouble &amp;gt; 0:
-            println("a positive double : \(someDouble)")
-        case is Double:
-            println("some other double value &amp;lt;= 0")
-        case let someString as String:
-            println("a string value : \(someString)")
-        case let (x, y) as (Double, Double) :
-            println("an (x,y) point at \(x), \(y)")
-        case let movie as Movie:
-            println("a movie director: \(movie.director)")
-        case let stringConverter as String -&amp;gt; String:
-            println(stringConverter("Michael")
-        default:
-            println("something else")
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;需要指出，在switch的case语句中，使用的&lt;code&gt;as&lt;/code&gt;是强制转换版的，并不写作&lt;code&gt;as?&lt;/code&gt;或者&lt;code&gt;as!&lt;/code&gt;，在case语句中使用这种检查总是安全的。&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>

@@ -1,3 +1,4 @@
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,9 +25,9 @@
     <link href="../assets/images/favicon.png" rel="shortcut icon" type="image/png">
     <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=fa23bf9e5d">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=10e95c5ac2">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=fa23bf9e5d">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=10e95c5ac2">
     
     <link rel="canonical" href="index.html">
     <meta name="referrer" content="origin">
@@ -34,10 +35,10 @@
     <meta property="og:site_name" content="Alchemist's Crafts">
     <meta property="og:type" content="article">
     <meta property="og:title" content="ReactiveCocoa和MVVM简介">
-    <meta property="og:description" content='&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt; &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt; &lt;h2 id="mvvm"&gt;MVVM的三个结论&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以增加应用的可测试新&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt; &lt;/ul&gt; &lt;h2 id="mvvm"&gt;什么是MVVM&lt;/h2&gt;...'>
+    <meta property="og:description" content='&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt; &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt; &lt;h3 id="mvvm"&gt;MVVM的三个结论&lt;/h3&gt; &lt;ul&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以增加应用的可测试新&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt; &lt;/ul&gt; &lt;h3 id="mvvm"&gt;什么是MVVM&lt;/h3&gt;...'>
     <meta property="og:url" content="http://localhost:2368/reactivecocoahe-mvvmjian-jie/">
     <meta property="article:published_time" content="2015-11-25T03:54:30.402Z">
-    <meta property="article:modified_time" content="2015-11-25T03:54:30.389Z">
+    <meta property="article:modified_time" content="2015-12-13T12:24:44.134Z">
     <meta property="article:tag" content="iOS">
     <meta property="article:tag" content="ReactiveCocoa">
     <meta property="article:tag" content="Architecture">
@@ -45,7 +46,7 @@
     
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="ReactiveCocoa和MVVM简介">
-    <meta name="twitter:description" content='&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt; &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt; &lt;h2 id="mvvm"&gt;MVVM的三个结论&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以增加应用的可测试新&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt; &lt;/ul&gt; &lt;h2 id="mvvm"&gt;什么是MVVM&lt;/h2&gt;...'>
+    <meta name="twitter:description" content='&lt;p&gt;本文主要翻译自&lt;a href="http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/"&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt; &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt; &lt;h3 id="mvvm"&gt;MVVM的三个结论&lt;/h3&gt; &lt;ul&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以增加应用的可测试新&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt; &lt;/ul&gt; &lt;h3 id="mvvm"&gt;什么是MVVM&lt;/h3&gt;...'>
     <meta name="twitter:url" content="http://localhost:2368/reactivecocoahe-mvvmjian-jie/">
     
     <script type="application/ld+json">
@@ -63,9 +64,9 @@
     "headline": "ReactiveCocoa和MVVM简介",
     "url": "http://localhost:2368/reactivecocoahe-mvvmjian-jie/",
     "datePublished": "2015-11-25T03:54:30.402Z",
-    "dateModified": "2015-11-25T03:54:30.389Z",
+    "dateModified": "2015-12-13T12:24:44.134Z",
     "keywords": "iOS, ReactiveCocoa, Architecture, Skill",
-    "description": "&lt;p&gt;本文主要翻译自&lt;a href=&quot;http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/&quot;&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt; &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt; &lt;h2 id=&quot;mvvm&quot;&gt;MVVM的三个结论&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以增加应用的可测试新&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt; &lt;/ul&gt; &lt;h2 id=&quot;mvvm&quot;&gt;什么是MVVM&lt;/h2&gt;..."
+    "description": "&lt;p&gt;本文主要翻译自&lt;a href=&quot;http://www.sprynthesis.com/2014/12/06/reactivecocoa-mvvm-introduction/&quot;&gt;原文&lt;/a&gt;, 不过省去了大段啰嗦，并且也加入了其他的一些观点。&lt;/p&gt; &lt;p&gt;MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。&lt;code&gt;MVVM&lt;/code&gt;是解决的方法之一。&lt;/p&gt; &lt;h3 id=&quot;mvvm&quot;&gt;MVVM的三个结论&lt;/h3&gt; &lt;ul&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以兼容当下使用的&lt;code&gt;MVC&lt;/code&gt;&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;可以增加应用的可测试新&lt;/li&gt; &lt;li&gt;&lt;code&gt;MVVM&lt;/code&gt;配合绑定机制效果最好&lt;/li&gt; &lt;/ul&gt; &lt;h3 id=&quot;mvvm&quot;&gt;什么是MVVM&lt;/h3&gt;..."
 }
     </script>
 
@@ -182,7 +183,7 @@
 
 <p>MVC模式有一个非常让人头疼的问题就是controller往往过于庞大。<code>MVVM</code>是解决的方法之一。</p>
 
-<h2 id="mvvm">MVVM的三个结论</h2>
+<h3 id="mvvm">MVVM的三个结论</h3>
 
 <ul>
 <li><code>MVVM</code>可以兼容当下使用的<code>MVC</code></li>
@@ -190,7 +191,7 @@
 <li><code>MVVM</code>配合绑定机制效果最好</li>
 </ul>
 
-<h2 id="mvvm">什么是MVVM</h2>
+<h3 id="mvvm">什么是MVVM</h3>
 
 <!--more-->
 
@@ -566,8 +567,8 @@ return cell;
       }
     </script>
     
-    <script type="text/javascript" src="../assets/js/main.js?v=fa23bf9e5d"></script>
+    <script type="text/javascript" src="../assets/js/main.js?v=10e95c5ac2"></script>
 
-    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=fa23bf9e5d"></script>
+    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=10e95c5ac2"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </body>
