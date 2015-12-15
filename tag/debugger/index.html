@@ -25,9 +25,9 @@
     <link href="../../assets/images/favicon.png" rel="shortcut icon" type="image/png">
     <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="../../assets/css/vno.css?v=10e95c5ac2">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/vno.css?v=50f758939a">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../assets/css/tomorrow.css?v=10e95c5ac2">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/tomorrow.css?v=50f758939a">
     
     <link rel="canonical" href="index.html">
     <meta name="referrer" content="origin">
@@ -156,6 +156,15 @@
 
     <ol class="post-list">
       <li>
+        <h2 class="post-list__post-title post-title"><a href="../../diao-shi-qi-shi-zen-yang-gong-zuo-de-part-3-diao-shi-xin-xi/" title="link to 调试器是怎样工作的: Part 3 – 调试信息">调试器是怎样工作的: Part 3 – 调试信息</a></h2>
+        <p class="excerpt"></p><p>翻译自<a href="http://eli.thegreenplace.net/2011/02/07/how-debuggers-work-part-3-debugging-information">原文</a></p> <p>这篇文章里我会解释调试器是怎样在机器代码中找到C函数和变量,以及用来映射C代码和机器代码的数据.</p>…
+        <div class="post-list__meta">
+            <time datetime="15 Dec 2015" class="post-list__meta--date date">15 Dec 2015</time> •
+            <span class="post-list__meta--tags tags"><a href="index.html#blog" title="Debugger">Debugger</a>, <a href="../knowledge/index.html#blog" title="Knowledge">Knowledge</a></span><a class="btn-border-small" href="../../diao-shi-qi-shi-zen-yang-gong-zuo-de-part-3-diao-shi-xin-xi/">继续阅读</a>
+        </div>
+        <hr class="post-list__divider">
+      </li>
+      <li>
         <h2 class="post-list__post-title post-title"><a href="../../diao-shi-qi-shi-zen-yang-gong-zuo-de-part-2-duan-dian/" title="link to 调试器是怎样工作的: Part 2 – 断点">调试器是怎样工作的: Part 2 – 断点</a></h2>
         <p class="excerpt"></p><p>翻译自<a href="http://eli.thegreenplace.net/2011/01/27/how-debuggers-work-part-2-breakpoints">原文</a></p> <p>接下来展示一下断点是如何在调试器里实现的。断点是调试器的两大杀器之一，另外一个是可以查看被调试进程的内存。在上一篇中我们已经大致看到了第二个杀器的缩影，但是断点仍然是很神秘。不过看完这篇后，一切会水落石出。</p> <h4 id="softwareinterrupts">Software interrupts</h4> <p>为了在x86架构上实现断点，我们使用了软中断（也叫<code>traps</code>)。在我们一猛子扎到细节之前，我先解释一下<code>interrupt</code>和<code>trap</code>的概念。</p> <p>CPU可以看成是指令流，一条一条的执行指令。为了处理异步事件（比如IO或者硬件计时器），CPU使用<code>i</code></p>…
         <div class="post-list__meta">
@@ -199,8 +208,8 @@
       }
     </script>
     
-    <script type="text/javascript" src="../../assets/js/main.js?v=10e95c5ac2"></script>
+    <script type="text/javascript" src="../../assets/js/main.js?v=50f758939a"></script>
 
-    <script type="text/javascript" src="../../assets/js/highlight.pack.js?v=10e95c5ac2"></script>
+    <script type="text/javascript" src="../../assets/js/highlight.pack.js?v=50f758939a"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </body>
