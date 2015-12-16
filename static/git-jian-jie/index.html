@@ -1,0 +1,542 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Git 简介</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Git 简介">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Git 简介">
+    <meta property="og:description" content="">
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link href="../assets/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=6c4622d9f3">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=6c4622d9f3">
+    
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Alchemist's Crafts">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Git 简介">
+    <meta property="og:description" content="&lt;p&gt;这里主要介绍给初次git命令行使用者在开发中常见的命令&lt;/p&gt;...">
+    <meta property="og:url" content="http://localhost:2368/git-jian-jie/">
+    <meta property="article:published_time" content="2015-12-16T01:24:44.478Z">
+    <meta property="article:modified_time" content="2015-12-16T06:00:23.834Z">
+    <meta property="article:tag" content="Git">
+    <meta property="article:tag" content="Knowledge">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Git 简介">
+    <meta name="twitter:description" content="&lt;p&gt;这里主要介绍给初次git命令行使用者在开发中常见的命令&lt;/p&gt;...">
+    <meta name="twitter:url" content="http://localhost:2368/git-jian-jie/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Alchemist's Crafts",
+    "author": {
+        "@type": "Person",
+        "name": "Alchemist Li",
+        "url": "http://localhost:2368/author/alchemist",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Git 简介",
+    "url": "http://localhost:2368/git-jian-jie/",
+    "datePublished": "2015-12-16T01:24:44.478Z",
+    "dateModified": "2015-12-16T06:00:23.834Z",
+    "keywords": "Git, Knowledge",
+    "description": "&lt;p&gt;这里主要介绍给初次git命令行使用者在开发中常见的命令&lt;/p&gt;..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Alchemist's Crafts" href="../rss/index.rss">
+
+</head>
+<body class="post-template tag-git tag-knowledge no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="../" title="前往 Alchemist's Crafts 的主页"><img src="../content/images/2015/11/logo.jpeg" width="80" alt="Alchemist's Crafts logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="../" title="前往 Alchemist's Crafts 的主页">Alchemist's Crafts</a></h1>
+        <span class="panel-cover__subtitle panel-subtitle">茗香淡水</span>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Thoughts, stories and ideas.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="../index.html#blog" title="访问博客" class="blog-button">博客</a></li>
+<!--              <li class="navigation__item"><a href="http://project.onevcat.com" target="_blank" title="我的项目">项目</a></li> -->
+<!--              <li class="navigation__item"><a href="http://about.onevcat.com/" title="了解更多">关于</a></li> -->
+<!--              <li class="navigation__item"><a href="http://eepurl.com/" title="邮件订阅本站">订阅</a></li> -->
+              <li class="navigation__item"><a href="http://alchemistli.github.io/rss/index.rss" title="邮件订阅本站">订阅</a></li>
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Weibo -->
+<!-- 
+  <li class="navigation__item">
+    <a href="http://weibo.com/onevcat" title="@onevcat 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+-->
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/IamAlchemist" title="@IamAlchemist 的 Github" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="https://twitter.com/wizardle" title="@Alchemist" target="_blank">
+      <i class="social fa fa-twitter"></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="../rss/index.rss" rel="author" title="RSS" target="_blank">
+      <i class="social fa fa-rss"></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:babyfat.candy@gmail.com" title="邮件联系我">
+      <i class="social fa fa-envelope"></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-green"></div>
+  </div>
+</header>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="16 Dec 2015" class="post-meta__date date">16 Dec 2015</time> • <span class="post-meta__tags tags">于 <a href="../tag/git/">Git</a>, <a href="../tag/knowledge/">Knowledge</a></span>
+        <!--<span class="post-meta__author author"><img src="" alt="profile image for Alchemist Li" class="avatar post-meta__avatar" /> by Alchemist Li</span>-->
+      </div>
+      <h1 class="post-title">Git 简介</h1>
+    </header>
+
+    <section class="post tag-git tag-knowledge">
+      <p>这里主要介绍给初次git命令行使用者在开发中常见的命令</p>
+
+<!--more-->
+
+<h3 id="git">Git 特点</h3>
+
+<p>Git的主要的3个特点</p>
+
+<h4 id="1git">1. Git直接记录快照，而非差异比较。</h4>
+
+<ul>
+<li><p>svn
+<img src="https://git-scm.com/book/en/v2/book/01-introduction/images/deltas.png" alt=""></p></li>
+<li><p>Git </p></li>
+</ul>
+
+<p><img src="https://git-scm.com/book/en/v2/book/01-introduction/images/snapshots.png" alt=""></p>
+
+<h4 id="2">2. 近乎所有操作都是本地执行</h4>
+
+<p>第一比较快；第二没有网络也可以工作；第三你只要不执行push，你是不会影响远程代码库的，所以在push之前，你影响的只是你自己；</p>
+
+<h4 id="3git">3. Git 一般只添加数据</h4>
+
+<p>这使得我们使用 Git 成为一个安心愉悦的过程，因为我们深知可以尽情做各种尝试，而没有把事情弄糟的危险。 
+虽然最终一般情况下可以恢复，但是往往会花很多时间，这只是在最坏情况下，git比svn，perforce强的地方。所以不建议随便尝试，搞清楚命令是什么意思再执行</p>
+
+<h3 id="git">Git的三种状态</h3>
+
+<p>Git 有三种状态，你的文件可能处于其中之一：已提交（committed）、已修改（modified）和已暂存（staged）。 <br>
+已提交表示数据已经安全的保存在本地数据库中。 已修改表示修改了文件，但还没保存到数据库中。 已暂存表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。
+<img src="https://git-scm.com/book/en/v2/book/01-introduction/images/areas.png" alt=""></p>
+
+<h3 id="git">基本的 Git 工作流程如下：</h3>
+
+<ol>
+<li><p>在工作目录中修改文件。</p></li>
+<li><p>暂存文件，将文件的快照放入暂存区域。</p></li>
+<li><p>提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。</p></li>
+</ol>
+
+<h3 id="git">Git 命令</h3>
+
+<ul>
+<li>git clone -b</li>
+</ul>
+
+<p><code>$ git clone -b web_63 https://github.com/libgit2/libgit2 mylibgit</code></p>
+
+<ul>
+<li>git status</li>
+</ul>
+
+<p>请记住，你工作目录下的每一个文件都不外乎这两种状态：已跟踪或未跟踪。 已跟踪的文件是指那些被纳入了版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后，它们的状态可能处于未修改，已修改或已放入暂存区。 工作目录中除已跟踪文件以外的所有其它文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有放入暂存区。</p>
+
+<p><img src="https://git-scm.com/book/en/v2/book/02-git-basics/images/lifecycle.png" alt=""></p>
+
+<ul>
+<li>git add</li>
+</ul>
+
+<p>untracked ＋ modified  －－－&gt; staged</p>
+
+<ul>
+<li>git checkout</li>
+</ul>
+
+<p>modified --(git checkout) --&gt; unmodified</p>
+
+<ul>
+<li>git reset</li>
+</ul>
+
+<p>staged --&gt; modified or untracked</p>
+
+<ul>
+<li>git diff</li>
+</ul>
+
+<p>查看modified文件， git diff <br>
+查看staged文件，git diff --staged  </p>
+
+<ul>
+<li>git rm</li>
+</ul>
+
+<p>移除已跟踪的unstaged文件  git rm <br>
+移除已跟踪的staged文件  git rm -f <br>
+仅仅移除跟踪，但是保留本地文件 git rm --cached  </p>
+
+<ul>
+<li>git fetch vs git pull</li>
+</ul>
+
+<p>git pull = git fetch + git merge</p>
+
+<ul>
+<li>git log</li>
+</ul>
+
+<p>一个常用的选项是 -p，用来显示每次提交的内容差异。 你也可以加上 -2 来仅显示最近两次提交：</p>
+
+<p>显示详细更改 git log -p -2 <br>
+显示更改统计 git log --stat －2 <br>
+格式化显示 git log --pretty=oneline <br>
+文艺范显示 git log --pretty=format:"%h - %an, %ar : %s" <br>
+专家级显示 git log --pretty=format:"%h %s" --graph <br>
+按作者过滤 git log --author=gitster </p>
+
+<h3 id="gitbranch">Git branch</h3>
+
+<pre><code>$ git add README test.rb LICENSE
+$ git commit -m 'The initial commit of my project'
+</code></pre>
+
+<p>Figure 3-1. 首次提交对象及其树结构 <br>
+<img src="https://git-scm.com/book/en/v2/book/03-git-branching/images/commit-and-tree.png" alt=""></p>
+
+<p>Figure 3-2. 提交对象及其父对象 <br>
+<img src="https://git-scm.com/book/en/v2/book/03-git-branching/images/commits-and-parents.png" alt=""></p>
+
+<p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 master。 在多次提交操作之后，你其实已经有一个指向最后那个提交对象的 master 分支。 它会在每次的提交操作中自动向前移动。</p>
+
+<p><img src="https://git-scm.com/book/en/v2/book/03-git-branching/images/branch-and-history.png" alt=""></p>
+
+<p><strong>分支创建</strong></p>
+
+<pre><code>$ git branch testing
+</code></pre>
+
+<p><img src="https://git-scm.com/book/en/v2/book/03-git-branching/images/two-branches.png" alt=""></p>
+
+<p><strong>当前分支</strong></p>
+
+<p><img src="https://git-scm.com/book/en/v2/book/03-git-branching/images/head-to-master.png" alt=""></p>
+
+<p>你可以简单地使用 git log 命令查看各个分支当前所指的对象。 提供这一功能的参数是 --decorate。</p>
+
+<pre><code>$ git log --oneline --decorate
+f30ab (HEAD, master, testing) add feature #32 - ability to add new  
+34ac2 fixed bug #1328 - stack overflow under certain conditions  
+98ca9 initial commit of my project  
+</code></pre>
+
+<p><strong>分支切换</strong></p>
+
+<pre><code>$ git checkout testing
+</code></pre>
+
+<p>这样 HEAD 就指向 testing 分支了。</p>
+
+<p><img src="https://git-scm.com/book/en/v2/book/03-git-branching/images/advance-testing.png" alt=""></p>
+
+<blockquote>
+  <p><strong>分支切换会改变你工作目录中的文件</strong></p>
+  
+  <p>在切换分支时，一定要注意你工作目录里的文件会被改变。 如果是切换到一个较旧的分支，你的工作目录会恢复到该分支最后一次提交时的样子。 如果 Git 不能干净利落地完成这个任务，它将禁止切换分支。</p>
+</blockquote>
+
+<p><strong>查看分支图</strong></p>
+
+<pre><code>$ git log --oneline --decorate --graph --all
+* c2b9e (HEAD, master) made other changes
+| * 87ab2 (testing) made a change
+|/
+* f30ab add feature #32 - ability to add new formats to the
+* 34ac2 fixed bug #1328 - stack overflow under certain conditions
+* 98ca9 initial commit of my project
+</code></pre>
+
+<p><strong>合并分支</strong></p>
+
+<pre><code>$ git checkout master
+$ git merge hotfix
+Updating f42c576..3a0874c  
+Fast-forward  
+ index.html | 2 ++
+ 1 file changed, 2 insertions(+)
+### More Deep for Git command
+</code></pre>
+
+<p><strong>删除分支</strong></p>
+
+<pre><code>$ git branch -d hotfix
+Deleted branch hotfix (3a0874c).  
+</code></pre>
+
+<h4 id="">遇到冲突时的分支合并</h4>
+
+<pre><code>$ git status
+On branch master  
+You have unmerged paths.  
+  (fix conflicts and run "git commit")
+
+Unmerged paths:  
+  (use "git add &lt;file&gt;..." to mark resolution)
+
+    both modified:      index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")  
+</code></pre>
+
+<p>任何因包含合并冲突而有待解决的文件，都会以未合并状态标识出来。 Git 会在有冲突的文件中加入标准的冲突解决标记，这样你可以打开这些包含冲突的文件然后手动解决冲突。 出现冲突的文件会包含一些特殊区段，看起来像下面这个样子：</p>
+
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html  
+&lt;div id="footer"&gt;contact : email.support@github.com&lt;/div&gt;  
+=======
+&lt;div id="footer"&gt;  
+ please contact us at support@github.com
+&lt;/div&gt;  
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; iss53:index.html
+</code></pre>
+
+<p>最后</p>
+
+<pre><code>git add  
+git commit  
+</code></pre>
+
+<ul>
+<li>常用操作</li>
+</ul>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/basic-usage.svg" alt=""></p>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/basic-usage-2.svg" alt=""></p>
+
+<ul>
+<li>图例说明</li>
+</ul>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/conventions.svg" alt=""></p>
+
+<h3 id="">详解</h3>
+
+<ul>
+<li>commit</li>
+</ul>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/commit-master.svg" alt=""></p>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/commit-maint.svg" alt=""></p>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/commit-amend.svg" alt=""></p>
+
+<ul>
+<li>Checkout
+checkout命令用于从历史提交（或者暂存区域）中拷贝文件到工作目录，也可用于切换分支。</li>
+</ul>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/checkout-files.svg" alt=""></p>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/checkout-branch.svg" alt=""></p>
+
+<p>如果既没有指定文件名，也没有指定分支名，而是一个标签、远程分支、SHA-1值或者是像master~3类似的东西，就得到一个匿名分支，称作detached HEAD（被分离的HEAD标识）。这样可以很方便地在历史版本之间互相切换。
+<img src="https://marklodato.github.io/visual-git-guide/checkout-detached.svg" alt=""></p>
+
+<p>当HEAD处于分离状态（不依附于任一分支）时，提交操作可以正常进行，但是不会更新任何已命名的分支。(你可以认为这是在更新一个匿名分支。)
+<img src="https://marklodato.github.io/visual-git-guide/commit-detached.svg" alt=""></p>
+
+<p>一旦此后你切换到别的分支，比如说master，那么这个提交节点（可能）再也不会被引用到，然后就会被丢弃掉了。注意这个命令之后就不会有东西引用2eecb。
+<img src="https://marklodato.github.io/visual-git-guide/checkout-after-detached.svg" alt=""></p>
+
+<p>但是，如果你想保存这个状态，可以用命令git checkout -b name来创建一个新的分支。
+<img src="https://marklodato.github.io/visual-git-guide/checkout-b-detached.svg" alt=""></p>
+
+<ul>
+<li>Reset</li>
+</ul>
+
+<p>reset命令把当前分支指向另一个位置，并且有选择的变动工作目录和索引。也用来在从历史仓库中复制文件到索引，而不动工作目录。</p>
+
+<p>如果不给选项，那么当前分支指向到那个提交。如果用--hard选项，那么工作目录也更新，如果用--soft选项，那么都不变。
+<img src="https://marklodato.github.io/visual-git-guide/reset-commit.svg" alt=""></p>
+
+<p>如果没有给出提交点的版本号，那么默认用HEAD。这样，分支指向不变，但是索引会回滚到最后一次提交，如果用--hard选项，工作目录也同样。
+<img src="https://marklodato.github.io/visual-git-guide/reset.svg" alt=""></p>
+
+<p>如果给了文件名(或者 -p选项), 那么工作效果和带文件名的checkout差不多，除了索引被更新。
+<img src="https://marklodato.github.io/visual-git-guide/reset-files.svg" alt=""></p>
+
+<ul>
+<li>Merge</li>
+</ul>
+
+<p>merge 命令把不同分支合并起来。合并前，索引必须和当前提交相同。如果另一个分支是当前提交的祖父节点，那么合并命令将什么也不做。 另一种情况是如果当前提交是另一个分支的祖父节点，就导致fast-forward合并。指向只是简单的移动，并生成一个新的提交。</p>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/merge-ff.svg" alt=""></p>
+
+<p>否则就是一次真正的合并。默认把当前提交(ed489 如下所示)和另一个提交(33104)以及他们的共同祖父节点(b325c)进行一次三方合并。结果是先保存当前目录和索引，然后和父节点33104一起做一次新提交。</p>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/merge.svg" alt=""></p>
+
+<ul>
+<li>Cherry Pick</li>
+</ul>
+
+<p>cherry-pick命令"复制"一个提交节点并在当前分支做一次完全一样的新提交。</p>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/cherry-pick.svg" alt=""></p>
+
+<ul>
+<li>Rebase
+rebase是merge命令的另一种选择。合并把两个父分支合并进行一次提交，提交历史不是线性的。衍合在当前分支上重演另一个分支的历史，提交历史是线性的。 本质上，这是线性化的自动的 cherry-pick</li>
+</ul>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/rebase.svg" alt=""></p>
+
+<p>The above command takes all the commits that exist in topic but not in master (namely 169a6 and 2c33a), replays them onto master, and then moves the branch head to the new tip. Note that the old commits will be garbage collected if they are no longer referenced.</p>
+
+<p>To limit how far back to go, use the --onto option. The following command replays onto master the most recent commits on the current branch since 169a6 (exclusive), namely 2c33a.</p>
+
+<p><img src="https://marklodato.github.io/visual-git-guide/rebase-onto.svg" alt=""></p>
+
+<h3 id="">参考</h3>
+
+<p><a href="https://marklodato.github.io/visual-git-guide/index-zh-cn.html#technical-notes">图解Git</a></p>
+
+<p><a href="https://git-scm.com/book/zh/v2">Git pro</a></p>
+
+<p><a href="https://git-scm.com/blog">Git blog</a></p>
+    </section>
+
+  </article>
+
+  <section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'alchemistliscraft'; // required: replace example with your forum shortname
+      
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">© 2015  All rights reserved.</span>
+    <span class="footer__copyright"><a href="https://github.com/onevcat/vno">Vno</a> theme by <a href="http://im.onevcat.com">@onevcat</a></span>
+</footer>        </div>
+    </div>
+
+    
+
+    <!-- Compatibility for Ghost 0.7.0: http://dev.ghost.org/no-more-jquery/ -->
+    <script type="text/javascript">  
+      if (typeof jQuery == 'undefined') {
+        document.write('<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></'+'script>');
+      }
+    </script>
+    
+    <script type="text/javascript" src="../assets/js/main.js?v=6c4622d9f3"></script>
+
+    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=6c4622d9f3"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
