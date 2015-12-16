@@ -1,0 +1,387 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>新Android Gradle Build Tools: Gradle 2.5</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="新Android Gradle Build Tools: Gradle 2.5">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="新Android Gradle Build Tools: Gradle 2.5">
+    <meta property="og:description" content="">
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link href="../assets/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=50f758939a">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=50f758939a">
+    
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Alchemist's Crafts">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="新Android Gradle Build Tools: Gradle 2.5">
+    <meta property="og:description" content='&lt;p&gt;Android Studio 1.3已经除了稳定版了。新特性包括了完全NDK支持，而且一个主要的更改是DSL(Domain-Specific Language)的变化。&lt;/p&gt; &lt;p&gt;翻译自&lt;a href="http://inthecheesefactory.com/blog/new-gradle-build-tools-with-gradle-2.5/en"&gt;inthechessefactory&lt;/a&gt;&lt;/p&gt;...'>
+    <meta property="og:url" content="http://localhost:2368/xin-android-gradle-build-tools-gradle-2-5/">
+    <meta property="article:published_time" content="2015-11-25T03:32:29.692Z">
+    <meta property="article:modified_time" content="2015-11-25T03:37:45.429Z">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="新Android Gradle Build Tools: Gradle 2.5">
+    <meta name="twitter:description" content='&lt;p&gt;Android Studio 1.3已经除了稳定版了。新特性包括了完全NDK支持，而且一个主要的更改是DSL(Domain-Specific Language)的变化。&lt;/p&gt; &lt;p&gt;翻译自&lt;a href="http://inthecheesefactory.com/blog/new-gradle-build-tools-with-gradle-2.5/en"&gt;inthechessefactory&lt;/a&gt;&lt;/p&gt;...'>
+    <meta name="twitter:url" content="http://localhost:2368/xin-android-gradle-build-tools-gradle-2-5/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Alchemist's Crafts",
+    "author": {
+        "@type": "Person",
+        "name": "Alchemist Li",
+        "url": "http://localhost:2368/author/alchemist",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "新Android Gradle Build Tools: Gradle 2.5",
+    "url": "http://localhost:2368/xin-android-gradle-build-tools-gradle-2-5/",
+    "datePublished": "2015-11-25T03:32:29.692Z",
+    "dateModified": "2015-11-25T03:37:45.429Z",
+    "description": "&lt;p&gt;Android Studio 1.3已经除了稳定版了。新特性包括了完全NDK支持，而且一个主要的更改是DSL(Domain-Specific Language)的变化。&lt;/p&gt; &lt;p&gt;翻译自&lt;a href=&quot;http://inthecheesefactory.com/blog/new-gradle-build-tools-with-gradle-2.5/en&quot;&gt;inthechessefactory&lt;/a&gt;&lt;/p&gt;..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Alchemist's Crafts" href="../rss/index.rss">
+
+</head>
+<body class="post-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="../" title="前往 Alchemist's Crafts 的主页"><img src="../content/images/2015/11/logo.jpeg" width="80" alt="Alchemist's Crafts logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="../" title="前往 Alchemist's Crafts 的主页">Alchemist's Crafts</a></h1>
+        <span class="panel-cover__subtitle panel-subtitle">茗香淡水</span>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Thoughts, stories and ideas.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="../index.html#blog" title="访问博客" class="blog-button">博客</a></li>
+<!--              <li class="navigation__item"><a href="http://project.onevcat.com" target="_blank" title="我的项目">项目</a></li> -->
+<!--              <li class="navigation__item"><a href="http://about.onevcat.com/" title="了解更多">关于</a></li> -->
+<!--              <li class="navigation__item"><a href="http://eepurl.com/" title="邮件订阅本站">订阅</a></li> -->
+              <li class="navigation__item"><a href="http://alchemistli.github.io/rss/index.rss" title="邮件订阅本站">订阅</a></li>
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Weibo -->
+<!-- 
+  <li class="navigation__item">
+    <a href="http://weibo.com/onevcat" title="@onevcat 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+-->
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/IamAlchemist" title="@IamAlchemist 的 Github" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="https://twitter.com/wizardle" title="@Alchemist" target="_blank">
+      <i class="social fa fa-twitter"></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="../rss/index.rss" rel="author" title="RSS" target="_blank">
+      <i class="social fa fa-rss"></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:babyfat.candy@gmail.com" title="邮件联系我">
+      <i class="social fa fa-envelope"></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-green"></div>
+  </div>
+</header>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="25 Nov 2015" class="post-meta__date date">25 Nov 2015</time> • <span class="post-meta__tags tags"></span>
+        <!--<span class="post-meta__author author"><img src="" alt="profile image for Alchemist Li" class="avatar post-meta__avatar" /> by Alchemist Li</span>-->
+      </div>
+      <h1 class="post-title">新Android Gradle Build Tools: Gradle 2.5</h1>
+    </header>
+
+    <section class="post">
+      <p>Android Studio 1.3已经除了稳定版了。新特性包括了完全NDK支持，而且一个主要的更改是DSL(Domain-Specific Language)的变化。</p>
+
+<p>翻译自<a href="http://inthecheesefactory.com/blog/new-gradle-build-tools-with-gradle-2.5/en">inthechessefactory</a></p>
+
+<!--more-->
+
+<h4 id="androidgradlebuildtools">什么是Android Gradle Build Tools</h4>
+
+<p>在把每个module的build.gradle文件传递给Gradle之前，Android Gradle Build Tools 用来提前处理下这些文件。</p>
+
+<p>Gradle Build Tools的版本是在project的build.gradle里指定的，类似：</p>
+
+<pre><code>dependencies {
+    classpath 'com.android.tools.build:gradle:1.2.3'
+}
+</code></pre>
+
+<p>Gradle Build Tools版本和Gradle版本对应关系如下：</p>
+
+<table style="width: 100%; border: 1px solid black;" border="1px solid black">  
+<tbody>  
+<tr>  
+<td style="width: 50%; border: 1px solid black; padding: 10px; text-align: center;"><strong>Android Gradle Plugin</strong></td>  
+<td style="border: 1px solid black; text-align: center;"><strong>Gradle</strong></td>  
+</tr>  
+<tr>  
+<td style="border: 1px solid black; text-align: center;">1.0.0 - 1.1.3</td>  
+<td style="border: 1px solid black; text-align: center;">2.2.1 - 2.3</td>  
+</tr>  
+<tr>  
+<td style="border: 1px solid black; text-align: center;">1.2+</td>  
+<td style="border: 1px solid black; text-align: center;">2.2.1+</td>  
+</tr>  
+</tbody>  
+</table>
+
+<h4 id="thenewandroidgradlebuildtools">The new Android Gradle Build Tools</h4>
+
+<p>使用新的Gradle Build Tools的话，只需要换掉build tools的version</p>
+
+<pre><code>dependencies {
+    classpath 'com.android.tools.build:gradle-experimental:0.1.0'
+}
+</code></pre>
+
+<p>不过只有gradle2.5才能匹配使用，所以需要设置gradle-wrapper.properties</p>
+
+<pre><code>distributionUrl=https\://services.gradle.org/distributions/gradle-2.5-bin.zip
+</code></pre>
+
+<p>然后像下面这样编辑模块的build.gradle</p>
+
+<pre><code>apply plugin: 'com.android.model.application'
+
+model {
+    android {
+        compileSdkVersion = 22
+        buildToolsVersion = "23.0.0 rc3"
+
+        defaultConfig.with {
+            applicationId = "com.inthecheesefactory.hellojni25"
+            minSdkVersion.apiLevel = 15
+            targetSdkVersion.apiLevel = 22
+            versionCode = 1
+            versionName = "1.0"
+        }
+    }
+
+    android.buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles += file('proguard-rules.pro')
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
+}
+</code></pre>
+
+<p>仔细看就会发现，plugin不再是<code>com.android.application</code>，而是<code>com.android.model.application</code>。 <br>
+<code>+=</code>被引入表示在一个collection中增加一些元素。</p>
+
+<h4 id="ndk">支持 NDK</h4>
+
+<p>修改项目的local.properites文件</p>
+
+<pre><code>ndk.dir=PATH_TO_NDK_ROOT
+</code></pre>
+
+<p>，或者直接使用android studio下载ndk</p>
+
+<p>然后在java的package里创建<code>HelloJni.java</code>文件</p>
+
+<pre><code>public class HelloJni {  
+    public native String stringFromJNI();
+}
+</code></pre>
+
+<p>在src/main目录下创建jni文件夹，然后创建hello-jni.c文件</p>
+
+<pre><code>#include &lt;string.h&gt;
+#include &lt;jni.h&gt;
+
+jstring  
+Java_com_inthecheesefactory_hellojni25_HelloJni_stringFromJNI( JNIEnv* env,  
+                                                  jobject thiz )
+{
+#if defined(__arm__)
+  #if defined(__ARM_ARCH_7A__)
+    #if defined(__ARM_NEON__)
+      #if defined(__ARM_PCS_VFP)
+        #define ABI "armeabi-v7a/NEON (hard-float)"
+      #else
+        #define ABI "armeabi-v7a/NEON"
+      #endif
+    #else
+      #if defined(__ARM_PCS_VFP)
+        #define ABI "armeabi-v7a (hard-float)"
+      #else
+        #define ABI "armeabi-v7a"
+      #endif
+    #endif
+  #else
+   #define ABI "armeabi"
+  #endif
+#elif defined(__i386__)
+   #define ABI "x86"
+#elif defined(__x86_64__)
+   #define ABI "x86_64"
+#elif defined(__mips64)  /* mips64el-* toolchain defines __mips__ too */
+   #define ABI "mips64"
+#elif defined(__mips__)
+   #define ABI "mips"
+#elif defined(__aarch64__)
+   #define ABI "arm64-v8a"
+#else
+   #define ABI "unknown"
+#endif
+
+    return (*env)-&gt;NewStringUTF(env, "Hello from JNI !!  Compiled with ABI " ABI ".");
+}
+</code></pre>
+
+<p>请记住让<code>com_inthecheesefactory_hellojni25</code>和HelloJni.java的包名是一致的。makefile不再需要了。</p>
+
+<p>现在在<code>MainActivity.java</code>里测试一下</p>
+
+<pre><code>public class MainActivity extends AppCompatActivity {  
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Toast.makeText(MainActivity.this,
+                    new HelloJni().stringFromJNI(),
+                    Toast.LENGTH_LONG).show();
+    } 
+    ...
+
+    static {
+        System.loadLibrary("hello-jni");
+    }
+}
+</code></pre>
+
+<p><a href="https://www.youtube.com/watch?v=SeKXi-viRrk">more video</a></p>
+    </section>
+
+  </article>
+
+  <section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'alchemistliscraft'; // required: replace example with your forum shortname
+      
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">© 2015  All rights reserved.</span>
+    <span class="footer__copyright"><a href="https://github.com/onevcat/vno">Vno</a> theme by <a href="http://im.onevcat.com">@onevcat</a></span>
+</footer>        </div>
+    </div>
+
+    
+
+    <!-- Compatibility for Ghost 0.7.0: http://dev.ghost.org/no-more-jquery/ -->
+    <script type="text/javascript">  
+      if (typeof jQuery == 'undefined') {
+        document.write('<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></'+'script>');
+      }
+    </script>
+    
+    <script type="text/javascript" src="../assets/js/main.js?v=50f758939a"></script>
+
+    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=50f758939a"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
