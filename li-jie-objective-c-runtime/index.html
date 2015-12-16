@@ -1,0 +1,458 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>理解 Objective-C Runtime</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="理解 Objective-C Runtime">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="理解 Objective-C Runtime">
+    <meta property="og:description" content="">
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link href="../assets/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=50f758939a">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=50f758939a">
+    
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Alchemist's Crafts">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="理解 Objective-C Runtime">
+    <meta property="og:description" content="Objective-C扩展了C语言，并加入了面向对象特性和Smalltalk式的消息传递机制。而这个扩展的核心是一个用C和汇编写的Runtime库。它负责加载类的信息，分发函数消息。从而使得c可以面向对象，变成了Objective-C。   Runtime的核心就是消息传递 (Messaging)...">
+    <meta property="og:url" content="http://localhost:2368/li-jie-objective-c-runtime/">
+    <meta property="article:published_time" content="2015-11-25T03:52:13.028Z">
+    <meta property="article:modified_time" content="2015-11-25T05:31:55.559Z">
+    <meta property="article:tag" content="Objc">
+    <meta property="article:tag" content="iOS">
+    <meta property="article:tag" content="Skill">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="理解 Objective-C Runtime">
+    <meta name="twitter:description" content="Objective-C扩展了C语言，并加入了面向对象特性和Smalltalk式的消息传递机制。而这个扩展的核心是一个用C和汇编写的Runtime库。它负责加载类的信息，分发函数消息。从而使得c可以面向对象，变成了Objective-C。   Runtime的核心就是消息传递 (Messaging)...">
+    <meta name="twitter:url" content="http://localhost:2368/li-jie-objective-c-runtime/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Alchemist's Crafts",
+    "author": {
+        "@type": "Person",
+        "name": "Alchemist Li",
+        "url": "http://localhost:2368/author/alchemist",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "理解 Objective-C Runtime",
+    "url": "http://localhost:2368/li-jie-objective-c-runtime/",
+    "datePublished": "2015-11-25T03:52:13.028Z",
+    "dateModified": "2015-11-25T05:31:55.559Z",
+    "keywords": "Objc, iOS, Skill",
+    "description": "Objective-C扩展了C语言，并加入了面向对象特性和Smalltalk式的消息传递机制。而这个扩展的核心是一个用C和汇编写的Runtime库。它负责加载类的信息，分发函数消息。从而使得c可以面向对象，变成了Objective-C。   Runtime的核心就是消息传递 (Messaging)..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Alchemist's Crafts" href="../rss/index.rss">
+
+</head>
+<body class="post-template tag-objc tag-ios tag-skill no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="../" title="前往 Alchemist's Crafts 的主页"><img src="../content/images/2015/11/logo.jpeg" width="80" alt="Alchemist's Crafts logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="../" title="前往 Alchemist's Crafts 的主页">Alchemist's Crafts</a></h1>
+        <span class="panel-cover__subtitle panel-subtitle">茗香淡水</span>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Thoughts, stories and ideas.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="../index.html#blog" title="访问博客" class="blog-button">博客</a></li>
+<!--              <li class="navigation__item"><a href="http://project.onevcat.com" target="_blank" title="我的项目">项目</a></li> -->
+<!--              <li class="navigation__item"><a href="http://about.onevcat.com/" title="了解更多">关于</a></li> -->
+<!--              <li class="navigation__item"><a href="http://eepurl.com/" title="邮件订阅本站">订阅</a></li> -->
+              <li class="navigation__item"><a href="http://alchemistli.github.io/rss/index.rss" title="邮件订阅本站">订阅</a></li>
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Weibo -->
+<!-- 
+  <li class="navigation__item">
+    <a href="http://weibo.com/onevcat" title="@onevcat 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+-->
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/IamAlchemist" title="@IamAlchemist 的 Github" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="https://twitter.com/wizardle" title="@Alchemist" target="_blank">
+      <i class="social fa fa-twitter"></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="../rss/index.rss" rel="author" title="RSS" target="_blank">
+      <i class="social fa fa-rss"></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:babyfat.candy@gmail.com" title="邮件联系我">
+      <i class="social fa fa-envelope"></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-green"></div>
+  </div>
+</header>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="25 Nov 2015" class="post-meta__date date">25 Nov 2015</time> • <span class="post-meta__tags tags">于 <a href="../tag/objc/">Objc</a>, <a href="../tag/ios/">iOS</a>, <a href="../tag/skill/">Skill</a></span>
+        <!--<span class="post-meta__author author"><img src="" alt="profile image for Alchemist Li" class="avatar post-meta__avatar" /> by Alchemist Li</span>-->
+      </div>
+      <h1 class="post-title">理解 Objective-C Runtime</h1>
+    </header>
+
+    <section class="post tag-objc tag-ios tag-skill">
+      Objective-C扩展了C语言，并加入了面向对象特性和Smalltalk式的消息传递机制。而这个扩展的核心是一个用C和汇编写的Runtime库。它负责加载类的信息，分发函数消息。从而使得c可以面向对象，变成了Objective-C。  
+Runtime的核心就是消息传递 (Messaging)  
+<!--more-->
+
+<blockquote>
+  <p>I’m sorry that I long ago coined the term “objects” for this topic because it gets many people to focus on the lesser idea. <strong>The big idea is “messaging”</strong> – that is what the kernal[sic] of Smalltalk is all about... The key in making great and growable systems is much more to design how its modules communicate rather than what their internal properties and behaviors should be.</p>
+</blockquote>
+
+<p><em>-- by Alan Kay</em></p>
+
+<p>在C语言调用一个方法其实就是跳到内存中的某一点并开始执行一段代码。没有任何动态的特性，因为这在编译时就决定好了。而在 Objective-C中，<code>[object foo]</code>语句并不会立即执行<code>foo</code>这个方法的代码。它是在运行时给<code>object</code>发送一条叫<code>foo</code>的消息。这个消息，也许会由<code>object</code>来处理，也许会被转发给另一个对象，或者不予理睬假装没收到这个消息。多条不同的消息也可以对应同一个方法实现。这些都是在程序运行的时候决定的。</p>
+
+<p>事实上，在编译时Objective-C函数调用的语法都会被翻译成一个C的函数调用 - objc_msgSend(). <br>
+比如，编译器会把</p>
+
+<pre><code>[target doMethodWith:var1];
+</code></pre>
+
+<p>编译成</p>
+
+<pre><code>objc_msgSend(target,@selector(doMethodWith:),var1);  
+</code></pre>
+
+<p>显然，发送消息并不是直接的函数调用，到objc_msgSend里面就是Objective-C Runtime来处理了。</p>
+
+<h3 id="objc_objectobjc_classojbc_method">objc<em>object, objc</em>class 以及 Ojbc_method</h3>
+
+<p>在Objective-C中，本质上，类、对象和方法都是一个C的结构体</p>
+
+<p>比如我们知道<code>id</code>就是指向一个Objective-C的对象的指针，也就是<code>objc_object</code>的实例，其中有一个<code>isa</code>指针，这个<code>isa</code>指向它所属的类。来看看它的定义</p>
+
+<pre><code>typedef struct objc_object {  
+    Class isa;
+} *id;
+</code></pre>
+
+<p>所以当你拿到一个<code>id</code>指针之后，就可以获取这个对象的类，并且可以检测其是否响应一个<code>selector</code>。isa指向的<code>objc_class</code>实例的里面其实保存的就是该对象对应的类的信息。定义如下</p>
+
+<pre><code>typedef struct objc_class *Class;  
+struct objc_class {  
+    Class isa;  
+    Class super_class;  
+    const char *name;  
+    long instance_size;  
+    struct objc_ivar_list *ivars;  
+    struct objc_method_list **methodLists;  
+    struct objc_cache *cache;  
+    struct objc_protocol_list *protocols;  
+};
+
+struct objc_method_list {  
+    struct objc_method_list *obsolete;
+    int method_count;
+    struct objc_method method_list[1];
+};
+</code></pre>
+
+<p>我们看到这些类的信息包括，继承关系，实现的协议，方法列表，和属性列表，实例大小，ivar的类型和布局等等。其中方法都对应结构体是<code>objc_method</code>，这个结构体其实就是一个key/value对，定义如下</p>
+
+<pre><code>typedef struct objc_selector  *SEL;  
+typedef id (*IMP)(id self,SEL _cmd,...);  
+struct objc_method {  
+    SEL method_name;  
+    char *method_types;  
+    IMP method_imp;  
+};
+</code></pre>
+
+<p>key是所谓的<code>Selector</code>(相当于编译器生成的唯一的标识函数的字符串)；而值就是<code>IMP</code>，一个<code>IMP</code>就是一个函数指针，由编译器生成的，当你发起一个消息之后，最终它会执行的那个代码，就是由这个函数指针指定的。</p>
+
+<p>从这些定义中可以看出， 发送一条消息，也就是<code>objc_msgSend</code>，大概到底做了什么事情。  </p>
+
+<p>举<code>objc_msgSend(obj, foo)</code>这个例子来说：</p>
+
+<ul>
+<li>首先，通过 obj 的 isa 指针找到它的 class </li>
+<li>在 class 的 method list 找 foo </li>
+<li>如果 class 中没到 foo，继续往它的 superclass 中找 </li>
+<li>一旦找到 foo 这个函数，就去执行它的实现IMP </li>
+</ul>
+
+<p><code>block</code>的设计也类似，它也包含了isa的指针</p>
+
+<pre><code>struct Block_literal_1 {  
+    void *isa; // initialized to &amp;_NSConcreteStackBlock or &amp;_NSConcreteGlobalBlock
+    ...
+}; 
+</code></pre>
+
+<p>所以block像object一样也是可以响应消息的。</p>
+
+<h3 id="metaclass">MetaClass</h3>
+
+<p><code>isa</code>指向对象就是该object对应的类。也就是Objective-C的类本身也是一个对象，暂时我们称之为类对象(class object)。 它包含的信息包括，继承关系，实现的协议，方法列表，和属性列表，实例大小，ivar的类型和布局等等。当你进行类方法(class method)的调用的时候的时候，比方说</p>
+
+<pre><code>[NSObject alloc];
+</code></pre>
+
+<p>你事实上是把这个消息发给了这个类对象(class object)。</p>
+
+<p>既然class object是一个实例，那么它必然是属于某一个类，这个类被称作metaclass。一个metaclass就是class object的描述，就像一个class是它的object的描述一样。</p>
+
+<p>值得一提的是，metaclass的方法列表就是我们称之为class methods的东西：class本身应该响应的那些selectors。当你发送一个消息给class，也就是metaclass的实例的时候，objc_msgSend()会查找metaclass的方法列表（包括它的父类），来决定是否可以响应。一个class method记录在metaclass里，就像instance method记录在class中。</p>
+
+<p>metaclass也是一个实例，也有父类，也有<code>isa</code>和<code>super_class</code>。最终的源头是一个特殊的root class。不过metaclass的<code>isa</code>指针其实是无关紧要的，因为现实中，没有人会给metaclass object发送消息的。 <br>
+相对更重要的是metaclass的继承关系，metaclass有着和class一样的平行的继承关系。所以class methods也就相应的有了继承关系。 <br>
+此外，由于root metaclass的父类是root class，所以每一个class object可以响应root class的instance methods <br>
+最后任何一个class object都是root class（或者它的子类的）实例  </p>
+
+<p>下面这张图能很好的总结上面的结论，始终要记住的是，当一个message发送给一个object的时候，这个object首先根据<code>isa</code>指针来寻找是否可以响应，然后在根据<code>super_class</code>指针在继承链中寻找</p>
+
+<p><img src="../content/images/2015/11/2015-11-20.png" alt=""></p>
+
+<h3 id="appleclasses">为啥我们要继承 Apple Classes</h3>
+
+<p>初学Cocoa开发的时候，多数教程都要我们继承一个类比方NSObject，然后我们就开始Coding了。比方说：</p>
+
+<pre><code>MyObject *object = [[MyObject alloc] init];  
+</code></pre>
+
+<p>这个语句用来初始化一个实例，类似于 C++ 的 new 关键字。这个语句首先会执行MyObject这个类的+alloc方法，所以继承 Apple 的类我们不仅是获得了很多很好用的属性，而且也继承了这种内存分配的方法。</p>
+
+<h3 id="classcacheobjc_cachecache">什么是Class Cache(objc_cache *cache)</h3>
+
+<p>每次发送一个消息的时候，都要去查找方法列表的实现有个问题，效率低。比如一个class往往只有20%的函数会被经常调用，可能占总调用次数的80%。每个消息都需要遍历一次<code>objc_method_list</code>并不合理。如果把经常被调用的函数缓存下来，那可以大大提高函数查询的效率。这也就是<code>objc_class</code>中另一个重要成员<code>objc_cache</code>做的事情 - 再找到foo之后，把foo的<code>method_name</code>作为key，<code>method_imp</code>作为value给存起来。当再次收到foo消息的时候，可以直接在cache里找到，避免去遍历<code>objc_method_list</code>.</p>
+
+<h3 id="objc_msgsend">说回 objc_msgSend 这个方法</h3>
+
+<pre><code>[self printMessageWithString:@"Hello World!"];
+</code></pre>
+
+<p>会被编译器翻译成</p>
+
+<pre><code>objc_msgSend(self,@selector(printMessageWithString:),@"Hello World!");  
+</code></pre>
+
+<p>objc_msgSend执行的步骤大致是这样：</p>
+
+<ul>
+<li>检测这个selector是不是要忽略的。比如Mac OS X开发，有了垃圾回收就不理会retain,release这些消息了</li>
+<li>检测这个target是不是<code>nil</code>。ObjC的特性是允许对一个<code>nil</code>对象执行任何一个方法不会Crash，因为会被忽略掉</li>
+<li>如果上面两个都过了，那就开始查找这个类的IMP，先从cache里面找，找得到的话，就跳到对应的函数去执行</li>
+<li>如果cache找不到就到成员方法列表里去找，还找不到，就到父类里去找</li>
+<li>最后还找不到的话，就要进行消息转发逻辑</li>
+</ul>
+
+<h3 id="">消息转发机制</h3>
+
+<p>在上面的例子中，如果@selector(printMessageWithString:)最终没有找到，通常情况下，程序会在运行时挂掉并抛出<code>unrecognized selector sent to …</code>的异常。但在异常抛出前，Objective-C的运行时会给你三次拯救程序的机会：</p>
+
+<ul>
+<li><strong>Method resolution</strong></li>
+<li><strong>Fast forwarding</strong></li>
+<li><strong>Normal forwarding</strong></li>
+</ul>
+
+<h3 id="methodresolution">Method Resolution</h3>
+
+<p>在找不到消息对应的函数后，首先，Objective-C运行时会调用+resolveInstanceMethod: 或者+resolveClassMethod:，让你有机会提供一个函数实现。如果你添加了函数并返回YES，那运行时系统就会重新启动一次消息发送的过程。以foo为例，你可以这么实现</p>
+
+<pre><code>void fooMethod(id obj, SEL _cmd)  
+{
+    NSLog(@"Doing foo");
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)aSEL
+{
+    if(aSEL == @selector(foo:)){
+        class_addMethod([self class], aSEL, (IMP)fooMethod, "v@:");
+        return YES;
+    }
+    return [super resolveInstanceMethod];
+}
+</code></pre>
+
+<p>Core Data有用到这个方法。NSManagedObjects中properties的getter和setter就是在运行时动态添加的</p>
+
+<p>如果resolve方法返回NO，运行时就会移到下一步：消息转发（Message Forwarding）</p>
+
+<p>PS：iOS 4.3 加入很多新的 runtime 方法，主要都是以 imp 为前缀的方法，比如 imp_implementationWithBlock() 用 block 快速创建一个 imp 。 <br>
+上面的例子可以重写成：</p>
+
+<pre><code>IMP fooIMP = imp_implementationWithBlock(^(id _self) {  
+    NSLog(@"Doing foo");
+});
+
+class_addMethod([self class], aSEL, fooIMP, "v@:");  
+</code></pre>
+
+<h3 id="fastforwarding">Fast forwarding</h3>
+
+<p>消息转发（Message Forwarding）首先会执行Fast forwarding，也就是如果目标对象实现了<code>-forwardingTargetForSelector:</code>，Runtime这时就会调用这个方法，给你把这个消息转发给其他对象的机会</p>
+
+<pre><code>- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    if(aSelector == @selector(foo:)){
+        return alternateObject;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+</code></pre>
+
+<p>只要这个方法返回的不是nil和self，整个消息发送的过程就会被重启，当然发送的对象会变成你返回的那个对象。否则，就会继续Normal Fowarding。</p>
+
+<p>这里叫Fast，只是为了区别下一步的转发机制。因为这一步不会创建任何新的对象，但下一步转发会创建一个 NSInvocation 对象，所以相对更快点。</p>
+
+<h3 id="normalforwarding">Normal forwarding</h3>
+
+<p>这一步是Runtime最后一次给你挽救的机会。首先它会发送<code>-methodSignatureForSelector:</code>消息获得函数的参数和返回值类型。如果<code>-methodSignatureForSelector:</code>返回nil，Runtime则会发出<code>-doesNotRecognizeSelector:</code>消息，程序这时也就挂掉了。如果返回了一个函数签名，Runtime就会创建一个<code>NSInvocation</code>对象并发送<code>-forwardInvocation:</code>消息给目标对象。</p>
+
+<p>NSInvocation 实际上就是对一个消息的描述，包括selector 以及参数等信息。所以你可以在<code>-forwardInvocation:</code>里修改传进来的<code>NSInvocation</code>对象，然后发送<code>-invokeWithTarget:</code>消息给它，传进去一个新的目标：</p>
+
+<pre><code>- (void)forwardInvocation:(NSInvocation *)invocation
+{
+    SEL sel = invocation.selector;
+
+    if([alternateObject respondsToSelector:sel]) {
+        [invocation invokeWithTarget:alternateObject];
+    } 
+    else {
+        [self doesNotRecognizeSelector:sel];
+    }
+}
+</code></pre>
+
+<p>Cocoa 里很多地方都利用到了消息传递机制来对语言进行扩展，如 Proxies、NSUndoManager 跟 Responder Chain。NSProxy 就是专门用来作为代理转发消息的；NSUndoManager 截取一个消息之后再发送；而 Responder Chain 保证一个消息转发给合适的响应者。</p>
+
+<p>Apple 设计这种机制的原因之一就是——用来模拟多重继承（ObjC 原生是不支持多重继承的）。或者把复杂设计隐藏起来。</p>
+
+<h4 id="">参考资料</h4>
+
+<p><a href="http://cocoasamurai.blogspot.jp/2010/01/understanding-objective-c-runtime.html">Understanding the Objective-C Runtime</a></p>
+
+<p><a href="http://tech.glowing.com/cn/objective-c-runtime/">Objective-C Runtime</a></p>
+
+<p><a href="http://www.sealiesoftware.com/blog/archive/2009/04/14/objc_explain_Classes_and_metaclasses.html">Classes and metaclasses</a></p>
+    </section>
+
+  </article>
+
+  <section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'alchemistliscraft'; // required: replace example with your forum shortname
+      
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">© 2015  All rights reserved.</span>
+    <span class="footer__copyright"><a href="https://github.com/onevcat/vno">Vno</a> theme by <a href="http://im.onevcat.com">@onevcat</a></span>
+</footer>        </div>
+    </div>
+
+    
+
+    <!-- Compatibility for Ghost 0.7.0: http://dev.ghost.org/no-more-jquery/ -->
+    <script type="text/javascript">  
+      if (typeof jQuery == 'undefined') {
+        document.write('<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></'+'script>');
+      }
+    </script>
+    
+    <script type="text/javascript" src="../assets/js/main.js?v=50f758939a"></script>
+
+    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=50f758939a"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
