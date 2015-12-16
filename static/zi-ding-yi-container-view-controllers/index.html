@@ -1,0 +1,395 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>自定义Container View Controllers</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="自定义Container View Controllers">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="自定义Container View Controllers">
+    <meta property="og:description" content="">
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link href="../assets/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=6c4622d9f3">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=6c4622d9f3">
+    
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Alchemist's Crafts">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="自定义Container View Controllers">
+    <meta property="og:description" content='&lt;p&gt;多数情况下，container view controller 就像普通的view controller。它管理着view，内容，与其他对象协同工作，并且响应在repsonder chain里的事件。&lt;/p&gt; &lt;p&gt;当你设计一个container的时候，你需要显式的在你的container，和它的子controller之间创建父子关系。如下图。注意，&lt;code&gt;不仅仅controller之间需要显式的指定关系，view之间的关系也需要显式的指定&lt;/code&gt;。&lt;/p&gt; &lt;p&gt;&lt;img src="/content/images/2015/11/2015-07-14_1.png" alt="" /&gt;&lt;/p&gt;...'>
+    <meta property="og:url" content="http://localhost:2368/zi-ding-yi-container-view-controllers/">
+    <meta property="article:published_time" content="2015-11-25T03:27:00.068Z">
+    <meta property="article:modified_time" content="2015-11-25T03:27:00.065Z">
+    <meta property="article:tag" content="Objc">
+    <meta property="article:tag" content="iOS">
+    <meta property="article:tag" content="Skill">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="自定义Container View Controllers">
+    <meta name="twitter:description" content='&lt;p&gt;多数情况下，container view controller 就像普通的view controller。它管理着view，内容，与其他对象协同工作，并且响应在repsonder chain里的事件。&lt;/p&gt; &lt;p&gt;当你设计一个container的时候，你需要显式的在你的container，和它的子controller之间创建父子关系。如下图。注意，&lt;code&gt;不仅仅controller之间需要显式的指定关系，view之间的关系也需要显式的指定&lt;/code&gt;。&lt;/p&gt; &lt;p&gt;&lt;img src="/content/images/2015/11/2015-07-14_1.png" alt="" /&gt;&lt;/p&gt;...'>
+    <meta name="twitter:url" content="http://localhost:2368/zi-ding-yi-container-view-controllers/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Alchemist's Crafts",
+    "author": {
+        "@type": "Person",
+        "name": "Alchemist Li",
+        "url": "http://localhost:2368/author/alchemist",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "自定义Container View Controllers",
+    "url": "http://localhost:2368/zi-ding-yi-container-view-controllers/",
+    "datePublished": "2015-11-25T03:27:00.068Z",
+    "dateModified": "2015-11-25T03:27:00.065Z",
+    "keywords": "Objc, iOS, Skill",
+    "description": "&lt;p&gt;多数情况下，container view controller 就像普通的view controller。它管理着view，内容，与其他对象协同工作，并且响应在repsonder chain里的事件。&lt;/p&gt; &lt;p&gt;当你设计一个container的时候，你需要显式的在你的container，和它的子controller之间创建父子关系。如下图。注意，&lt;code&gt;不仅仅controller之间需要显式的指定关系，view之间的关系也需要显式的指定&lt;/code&gt;。&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;/content/images/2015/11/2015-07-14_1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Alchemist's Crafts" href="../rss/index.rss">
+
+</head>
+<body class="post-template tag-objc tag-ios tag-skill no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="../" title="前往 Alchemist's Crafts 的主页"><img src="../content/images/2015/11/logo.jpeg" width="80" alt="Alchemist's Crafts logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="../" title="前往 Alchemist's Crafts 的主页">Alchemist's Crafts</a></h1>
+        <span class="panel-cover__subtitle panel-subtitle">茗香淡水</span>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">Thoughts, stories and ideas.</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="../index.html#blog" title="访问博客" class="blog-button">博客</a></li>
+<!--              <li class="navigation__item"><a href="http://project.onevcat.com" target="_blank" title="我的项目">项目</a></li> -->
+<!--              <li class="navigation__item"><a href="http://about.onevcat.com/" title="了解更多">关于</a></li> -->
+<!--              <li class="navigation__item"><a href="http://eepurl.com/" title="邮件订阅本站">订阅</a></li> -->
+              <li class="navigation__item"><a href="http://alchemistli.github.io/rss/index.rss" title="邮件订阅本站">订阅</a></li>
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Weibo -->
+<!-- 
+  <li class="navigation__item">
+    <a href="http://weibo.com/onevcat" title="@onevcat 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+-->
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/IamAlchemist" title="@IamAlchemist 的 Github" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="https://twitter.com/wizardle" title="@Alchemist" target="_blank">
+      <i class="social fa fa-twitter"></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="../rss/index.rss" rel="author" title="RSS" target="_blank">
+      <i class="social fa fa-rss"></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:babyfat.candy@gmail.com" title="邮件联系我">
+      <i class="social fa fa-envelope"></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-green"></div>
+  </div>
+</header>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="25 Nov 2015" class="post-meta__date date">25 Nov 2015</time> • <span class="post-meta__tags tags">于 <a href="../tag/objc/">Objc</a>, <a href="../tag/ios/">iOS</a>, <a href="../tag/skill/">Skill</a></span>
+        <!--<span class="post-meta__author author"><img src="" alt="profile image for Alchemist Li" class="avatar post-meta__avatar" /> by Alchemist Li</span>-->
+      </div>
+      <h1 class="post-title">自定义Container View Controllers</h1>
+    </header>
+
+    <section class="post tag-objc tag-ios tag-skill">
+      <p>多数情况下，container view controller 就像普通的view controller。它管理着view，内容，与其他对象协同工作，并且响应在repsonder chain里的事件。</p>
+
+<p>当你设计一个container的时候，你需要显式的在你的container，和它的子controller之间创建父子关系。如下图。注意，<code>不仅仅controller之间需要显式的指定关系，view之间的关系也需要显式的指定</code>。</p>
+
+<p><img src="../content/images/2015/11/2015-07-14_1.png" alt=""></p>
+
+<!--more-->
+
+<h3 id="container">常见的Container设计的例子</h3>
+
+<h4 id="navigationcontrollerviewcontroller">Navigation Controller管理着一些由子View Controller组成的栈</h4>
+
+<p>如图所示，Navigation Controller管理着一系列不同的子ViewController。在这个栈最上面的ViewController的View会被显示出来。</p>
+
+<p><img src="../content/images/2015/11/2015-07-14_2.png" alt=""></p>
+
+<p>Navigation Controller定义了一些行为  </p>
+
+<ul>
+<li>topViewController -- 目前显示的vc</li>
+<li>viewControllers -- 所有子vc</li>
+<li>pushViewController:animated: -- 显示</li>
+<li>popViewControllerAnimated: -- 弹出</li>
+<li>delegate -- 可以让使用者当状态改变的时候收到通知</li>
+</ul>
+
+<p>Navigation Controller 使用子VC的一些属性来改变当前显示的内容。</p>
+
+<ul>
+<li>navigationItem -- 提供了navigation toolbar的内容</li>
+<li>toolbarItem -- 提供了底部bar的内容</li>
+<li>editButtonItem -- 提供了可以从navigation item访问子view的途径，这样就可以改变子view的edit mode</li>
+</ul>
+
+<h4 id="tabbarcontrollervc">Tab Bar Controller使用一个子VC的集合</h4>
+
+<p><img src="../content/images/2015/11/2015-07-14_3.png" alt=""></p>
+
+<p>Tab Bar Controller定义了一些行为：</p>
+
+<ul>
+<li>viewControllers -- 所有子vc</li>
+<li>selectedViewController -- 设置或读取哪个子vc</li>
+<li>delegate -- 可以让使用者当状态改变的时候收到通知</li>
+</ul>
+
+<p>Tab Bar Controller 使用子VC的一些属性来改变当前显示的内容。</p>
+
+<ul>
+<li>tabBarItem -- 提供了底部bar的内容</li>
+</ul>
+
+<h4 id="pagecontrollerdatasourcevc">Page Controller使用DataSource去显示新的子VC</h4>
+
+<p>Page Controller支持无限多的页面显示，所以把所有的page都放在内存中是不可能的。相反，page controller在需要的时候拉取需要的page。这样page controller就使用一个pull model而不是让app把所有的page一下子push到里面</p>
+
+<p>Page Controller定义了一些行为：</p>
+
+<ul>
+<li>spineLocation -- 定义page是如何组织的，有时候只显示一个page，有时候需要两个</li>
+<li>transitionStyle -- 定义了过场动画的风格</li>
+</ul>
+
+<h4 id="containercontroller">实现自定义Container Controller</h4>
+
+<h5 id="vc">增加和移除子vc</h5>
+
+<p>始终应该记住的是，在<code>addSubview</code><em>之前</em><code>addChildViewController</code>,在<code>removeFromSuperVieww</code><em>之后</em><code>removeFromParentViewController</code>。</p>
+
+<p>另外，设置子view的大小最好也在addSubview之前</p>
+
+<p>增加</p>
+
+<pre><code>- (void) displayContentController: (UIViewController*) content;
+{
+    [self addChildViewController:content];                 
+    content.view.frame = [self frameForContentController]; 
+    [self.view addSubview:self.currentClientView];
+    [content didMoveToParentViewController:self];          
+}
+</code></pre>
+
+<ul>
+<li><code>addChildViewController</code>会自动调用<code>willMoveToPa</code></li>
+</ul>
+
+<p>移除</p>
+
+<pre><code>- (void) hideContentController: (UIViewController*) content
+{
+    [content willMoveToParentViewController:nil];  
+    [content.view removeFromSuperview];            
+    [content removeFromParentViewController];      
+}
+</code></pre>
+
+<h5 id="">简单的转场动画</h5>
+
+<pre><code>- (void) cycleFromViewController: (UIViewController*) oldC
+        toViewController: (UIViewController*) newC
+{
+    [oldC willMoveToParentViewController:nil];                        
+    [self addChildViewController:newC];
+
+    newC.view.frame = [self newViewStartFrame];                       
+    CGRect endFrame = [self oldViewEndFrame];
+
+    [self transitionFromViewController: oldC toViewController: newC   
+          duration: 0.25 options:0
+          animations:^{
+             newC.view.frame = oldC.view.frame;                       
+             oldC.view.frame = endFrame;
+          }
+          completion:^(BOOL finished) {
+             [oldC removeFromParentViewController];                   
+             [newC didMoveToParentViewController:self];
+          }];
+}
+</code></pre>
+
+<h5 id="callback">自定义显示和旋转的Callback行为</h5>
+
+<p>多数时候不用管这个事情，但是有时候你希望自己控制消息发送的时机之类的情况</p>
+
+<pre><code>- (BOOL) shouldAutomaticallyForwardAppearanceMethods
+{
+    return NO;
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self.child beginAppearanceTransition: YES animated: animated];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [self.child endAppearanceTransition];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [self.child beginAppearanceTransition: NO animated: animated];
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [self.child endAppearanceTransition];
+}
+</code></pre>
+
+<p>旋转与显示类似，首先要重载<code>shouldAutomaticallyForwardRotationMethods</code>，然后在合适的地方调用</p>
+
+<ul>
+<li><code>willRotateToInterfaceOrientation:duration:</code></li>
+<li><code>willAnimateRotationToInterfaceOrientation:duration:</code></li>
+<li><code>didRotateFromInterfaceOrientation:</code></li>
+</ul>
+
+<h5 id="bestpractices">Best practices</h5>
+
+<ul>
+<li>不要干这事！！因为毕竟实现一个复杂的container不是一件容易的事情</li>
+<li>只访问子VC的最顶层的那个View，其他View不要碰！</li>
+<li>如果需要子VC暴露一些接口，可以使用protocol！</li>
+</ul>
+
+<p>如下</p>
+
+<pre><code>@protocol MyContentContainerProtocol &lt;NSObject&gt;
+    ...
+@end
+- (void) displayContentController: (UIViewController&lt;MyContentContainerProtocol&gt;*) content;
+</code></pre>
+    </section>
+
+  </article>
+
+  <section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'alchemistliscraft'; // required: replace example with your forum shortname
+      
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">© 2015  All rights reserved.</span>
+    <span class="footer__copyright"><a href="https://github.com/onevcat/vno">Vno</a> theme by <a href="http://im.onevcat.com">@onevcat</a></span>
+</footer>        </div>
+    </div>
+
+    
+
+    <!-- Compatibility for Ghost 0.7.0: http://dev.ghost.org/no-more-jquery/ -->
+    <script type="text/javascript">  
+      if (typeof jQuery == 'undefined') {
+        document.write('<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></'+'script>');
+      }
+    </script>
+    
+    <script type="text/javascript" src="../assets/js/main.js?v=6c4622d9f3"></script>
+
+    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=6c4622d9f3"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
