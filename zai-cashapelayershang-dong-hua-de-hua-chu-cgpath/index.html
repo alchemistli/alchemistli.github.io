@@ -1,8 +1,9 @@
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Swift中optional</title>
+    <title>在CAShapeLayer上动画的画出CGPath</title>
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -13,39 +14,36 @@
     <meta name="description" content="">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Swift中optional">
+    <meta name="twitter:title" content="在CAShapeLayer上动画的画出CGPath">
     <meta name="twitter:description" content="">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Swift中optional">
+    <meta property="og:title" content="在CAShapeLayer上动画的画出CGPath">
     <meta property="og:description" content="">
 
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
     <link href="../assets/images/favicon.png" rel="shortcut icon" type="image/png">
     <link href="http://localhost:2368/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=6c4622d9f3">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vno.css?v=59a1498f09">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=6c4622d9f3">
+    <link rel="stylesheet" type="text/css" href="../assets/css/tomorrow.css?v=59a1498f09">
     
     <link rel="canonical" href="index.html">
     <meta name="referrer" content="origin">
     
     <meta property="og:site_name" content="Alchemist's Crafts">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Swift中optional">
-    <meta property="og:description" content="&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;...">
-    <meta property="og:url" content="http://localhost:2368/swiftzhong-optional/">
-    <meta property="article:published_time" content="2015-11-25T03:13:58.312Z">
-    <meta property="article:modified_time" content="2015-11-25T03:20:29.169Z">
-    <meta property="article:tag" content="Swift">
-    <meta property="article:tag" content="iOS">
-    <meta property="article:tag" content="Knowledge">
+    <meta property="og:title" content="在CAShapeLayer上动画的画出CGPath">
+    <meta property="og:description" content="&lt;p&gt;CAShapeLayer上有两个好玩的属性叫做&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;。使用这两个属性可以作出非常有意思的动画&lt;/p&gt;...">
+    <meta property="og:url" content="http://localhost:2368/zai-cashapelayershang-dong-hua-de-hua-chu-cgpath/">
+    <meta property="article:published_time" content="2015-12-28T09:39:42.579Z">
+    <meta property="article:modified_time" content="2015-12-28T10:09:45.088Z">
     
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Swift中optional">
-    <meta name="twitter:description" content="&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;...">
-    <meta name="twitter:url" content="http://localhost:2368/swiftzhong-optional/">
+    <meta name="twitter:title" content="在CAShapeLayer上动画的画出CGPath">
+    <meta name="twitter:description" content="&lt;p&gt;CAShapeLayer上有两个好玩的属性叫做&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;。使用这两个属性可以作出非常有意思的动画&lt;/p&gt;...">
+    <meta name="twitter:url" content="http://localhost:2368/zai-cashapelayershang-dong-hua-de-hua-chu-cgpath/">
     
     <script type="application/ld+json">
 {
@@ -59,12 +57,11 @@
         "sameAs": null,
         "description": null
     },
-    "headline": "Swift中optional",
-    "url": "http://localhost:2368/swiftzhong-optional/",
-    "datePublished": "2015-11-25T03:13:58.312Z",
-    "dateModified": "2015-11-25T03:20:29.169Z",
-    "keywords": "Swift, iOS, Knowledge",
-    "description": "&lt;p&gt;关于&lt;code&gt;optional&lt;/code&gt;，最需要说的是为什么需要&lt;code&gt;optional&lt;/code&gt;，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是&lt;code&gt;optional&lt;/code&gt;的目的&lt;/p&gt;..."
+    "headline": "在CAShapeLayer上动画的画出CGPath",
+    "url": "http://localhost:2368/zai-cashapelayershang-dong-hua-de-hua-chu-cgpath/",
+    "datePublished": "2015-12-28T09:39:42.579Z",
+    "dateModified": "2015-12-28T10:09:45.088Z",
+    "description": "&lt;p&gt;CAShapeLayer上有两个好玩的属性叫做&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;。使用这两个属性可以作出非常有意思的动画&lt;/p&gt;..."
 }
     </script>
 
@@ -72,7 +69,7 @@
     <link rel="alternate" type="application/rss+xml" title="Alchemist's Crafts" href="../rss/index.rss">
 
 </head>
-<body class="post-template tag-swift tag-ios tag-knowledge no-js">
+<body class="post-template no-js">
 
     <span class="mobile btn-mobile-menu">
         <i class="fa fa-list btn-mobile-menu__icon"></i>
@@ -170,38 +167,74 @@
 
     <header class="post-header">
       <div class="post-meta">
-        <time datetime="25 Nov 2015" class="post-meta__date date">25 Nov 2015</time> • <span class="post-meta__tags tags">于 <a href="../tag/swift/">Swift</a>, <a href="../tag/ios/">iOS</a>, <a href="../tag/knowledge/">Knowledge</a></span>
+        <time datetime="28 Dec 2015" class="post-meta__date date">28 Dec 2015</time> • <span class="post-meta__tags tags"></span>
         <!--<span class="post-meta__author author"><img src="" alt="profile image for Alchemist Li" class="avatar post-meta__avatar" /> by Alchemist Li</span>-->
       </div>
-      <h1 class="post-title">Swift中optional</h1>
+      <h1 class="post-title">在CAShapeLayer上动画的画出CGPath</h1>
     </header>
 
-    <section class="post tag-swift tag-ios tag-knowledge">
-      <p>关于<code>optional</code>，最需要说的是为什么需要<code>optional</code>，比如说在objctive-c中就没有，也是可以表示一个不存在的对象的。只需要用NULL就可以了。但是如何表示一个不存在的value类型的变量呢？比如一个不存在的struture？objective-c就没有太好的办法了，一般来说是用一个特殊值NSNotFound来表示。不过swift可以让一切不存在的变量都为nil，这就是<code>optional</code>的目的</p>
+    <section class="post">
+      <p>CAShapeLayer上有两个好玩的属性叫做<code>strokeStart</code>和<code>strokeEnd</code>。使用这两个属性可以作出非常有意思的动画</p>
 
-<!--more-->
+<!--more-->  
 
-<p>关于<code>optional</code>，剩下的只是swift里面有关的特殊术语，搞清楚还是很有必要的</p>
+<p>可以先看一下demo先感受一下</p>
 
-<h4 id="forceunwrapping">Force Unwrapping</h4>
+<video controls>  
+<source src="http://oleb.net/media/AnimatedPathsHausVomNikolaus.mp4" type="video/mp4">  
+</source></video>
 
-<p><code>Force Unwarpping</code>指的是把<code>optional</code>对象转化成一个非空的对象</p>
+<p></p>  
 
-<h4 id="optionalbinding">Optional Binding</h4>
+<p><code>strokeStart</code>和<code>strokeEnd</code>的取值范围都是0.0到1.0。含义分别是path开始绘制的地方和结束绘制的地方。它们的默认值分别是0.0和1.0。如果你只想path画前一半的话，那只要设置<code>strokeEnd = 0.5</code>，这样，渲染的时候就只会画一半了。</p>
 
-<p>其基本形式是</p>
+<p>最重要的是－－这两个属性是可以有动画效果的，可以看到上面的效果</p>
 
-<pre><code>if let constantName = someOptional
+<p>核心代码如下</p>
 
-while let constantName = someOptional
+<script src="https://gist.github.com/IamAlchemist/ea47e7983e64a8edd20b.js"></script>
+
+<p>这种效果还可以使用在字符上面，不过前提是我们需要把字符的图形转换成CGPath。</p>
+
+<p>可以看一下下面的demo</p>
+
+<video controls>  
+<source src="http://oleb.net/media/AnimatedPathsHelloWorld.mp4" type="video/mp4">  
+</source></video>  
+
+<p></p>
+
+<h3 id="swiftcfarray">swift中使用CFArray</h3>
+
+<p>从字符转化成路径的时候碰到点小问题，使用<code>CTLineGetGlyphRuns</code>时，必须要和CFArray打交道。因为它会返回一个放置了CTRun的CFArray。这里有几种办法来解决，这里介绍两种比较好的</p>
+
+<ul>
+<li>CFArray转换成Array</li>
+</ul>
+
+<pre><code>let runArray = ((CTLineGetGlyphRuns(line) as [AnyObject]) as! [CTRunRef])  
 </code></pre>
 
-<h4 id="implicityunwrappedoptionals">Implicity Unwrapped Optionals</h4>
+<ul>
+<li>另外一种是把CFArray里的void指针强转成swift可以识别的类型，使用<code>unsafeBitCast</code>(其实就是老的reinterpret)</li>
+</ul>
 
-<p>一个optinal变量可以定义为<code>implicity unwrapped optionals</code>, 那么使用这个变量的时候就不再需要force unwrap, 一旦unwrap失败，程序会崩溃</p>
-
-<pre><code>var storyboardName : String! = "hello"
+<pre><code>let arr = NSArray(object: "meow")  
+let str = unsafeBitCast(CFArrayGetValueAtIndex(arr, 0), CFString.self)  
+// str = "meow"
 </code></pre>
+
+<h3 id="swift">swift源代码</h3>
+
+<p><a href="https://github.com/IamAlchemist/AnimatedPath">AnimatedPath</a></p>
+
+<h5 id="">参考</h5>
+
+<p><a href="http://oleb.net/blog/2010/12/animating-drawing-of-cgpath-with-cashapelayer/">Animating the Drawing of a CGPath With CAShapeLayer</a></p>
+
+<p><a href="http://swifter.tips/unsafe/">UNSAFEPOINTER</a></p>
+
+<p><a href="http://zonble.net/archives/2015_03/1668.php">在 Swift 裡頭呼叫 CFArray</a></p>
     </section>
 
   </article>
@@ -239,8 +272,8 @@ while let constantName = someOptional
       }
     </script>
     
-    <script type="text/javascript" src="../assets/js/main.js?v=6c4622d9f3"></script>
+    <script type="text/javascript" src="../assets/js/main.js?v=59a1498f09"></script>
 
-    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=6c4622d9f3"></script>
+    <script type="text/javascript" src="../assets/js/highlight.pack.js?v=59a1498f09"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </body>

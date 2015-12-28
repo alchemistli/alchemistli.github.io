@@ -1,4 +1,106 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Wed, 16 Dec 2015 06:01:28 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Git 简介</title><description>&lt;p&gt;这里主要介绍给初次git命令行使用者在开发中常见的命令&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Mon, 28 Dec 2015 10:10:11 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>在CAShapeLayer上动画的画出CGPath</title><description>&lt;p&gt;CAShapeLayer上有两个好玩的属性叫做&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;。使用这两个属性可以作出非常有意思的动画&lt;/p&gt;
+
+&lt;!--more--&gt;  
+
+&lt;p&gt;可以先看一下demo先感受一下&lt;/p&gt;
+
+&lt;video controls&gt;  
+&lt;source src="http://oleb.net/media/AnimatedPathsHausVomNikolaus.mp4" type="video/mp4"&gt;  
+&lt;/video&gt;
+
+&lt;p&gt;&lt;/p&gt;  
+
+&lt;p&gt;&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;的取值范围都是0.0到1.0。含义分别是path开始绘制的地方和结束绘制的地方。它们的默认值分别是0.0和1.0。如果你只想path画前一半的话，那只要设置&lt;code&gt;strokeEnd = 0.5&lt;/code&gt;，这样，渲染的时候就只会画一半了。&lt;/p&gt;
+
+&lt;p&gt;最重要的是－－这两个属性是可以有动画效果的，可以看到上面的效果&lt;/p&gt;
+
+&lt;p&gt;核心代码如下&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/IamAlchemist/ea47e7983e64a8edd20b.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;这种效果还可以使用在字符上面，不过前提是我们需要把字符的图形转换成CGPath。&lt;/p&gt;
+
+&lt;p&gt;可以看一下下面的demo&lt;/p&gt;
+
+&lt;video controls&gt;  
+&lt;source src="http://oleb.net/media/AnimatedPathsHelloWorld.mp4" type="video/mp4"&gt;  
+&lt;/video&gt;  
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id="swiftcfarray"&gt;swift中使用CFArray&lt;/h3&gt;
+
+&lt;p&gt;从字符转化成路径的时候碰到点小问题，使用&lt;code&gt;CTLineGetGlyphRuns&lt;/code&gt;时，必须要和CFArray打交道。因为它会返回一个放置了CTRun的CFArray。这里有几种办法来解决，这里介绍两种比较好的&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CFArray转换成Array&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;let runArray = ((CTLineGetGlyphRuns(line) as [AnyObject]) as! [CTRunRef])  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;另外一种是把CFArray里的void指针强转成swift可以识别的类型，使用&lt;code&gt;&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</description><link>http://localhost:2368/zai-cashapelayershang-dong-hua-de-hua-chu-cgpath/</link><guid isPermaLink="false">222e2118-a08c-4087-a6c7-4a546992d69b</guid><dc:creator>Alchemist Li</dc:creator><pubDate>Mon, 28 Dec 2015 09:39:42 GMT</pubDate><content:encoded>&lt;p&gt;CAShapeLayer上有两个好玩的属性叫做&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;。使用这两个属性可以作出非常有意思的动画&lt;/p&gt;
+
+&lt;!--more--&gt;  
+
+&lt;p&gt;可以先看一下demo先感受一下&lt;/p&gt;
+
+&lt;video controls&gt;  
+&lt;source src="http://oleb.net/media/AnimatedPathsHausVomNikolaus.mp4" type="video/mp4"&gt;  
+&lt;/video&gt;
+
+&lt;p&gt;&lt;/p&gt;  
+
+&lt;p&gt;&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;的取值范围都是0.0到1.0。含义分别是path开始绘制的地方和结束绘制的地方。它们的默认值分别是0.0和1.0。如果你只想path画前一半的话，那只要设置&lt;code&gt;strokeEnd = 0.5&lt;/code&gt;，这样，渲染的时候就只会画一半了。&lt;/p&gt;
+
+&lt;p&gt;最重要的是－－这两个属性是可以有动画效果的，可以看到上面的效果&lt;/p&gt;
+
+&lt;p&gt;核心代码如下&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/IamAlchemist/ea47e7983e64a8edd20b.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;这种效果还可以使用在字符上面，不过前提是我们需要把字符的图形转换成CGPath。&lt;/p&gt;
+
+&lt;p&gt;可以看一下下面的demo&lt;/p&gt;
+
+&lt;video controls&gt;  
+&lt;source src="http://oleb.net/media/AnimatedPathsHelloWorld.mp4" type="video/mp4"&gt;  
+&lt;/video&gt;  
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id="swiftcfarray"&gt;swift中使用CFArray&lt;/h3&gt;
+
+&lt;p&gt;从字符转化成路径的时候碰到点小问题，使用&lt;code&gt;CTLineGetGlyphRuns&lt;/code&gt;时，必须要和CFArray打交道。因为它会返回一个放置了CTRun的CFArray。这里有几种办法来解决，这里介绍两种比较好的&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CFArray转换成Array&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;let runArray = ((CTLineGetGlyphRuns(line) as [AnyObject]) as! [CTRunRef])  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;另外一种是把CFArray里的void指针强转成swift可以识别的类型，使用&lt;code&gt;unsafeBitCast&lt;/code&gt;(其实就是老的reinterpret)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;let arr = NSArray(object: "meow")  
+let str = unsafeBitCast(CFArrayGetValueAtIndex(arr, 0), CFString.self)  
+// str = "meow"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="swift"&gt;swift源代码&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/IamAlchemist/AnimatedPath"&gt;AnimatedPath&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=""&gt;参考&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href="http://oleb.net/blog/2010/12/animating-drawing-of-cgpath-with-cashapelayer/"&gt;Animating the Drawing of a CGPath With CAShapeLayer&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://swifter.tips/unsafe/"&gt;UNSAFEPOINTER&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://zonble.net/archives/2015_03/1668.php"&gt;在 Swift 裡頭呼叫 CFArray&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title>Git 简介</title><description>&lt;p&gt;这里主要介绍给初次git命令行使用者在开发中常见的命令&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -3328,146 +3430,6 @@ interface IRemoteAPI {
     @Override
     public IBinder onBind(Intent intent) {
         return binder;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Swift Optional Chaining</title><description>&lt;p&gt;&lt;code&gt;optinal chainging&lt;/code&gt;是一个查询和调用&lt;code&gt;optional&lt;/code&gt;的property, method, subscript的过程。如果其中的&lt;code&gt;optional&lt;/code&gt;没有nil，那么表达式求值成功。否则，失败。失败后返回nil。所以整个表达式返回值始终是&lt;code&gt;optional&lt;/code&gt;类型。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;以下是一些sample code, 先构造一些类&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Person{ var residence: Residence? }
-
-class Residence {
-    var rooms = [Room]()
-    var numberOfRooms: Int { return rooms.count }
-
-    subscript(i: Int) -&amp;gt; Room {
-        get { return rooms[i] }
-        set { rooms[i] = newValue&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/swift-optional-chaining/</link><guid isPermaLink="false">dfeac41b-a73f-47fc-bd8f-0414ad82f6f7</guid><category>Swift</category><category>iOS</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:22:06 GMT</pubDate><content:encoded>&lt;p&gt;&lt;code&gt;optinal chainging&lt;/code&gt;是一个查询和调用&lt;code&gt;optional&lt;/code&gt;的property, method, subscript的过程。如果其中的&lt;code&gt;optional&lt;/code&gt;没有nil，那么表达式求值成功。否则，失败。失败后返回nil。所以整个表达式返回值始终是&lt;code&gt;optional&lt;/code&gt;类型。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;以下是一些sample code, 先构造一些类&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Person{ var residence: Residence? }
-
-class Residence {
-    var rooms = [Room]()
-    var numberOfRooms: Int { return rooms.count }
-
-    subscript(i: Int) -&amp;gt; Room {
-        get { return rooms[i] }
-        set { rooms[i] = newValue }
-    }
-
-    func printNumberOfRooms(){
-        println("The number of rooms is \(numberOfRooms)")
-    }
-}
-
-class Room {
-    let name: String
-    init(name: String){ self.name = name }
-}
-
-class Address {
-    var buildingName: String?
-    var buildingNumber: String?
-    var street: String?
-
-    func buildingIdentifier() -&amp;gt; String? {
-        if buildingName != nil {
-            return buildingName
-        } else if buildNumber != nil {
-            return buldingNumber
-        } else {
-            return nil
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;下面就是如何使用&lt;code&gt;optional chain&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;let john = Person()
-if let roomCount = john.residence?.numberOfRooms {
-    println("john's residence has \(roomCount) rooms.")
-}
-// will print nothing
-
-let someAddress = Address()
-someAddress.buildingNumber = "29"
-someAddress.street = "Acacia Road"
-john.residence?.address = someAddress //will fail
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Residence里的方法printNumberOfRooms()没有返回值，但是这意味着该方法返回类型是Void，也就是返回值是(),也就是一个空的tuple. 在&lt;code&gt;optional chain&lt;/code&gt;里，会返回Void?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if john.residence?.printNumberOfRoom() != nil {
-    println("It was possible to print the number of rooms."
-} 
-// will print nothing
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;对于通过&lt;code&gt;optional chain&lt;/code&gt;来设置属性也一样&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if (john.residence?.address = someAddress) != nil {
-    println("It was possible to set the address."
-}
-// will print nothing
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;通过&lt;code&gt;optional chaining&lt;/code&gt;访问subscript&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if let firstRoomName = john.residence?[0].name {
-    println("the first room name is \(firstRoomName)")
-}
-// will print nothing
-
-let johnsHouse = Residence()
-johnsHouse.rooms.append(Room(name: "Living Room"))
-johnsHouse.rooms.append(Room(name: "Kitchen"))
-john.residence = johnsHouse
-
-if let firstRoomName = john.residence?[0].name {
-    println("the first room name is \(firstRoomName)")
-}
-// prints "the first room name is Living Room"
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;访问&lt;code&gt;optional&lt;/code&gt;的subscript&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var testScrores = ["Dave": [86, 82, 84], "Bev": [79, 94, 81]]
-testScores["Dave"]?[0] = 91
-testScores["Bev"]?[0]++
-testScores["Brain"]?[0]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;多层的optional chain， 原则是
-* 如果试图查询的东西的类型并非是&lt;code&gt;optional&lt;/code&gt;的，会由于使用了chain而变成&lt;code&gt;optional&lt;/code&gt;
-* 如果正在查询的东西已经是&lt;code&gt;optional&lt;/code&gt;的，它不会因为chain变得“更”&lt;code&gt;optional&lt;/code&gt;（&lt;code&gt;optional&lt;/code&gt;的&lt;code&gt;optional&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;下面是代码示例&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if let johnsStreet = john.residence?.address?.street{
-    println("John's street name is \(johnsStreet)")
-}
-// print nothing
-
-let johnsAddress = Address()
-johnsAddress.buildingName = "The Larches"
-johnsAddress.street = "Laurel Street"
-john.residence?.address = johnsAddress
-
-if let johnsStreet = john.residence?.address?.street{
-    println("John's street name is \(johnsStreet)")
-}
-// print "John's street name is Laurel Street"
-
-if let beginsWithThe = john.residence?.address?.buildingIdentifier()?.hasPrefix("The") {
-    if beginWithThe {
-        println("John's building identifier begins with \"The\".")
     }
 }
 &lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
