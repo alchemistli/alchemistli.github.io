@@ -1,3 +1,3 @@
 # alchemistli.github.io
 
-just ideas
+just ideas, all about love
