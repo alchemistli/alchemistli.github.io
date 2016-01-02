@@ -1,4 +1,53 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Mon, 28 Dec 2015 10:10:11 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>在CAShapeLayer上动画的画出CGPath</title><description>&lt;p&gt;CAShapeLayer上有两个好玩的属性叫做&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;。使用这两个属性可以作出非常有意思的动画&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Alchemist's Crafts</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Sat, 02 Jan 2016 06:29:42 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Trello有趣的apply job题目</title><description>&lt;p&gt;Trello果然很有趣，申请程序job的话，首先要做一道题目。&lt;/p&gt;
+
+&lt;p&gt;题目是这样的&lt;/p&gt;
+
+&lt;!--more--&gt;  
+
+&lt;p&gt;Write code to find a 8 letter string of characters that contains only letters from&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;acdegilmnoprstuw&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;such that the hash(the_string) is&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;25377615533200&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;if hash is defined by the following pseudo-code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Int64 hash (String s) {  
+    Int64 h = 7
+    String letters = "acdegilmnoprstuw"
+    for(Int32 i = 0;&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/trelloyou-qu-de-apply-jobti-mu/</link><guid isPermaLink="false">3e226be9-004c-4259-913f-573918b3ecf3</guid><category>Swift</category><dc:creator>Alchemist Li</dc:creator><pubDate>Sat, 02 Jan 2016 06:25:19 GMT</pubDate><content:encoded>&lt;p&gt;Trello果然很有趣，申请程序job的话，首先要做一道题目。&lt;/p&gt;
+
+&lt;p&gt;题目是这样的&lt;/p&gt;
+
+&lt;!--more--&gt;  
+
+&lt;p&gt;Write code to find a 8 letter string of characters that contains only letters from&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;acdegilmnoprstuw&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;such that the hash(the_string) is&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;25377615533200&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;if hash is defined by the following pseudo-code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Int64 hash (String s) {  
+    Int64 h = 7
+    String letters = "acdegilmnoprstuw"
+    for(Int32 i = 0; i &amp;lt; s.length; i++) {
+        h = (h * 37 + letters.indexOf(s[i]))
+    }
+    return h
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For example, if we were trying to find the 7 letter string where hash(the_string) was 680131659347, the answer would be "leepadg".&lt;/p&gt;
+
+&lt;p&gt;我在playground里写了一个解法，答案是&lt;code&gt;nsanswer&lt;/code&gt;&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/IamAlchemist/ff5d642c18fa99caec48.js"&gt;&lt;/script&gt;</content:encoded></item><item><title>在CAShapeLayer上动画的画出CGPath</title><description>&lt;p&gt;CAShapeLayer上有两个好玩的属性叫做&lt;code&gt;strokeStart&lt;/code&gt;和&lt;code&gt;strokeEnd&lt;/code&gt;。使用这两个属性可以作出非常有意思的动画&lt;/p&gt;
 
 &lt;!--more--&gt;  
 
@@ -3224,212 +3273,4 @@ fi
     ...
 @end
 - (void) displayContentController: (UIViewController&amp;lt;MyContentContainerProtocol&amp;gt;*) content;
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Android中的AIDL</title><description>&lt;p&gt;AIDL是用来跨进行通信的。在Android上，跨进程通信需要把对象解构成系统可以识别的基本类型，然后在交给另一个进程使用之前，需要重新组装起来。这些工作是十分枯燥的，AIDL就是为了这个目的而设计的。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;&lt;code&gt;注意：当且仅当你允许不同的App的clients需要跨进程来访问你的service，并且需要在service里处理多线程问题的时候，你才应该使用AIDL。如果仅仅是App内部的client来访问服务，并且不需要IPC的话，只要使用Binder就好了。如果是需要IPC，但是不用处理并发的话，那么只要用Messager就好了。只有既要IPC，又要处理并发，才需要用AIDL。总之，只有在必须的时候才使用AIDL&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id="aidl"&gt;关于AIDL调用的背后&lt;/h3&gt;
-
-&lt;p&gt;另一个需要知道的是，AIDL的接口调用是直接调用，所以并不能对调用接口的线程有任何假设。调用的线程在本地进程执行还是在远程进程执行的结果可能是非常不同的。其中：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;如果是本地进程进行AIDL调用，服务端代码是在进行调用的这个线程中执行的&lt;/li&gt;
-&lt;li&gt;如果是远程进程进行AIDL调用，你就必须为服务端代码同时在不同线程中执行做好准备，也就是说，这些代码必须是线程安全的&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;oneway&lt;/code&gt;关键字用来修饰远调用，使用后表示这个远程调用并不阻塞，它仅仅是发送了数据就立刻返回。而该关键字并不影响本地调用&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id="aidl"&gt;创建AIDL过程&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;创建.aidl文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;使用Android Studio自己创建IRemoteService.aidl就很好，比如定义接口getPid()&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;interface IRemoteService {
-    int getPid(&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/androidzhong-de-aidl/</link><guid isPermaLink="false">78aa4458-a3dc-435f-848f-0f3c1a654305</guid><category>Android</category><category>Knowledge</category><dc:creator>Alchemist Li</dc:creator><pubDate>Wed, 25 Nov 2015 03:24:14 GMT</pubDate><content:encoded>&lt;p&gt;AIDL是用来跨进行通信的。在Android上，跨进程通信需要把对象解构成系统可以识别的基本类型，然后在交给另一个进程使用之前，需要重新组装起来。这些工作是十分枯燥的，AIDL就是为了这个目的而设计的。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;&lt;code&gt;注意：当且仅当你允许不同的App的clients需要跨进程来访问你的service，并且需要在service里处理多线程问题的时候，你才应该使用AIDL。如果仅仅是App内部的client来访问服务，并且不需要IPC的话，只要使用Binder就好了。如果是需要IPC，但是不用处理并发的话，那么只要用Messager就好了。只有既要IPC，又要处理并发，才需要用AIDL。总之，只有在必须的时候才使用AIDL&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id="aidl"&gt;关于AIDL调用的背后&lt;/h3&gt;
-
-&lt;p&gt;另一个需要知道的是，AIDL的接口调用是直接调用，所以并不能对调用接口的线程有任何假设。调用的线程在本地进程执行还是在远程进程执行的结果可能是非常不同的。其中：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;如果是本地进程进行AIDL调用，服务端代码是在进行调用的这个线程中执行的&lt;/li&gt;
-&lt;li&gt;如果是远程进程进行AIDL调用，你就必须为服务端代码同时在不同线程中执行做好准备，也就是说，这些代码必须是线程安全的&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;oneway&lt;/code&gt;关键字用来修饰远调用，使用后表示这个远程调用并不阻塞，它仅仅是发送了数据就立刻返回。而该关键字并不影响本地调用&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id="aidl"&gt;创建AIDL过程&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;创建.aidl文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;使用Android Studio自己创建IRemoteService.aidl就很好，比如定义接口getPid()&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;interface IRemoteService {
-    int getPid();
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;实现该接口的service&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;例如实现文件AIDLService.java，这个service在onBind函数中返回的binder里含有IRemoteService.aidl定义的接口的实现&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public class AIDLService extends Service {
-
-    private final IRemoteService.Stub binder = new IRemoteService.Stub(){
-
-        @Override
-        public int getPid() throws RemoteException {
-            return android.os.Process.myPid();
-        }
-    };
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return binder;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;使用该AIDL&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;像使用普通service一样&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;IRemoteService remoteService;
-
-ServiceConnection remoteServiceConnection = new ServiceConnection() {
-    @Override
-    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        remoteService = IRemoteService.Stub.asInterface(iBinder);
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName componentName) {
-        remoteService = null;
-    }
-};
-
-Intent intent = new Intent(MainActivity.this, AIDLService.class);
-bindService(intent, remoteServiceConnection, BIND_AUTO_CREATE);
-startService(intent);
-
-int remotePid = remoteService.getPid();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="aidl"&gt;在AIDL中传递对象&lt;/h3&gt;
-
-&lt;p&gt;比如我们希望AIDL接口可以传递名为Student的对象,需要做以下一些事情&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;定义Student.aidl&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;其中声明Student类型&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;parcelable Student;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;定义aidl接口（IRemoteAPI.aidl）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;注意要import相应的Student类&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;import com.morgenworks.alchemistli.remotelibrary.Student;
-
-interface IRemoteAPI {
-    Student getName();
-    void setName(in Student st);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;定义实现了Parcelble接口的Student类&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;实现Parcelble接口需要实现这样几个函数, Student(Parcel source), writeToParcel(...), readescribeContents(), 以及static Creator&lt;student&gt; CREATOR&lt;/student&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public class Student implements Parcelable {
-    public String name;
-    public String fatherName;
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(fatherName);
-    }
-
-    public Student(Parcel source){
-        name = source.readString();
-        fatherName = source.readString();
-    }
-
-    public Student(){}
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public void setFatherName(String fatherName){
-        this.fatherName = fatherName;
-    }
-
-    public static final Creator&amp;lt;Student&amp;gt; CREATOR = new Creator&amp;lt;Student&amp;gt;() {
-        @Override
-        public Student createFromParcel(Parcel source) {
-            return new Student(source);
-        }
-
-        @Override
-        public Student[] newArray(int size) {
-            return new Student[size];
-        }
-    };
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;实现AIDL接口的服务&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;就像实现普通的AIDL接口服务一样&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public class RemoteAPIService extends Service {
-    private Student stuInfo;
-
-    private IRemoteAPI.Stub binder = new IRemoteAPI.Stub() {
-        @Override
-        public Student getName() throws RemoteException {
-            stuInfo.name = stuInfo.name.toUpperCase();
-            return stuInfo;
-        }
-
-        @Override
-        public void setName(Student st) throws RemoteException {
-            stuInfo = st;
-        }
-    };
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return binder;
-    }
-}
 &lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
